@@ -1,0 +1,6 @@
+{
+  "name": "Dynamic Handyman (PTY) LTD",
+  "description": "One Team. Every Trade. Done Right. Professional multi-trade property maintenance, repairs, renovations and alterations across Gauteng, South Africa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
