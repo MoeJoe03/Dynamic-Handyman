@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Logo } from './Logo';
+import { contactPhone } from '@/config/contact';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -83,7 +84,9 @@ export function Footer() {
             </h5>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Tel:</span>
-              +27 (0) XX XXX XXXX
+              <a href={contactPhone.telHref} className="hover:text-white transition-colors">
+                {contactPhone.display}
+              </a>
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Email:</span>

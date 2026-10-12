@@ -1,3 +1,5 @@
+import { galleryConfig } from '@/config/gallery.config';
+
 export interface ProjectItem {
   id: string;
   category: string;
@@ -7,7 +9,7 @@ export interface ProjectItem {
     | 'carpentry'
     | 'plumbing'
     | 'palisades'
-    | 'renovations'
+    | 'paving'
     | 'maintenance'
     | 'glass-works'
     | 'flooring'
@@ -24,17 +26,7 @@ export interface ProjectItem {
 
 export const galleryFilters = [
   { key: 'all', label: 'All Projects' },
-  { key: 'electrical', label: "Electrical & COC's" },
-  { key: 'painting', label: 'Painting & Coatings' },
-  { key: 'carpentry', label: 'Carpentry & Joinery' },
-  { key: 'plumbing', label: 'Plumbing & Hydraulics' },
-  { key: 'palisades', label: 'Palisades & Carports' },
-  { key: 'renovations', label: 'Renovations' },
-  { key: 'maintenance', label: 'Domestic & Corporate Maintenance' },
-  { key: 'glass-works', label: 'Glass Works' },
-  { key: 'flooring', label: 'Flooring' },
-  { key: 'gutters-fascia', label: 'Gutters, Down Pipes & Fascia' },
-  { key: 'aluminium-windows-doors', label: 'Aluminium Windows & Doors' },
+  ...galleryConfig.categories.map((category) => ({ key: category.value, label: category.filterLabel })),
 ] as const;
 
 export const projectsData: ProjectItem[] = [
@@ -122,8 +114,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: 'project-6',
     category: 'Renovations',
-    filterKey: 'renovations',
-    additionalFilterKeys: ['maintenance'],
+    filterKey: 'maintenance',
     title: 'Renovations',
     subtitle: 'Corporate Office Alterations & Fit-Out',
     location: 'Rosebank, Johannesburg',
@@ -139,7 +130,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: 'project-7',
     category: 'Renovations',
-    filterKey: 'renovations',
+    filterKey: 'paving',
     title: 'Structural Alterations',
     subtitle: 'Engineered Paving & Boundary Integration',
     location: 'Alberton, Gauteng',

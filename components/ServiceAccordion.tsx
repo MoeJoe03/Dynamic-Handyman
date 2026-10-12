@@ -20,14 +20,10 @@ function ServiceImageCarousel({ service, homeImages }: { service: ServiceItem; h
     return { url: selected.imageUrl, alt: selected.altText };
   });
 
-  while (slides.length < 4 && slides.length > 0) {
-    slides.push(slides[slides.length % service.images.length]);
-  }
-
   const loopSlides = [...slides, ...slides];
 
   return (
-    <div className="relative min-w-0 lg:col-span-8" aria-label="Service project image carousel">
+    <div className="relative min-w-0 lg:col-span-8" aria-label="Service image carousel">
       <div className="overflow-hidden rounded-lg border border-[#D9DEE2]/60 bg-transparent sm:rounded-2xl">
         <div
           className="animate-marquee flex w-[400%] motion-reduce:animate-none"
@@ -54,7 +50,7 @@ function ServiceImageCarousel({ service, homeImages }: { service: ServiceItem; h
       </div>
       <div className="mt-3 flex items-center justify-between">
         <span className="text-[10px] font-mono tracking-widest uppercase text-slate-500">
-          Project images • Auto-rotating
+          Service images • Auto-rotating
         </span>
       </div>
     </div>

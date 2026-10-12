@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Manrope, JetBrains_Mono } from 'next/font/google';
+import { contactPhone } from '@/config/contact';
 import './globals.css';
 
 const manrope = Manrope({
@@ -77,7 +78,7 @@ export default function RootLayout({
       'Bedfordview',
       'Gauteng',
     ],
-    telephone: '+27-00-000-0000',
+    telephone: contactPhone.international,
     email: 'info@dynamichandyman.co.za',
     currenciesAccepted: 'ZAR',
     paymentAccepted: 'EFT, Cash, Credit Card',

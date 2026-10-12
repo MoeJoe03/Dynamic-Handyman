@@ -29,7 +29,7 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
       ? images
       : images.filter((image) => image.category === activeFilter);
 
-  const galleryFilters = [{ key: 'all', label: 'All Projects' }, ...galleryConfig.categories.map((category) => ({ key: category.value, label: category.label }))];
+  const galleryFilters = [{ key: 'all', label: 'All Projects' }, ...galleryConfig.categories.map((category) => ({ key: category.value, label: category.filterLabel }))];
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -82,7 +82,7 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Filter Pill Row - Sticky on Mobile & Desktop, All Filters Visible */}
             <div className="sticky top-[4.75rem] sm:top-[5.25rem] z-40 bg-[#F8F9F9]/95 backdrop-blur-md py-3 sm:py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 border-b border-[#D9DEE2]/80 mb-8 sm:mb-12 shadow-sm">
-              <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5">
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:gap-2.5" role="group" aria-label="Filter projects by service">
                 {galleryFilters.map((filter) => {
                   const isActive = activeFilter === filter.key;
                   return (
@@ -90,7 +90,8 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
                       key={filter.key}
                       type="button"
                       onClick={() => setActiveFilter(filter.key)}
-                      className={`px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                      aria-pressed={isActive}
+                      className={`shrink-0 whitespace-nowrap px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${
                         isActive
                           ? 'bg-[#123E61] text-white shadow-sm ring-1 ring-[#123E61]'
                           : 'bg-white hover:bg-slate-200 text-slate-700 font-semibold border border-[#D9DEE2]'

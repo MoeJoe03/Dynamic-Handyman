@@ -52,6 +52,13 @@ export async function DELETE(request: NextRequest, context: Context) {
     revalidatePath('/gallery');
 
     if (isLegacyImagePath(image.image_path)) return NextResponse.json({ success: true });
+    const { data: remainingHomeUse, error: remainingHomeError } = await admin.supabase.from('home_images')
+      .select('slot_key').eq('image_path', image.image_path).limit(1).maybeSingle();
+    if (remainingHomeError) {
+      console.error('Gallery deletion cleanup reference check failed', remainingHomeError);
+      return NextResponse.json({ warning: 'Image removed from the gallery; its stored file needs cleanup.' });
+    }
+    if (remainingHomeUse) return NextResponse.json({ success: true });
 
     const { error: storageError } = await admin.supabase.storage.from(galleryConfig.storageBucket).remove([image.image_path]);
     if (storageError) {

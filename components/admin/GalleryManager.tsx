@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { galleryConfig, getCategoryLabel } from '@/config/gallery.config';
 import type { GalleryImageView } from '@/lib/gallery/types';
+import type { UploadedImage } from '@/lib/home-images/uploaded-image';
 import { createClient } from '@/lib/supabase/client';
 
 type QueuedFile = {
@@ -23,6 +24,11 @@ export function GalleryManager({ initialImages, initialError }: { initialImages:
   const [images, setImages] = useState(initialImages);
   const [filter, setFilter] = useState('all');
   const [uploadOpen, setUploadOpen] = useState(false);
+  const [uploadMode, setUploadMode] = useState<'file' | 'library'>('file');
+  const [availableUploads, setAvailableUploads] = useState<UploadedImage[] | null>(null);
+  const [loadingUploads, setLoadingUploads] = useState(false);
+  const [selectedUpload, setSelectedUpload] = useState<UploadedImage | null>(null);
+  const [reuseAlt, setReuseAlt] = useState('');
   const [queued, setQueued] = useState<QueuedFile[]>([]);
   const [category, setCategory] = useState<string>(galleryConfig.categories[0].value);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -108,6 +114,46 @@ export function GalleryManager({ initialImages, initialError }: { initialImages:
     setBusy(false);
   }
 
+  async function loadUploadedImages() {
+    setUploadMode('library');
+    setLoadingUploads(true);
+    setMessage('');
+    try {
+      const response = await fetch('/api/admin/uploaded-images', { cache: 'no-store' });
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.error || 'Could not load uploaded images.');
+      setAvailableUploads((body.images as UploadedImage[]).filter((image) => image.source === 'Home page' && !image.galleryImageId));
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Could not load uploaded images.');
+    } finally {
+      setLoadingUploads(false);
+    }
+  }
+
+  async function addUploadedImage() {
+    if (!selectedUpload || busy) return;
+    setBusy(true);
+    setMessage('');
+    try {
+      const response = await fetch('/api/admin/gallery/reuse', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imagePath: selectedUpload.imagePath, category, altText: reuseAlt }),
+      });
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.error || 'Could not add this image to the gallery.');
+      setImages((current) => [...current, { ...body.image, imageUrl: selectedUpload.imageUrl } as GalleryImageView]);
+      setAvailableUploads((current) => current?.filter((image) => image.imagePath !== selectedUpload.imagePath) ?? null);
+      setSelectedUpload(null);
+      setReuseAlt('');
+      setMessage('Image added to the gallery without uploading it again.');
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Could not add this image to the gallery.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
   function startEdit(image: GalleryImageView) {
     setEditingId(image.id);
     setEditCategory(image.category);
@@ -181,22 +227,29 @@ export function GalleryManager({ initialImages, initialError }: { initialImages:
         <div>
           <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[.2em] text-[#19547E]">{galleryConfig.businessName}</p>
           <h1 className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">GALLERY MANAGER</h1>
-          <p className="mt-2 text-sm text-slate-600">Upload and manage the photographs displayed on your website.</p>
+          <p className="mt-2 text-sm text-slate-600">Add and manage the photographs displayed on your website.</p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
           <Link href="/admin/home-images" className="flex min-h-11 items-center justify-center border border-[#C9D2D9] bg-white px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-slate-50">Home Images</Link>
-          <button type="button" onClick={() => setUploadOpen((open) => !open)} className="min-h-11 bg-[#123E61] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#0C2B44]">+ Upload Photos</button>
+          <button type="button" onClick={() => setUploadOpen((open) => !open)} className="min-h-11 bg-[#123E61] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#0C2B44]">+ Add Photos</button>
           <button type="button" onClick={signOut} disabled={busy} className="min-h-11 border border-[#C9D2D9] bg-white px-5 py-3 text-xs font-bold uppercase tracking-wider hover:bg-slate-50">Sign Out</button>
         </div>
       </header>
 
       {message && <p role="status" className="mb-6 border border-[#C9D2D9] bg-white px-4 py-3 text-sm">{message}</p>}
 
-      {uploadOpen && <section className="mb-10 border border-[#D9DEE2] bg-white p-5 sm:p-7" aria-label="Upload photos">
-        <h2 className="mb-4 text-lg font-bold text-[#123E61]">Upload photos</h2>
+      {uploadOpen && <section className="mb-10 border border-[#D9DEE2] bg-white p-5 sm:p-7" aria-label="Add photos">
+        <h2 className="mb-4 text-lg font-bold text-[#123E61]">Add photos to the gallery</h2>
+        <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label="Choose image source">
+          <button type="button" onClick={() => setUploadMode('file')} aria-pressed={uploadMode === 'file'} className={`min-h-11 border px-4 py-2 text-xs font-bold uppercase tracking-wider ${uploadMode === 'file' ? 'border-[#123E61] bg-[#123E61] text-white' : 'border-[#C9D2D9] text-[#123E61]'}`}>Upload new files</button>
+          <button type="button" onClick={loadUploadedImages} disabled={loadingUploads} aria-pressed={uploadMode === 'library'} className={`min-h-11 border px-4 py-2 text-xs font-bold uppercase tracking-wider disabled:opacity-50 ${uploadMode === 'library' ? 'border-[#123E61] bg-[#123E61] text-white' : 'border-[#C9D2D9] text-[#123E61]'}`}>Choose from uploaded images</button>
+        </div>
+        {uploadMode === 'file' ? <>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block text-sm font-semibold">Photos (up to 10, 8 MB each)
-            <input type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={selectFiles} className="mt-2 block w-full text-sm file:mr-3 file:border-0 file:bg-[#E8EFF4] file:px-4 file:py-3 file:font-semibold file:text-[#123E61]" />
+            <input type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={selectFiles} disabled={busy} className="peer sr-only" />
+            <span className={`mt-2 inline-flex min-h-11 items-center border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#123E61] ${busy ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:bg-[#E8EFF4]'}`}>Upload file</span>
+            <span className="mt-2 block text-xs font-normal text-slate-600">{queued.length ? `${queued.length} ${queued.length === 1 ? 'file' : 'files'} selected` : 'No files selected'}</span>
           </label>
           <label className="block text-sm font-semibold">Category
             <select value={category} onChange={(event) => setCategory(event.target.value)} className="mt-2 min-h-11 w-full border border-[#C9D2D9] bg-white px-3">
@@ -216,6 +269,24 @@ export function GalleryManager({ initialImages, initialError }: { initialImages:
           </div>)}
         </div>}
         <button type="button" onClick={uploadFiles} disabled={busy || queued.length === 0} className="mt-6 min-h-11 w-full bg-[#123E61] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white disabled:opacity-50 sm:w-auto">{busy ? 'Uploading…' : 'Upload Selected Photos'}</button>
+        </> : <>
+          <p className="mb-4 text-sm text-slate-600">Select a home-page image to add it to the gallery. The existing file will be reused.</p>
+          {loadingUploads ? <p className="text-sm text-slate-600">Loading images…</p> : availableUploads?.length === 0 ? <p className="border border-dashed border-[#C9D2D9] p-5 text-sm text-slate-600">No home-page uploads are available to add. Images already in the gallery are omitted.</p> : <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {availableUploads?.map((image) => <button key={image.key} type="button" onClick={() => { setSelectedUpload(image); setReuseAlt(image.altText); }} disabled={busy} aria-pressed={selectedUpload?.imagePath === image.imagePath} className={`border p-2 text-left disabled:opacity-50 ${selectedUpload?.imagePath === image.imagePath ? 'border-[#123E61] bg-[#E8EFF4]' : 'border-[#D9DEE2] hover:border-[#123E61]'}`}>
+              <span className="relative block aspect-[4/3]"><Image src={image.imageUrl} alt={image.altText || 'Uploaded home-page image'} fill sizes="(max-width: 640px) 100vw, 25vw" className="object-cover" /></span>
+              <span className="mt-2 block truncate text-xs text-slate-700">{image.altText || 'Untitled image'}</span>
+            </button>)}
+          </div>}
+          {selectedUpload && <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <label className="block text-sm font-semibold">Category
+              <select value={category} onChange={(event) => setCategory(event.target.value)} disabled={busy} className="mt-2 min-h-11 w-full border border-[#C9D2D9] bg-white px-3">{galleryConfig.categories.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select>
+            </label>
+            <label className="block text-sm font-semibold">Alt text (optional)
+              <input value={reuseAlt} onChange={(event) => setReuseAlt(event.target.value)} maxLength={300} disabled={busy} className="mt-2 min-h-11 w-full border border-[#C9D2D9] px-3 text-sm" />
+            </label>
+            <button type="button" onClick={addUploadedImage} disabled={busy} className="min-h-11 bg-[#123E61] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white disabled:opacity-50 sm:col-span-2 sm:w-fit">{busy ? 'Adding…' : 'Add to Gallery'}</button>
+          </div>}
+        </>}
       </section>}
 
       <section aria-label="Gallery images">
@@ -224,7 +295,7 @@ export function GalleryManager({ initialImages, initialError }: { initialImages:
           <p className="text-xs text-slate-500">Select All Projects to change image order.</p>
         </div>
         <div className="mb-7 flex flex-wrap gap-2" role="group" aria-label="Filter images by category">
-          {[{ value: 'all', label: 'All Projects' }, ...galleryConfig.categories].map((option) => <button key={option.value} type="button" onClick={() => setFilter(option.value)} aria-pressed={filter === option.value} className={`min-h-10 border px-3 py-2 text-xs font-semibold ${filter === option.value ? 'border-[#123E61] bg-[#123E61] text-white' : 'border-[#C9D2D9] bg-white text-[#30323A]'}`}>{option.label}</button>)}
+          {[{ value: 'all', filterLabel: 'All Projects' }, ...galleryConfig.categories].map((option) => <button key={option.value} type="button" onClick={() => setFilter(option.value)} aria-pressed={filter === option.value} className={`min-h-10 border px-3 py-2 text-xs font-semibold ${filter === option.value ? 'border-[#123E61] bg-[#123E61] text-white' : 'border-[#C9D2D9] bg-white text-[#30323A]'}`}>{option.filterLabel}</button>)}
         </div>
         {visibleImages.length === 0 ? <div className="border border-dashed border-[#C9D2D9] bg-white px-6 py-16 text-center text-sm text-slate-600">No images in this category yet. Upload photos to add them to the website.</div> :
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

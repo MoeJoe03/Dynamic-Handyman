@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { contactPhone } from '@/config/contact';
 
 interface TradeOption {
   id: string;
@@ -100,7 +101,7 @@ export function InteractiveContactForm() {
 • Urgency: ${activeUrgency.label}
 • Location: ${formData.suburb || 'Gauteng'}
 • Notes: ${formData.description || 'Please call back'}`;
-    return `https://wa.me/?text=${encodeURIComponent(text)}`;
+    return `${contactPhone.whatsappUrl}?text=${encodeURIComponent(text)}`;
   };
 
   const resetForm = () => {
@@ -389,7 +390,7 @@ export function InteractiveContactForm() {
               {isSubmitting ? 'Transmitting Requisition...' : 'Submit Estimate Requisition →'}
             </button>
             <a
-              href="https://wa.me/"
+              href={contactPhone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-4 border border-emerald-700 text-emerald-800 hover:bg-emerald-50 text-xs font-bold tracking-widest uppercase transition-colors inline-flex items-center space-x-2"

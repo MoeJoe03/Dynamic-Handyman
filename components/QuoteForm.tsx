@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { contactPhone } from '@/config/contact';
 
 export function QuoteForm() {
   const [formData, setFormData] = useState({
@@ -68,7 +69,7 @@ export function QuoteForm() {
 
   const getWhatsAppMessageUrl = () => {
     const text = `Hello Dynamic Handyman, my name is ${formData.fullName || 'Client'}. I would like to request an estimate for ${formData.serviceCategory}. Details: ${formData.projectDetails || 'Please contact me.'}`;
-    return `https://wa.me/?text=${encodeURIComponent(text)}`;
+    return `${contactPhone.whatsappUrl}?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -95,8 +96,7 @@ export function QuoteForm() {
                 Telephone
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                +27 (0) XX XXX XXXX{' '}
-                <span className="text-xs text-slate-400 font-normal">/ [Placeholder]</span>
+                <a href={contactPhone.telHref}>{contactPhone.display}</a>
               </p>
             </div>
 
@@ -134,7 +134,7 @@ export function QuoteForm() {
           {/* Instant WhatsApp CTA */}
           <div className="mt-10">
             <a
-              href="https://wa.me/"
+              href={contactPhone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-3 px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-widest transition-all shadow-sm"

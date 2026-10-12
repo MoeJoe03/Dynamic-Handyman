@@ -1,6 +1,3 @@
-'use client';
-
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
@@ -19,6 +16,20 @@ import {
   GuttersFasciaSvg,
   AluminiumWindowsDoorsSvg,
 } from '@/components/icons/TradeSvgs';
+
+const quoteButtonLabels: Record<string, string> = {
+  electrical: 'Request an Electrical Quote',
+  painting: 'Request a Painting Estimate',
+  carpentry: 'Discuss Your Carpentry Project',
+  plumbing: 'Request a Plumbing Quote',
+  palisades: 'Get a Carport Estimate',
+  paving: 'Request a Paving Quote',
+  maintenance: 'Discuss Your Renovation',
+  'glass-works': 'Request a Glass Quote',
+  flooring: 'Request a Flooring Estimate',
+  'gutters-fascia': 'Request a Gutter Quote',
+  'aluminium-windows-doors': 'Request an Aluminium Quote',
+};
 
 export default function ServicesPage() {
   const getServiceSvg = (id: string) => {
@@ -82,6 +93,9 @@ export default function ServicesPage() {
                 Handyman, Home Repair and Renovation Services<br />
                 <span className="text-slate-300">in Alberton</span>
               </h1>
+              <p className="mt-6 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
+                Dynamic Handyman provides reliable handyman services, home repairs, property maintenance and renovation work in Alberton and selected areas of Gauteng. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we provide one practical point of contact for maintaining and improving your property.
+              </p>
             </div>
               </div>
             </div>
@@ -131,8 +145,8 @@ export default function ServicesPage() {
 
                       {/* Sub-services pills */}
                       <div>
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 block mb-2">
-                          Specialized Operations:
+                        <span className="text-[11px] font-mono font-bold tracking-wider text-slate-500 block mb-2">
+                          Services Include;
                         </span>
                         <div className="flex flex-wrap gap-2">
                           {trade.subServices.map((sub, sIdx) => (
@@ -146,27 +160,12 @@ export default function ServicesPage() {
                         </div>
                       </div>
 
-                      {/* Key Deliverables */}
-                      <div className="bg-[#F8F9F9] p-5 border border-[#D9DEE2]">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#123E61] block mb-2">
-                          Engineered Deliverables:
-                        </span>
-                        <ul className="space-y-1.5 text-xs text-slate-700">
-                          {trade.keyDeliverables.map((item, dIdx) => (
-                            <li key={dIdx} className="flex items-start space-x-2">
-                              <span className="text-[#123E61] font-bold">›</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
                       <div className="flex flex-wrap items-center gap-4 pt-2">
                         <Link
                           href="/contact"
                           className="px-6 py-3 bg-[#123E61] hover:bg-[#0C2B44] text-white text-xs font-bold tracking-widest uppercase transition-colors shadow-sm"
                         >
-                          Book {trade.title.split(' ')[0]} Inspection →
+                          {quoteButtonLabels[trade.id]}
                         </Link>
                         <Link
                           href="/gallery"

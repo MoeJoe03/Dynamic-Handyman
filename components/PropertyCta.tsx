@@ -1,4 +1,5 @@
 import React from 'react';
+import { contactPhone } from '@/config/contact';
 
 export function PropertyCta() {
   return (
@@ -25,7 +26,7 @@ export function PropertyCta() {
               Request a Quote
             </a>
             <a
-              href="tel:+27000000000"
+              href={contactPhone.telHref}
               className="px-7 py-3.5 border border-white text-white hover:bg-white/10 text-xs font-bold tracking-widest uppercase transition-all"
             >
               Call Us Directly

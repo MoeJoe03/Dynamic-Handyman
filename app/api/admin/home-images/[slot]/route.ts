@@ -11,10 +11,30 @@ import { detectImageType } from '@/lib/gallery/validation';
 export const runtime = 'nodejs';
 type Context = { params: Promise<{ slot: string }> };
 const altTextSchema = z.string().trim().min(1).max(300);
-const reuseSchema = z.object({ galleryImageId: z.string().uuid(), altText: altTextSchema });
+const reuseSchema = z.object({ imagePath: z.string().min(1), altText: altTextSchema });
 
 function validSlot(slot: string) {
   return Object.hasOwn(homeImageSlotMap, slot);
+}
+
+async function removeUnusedHomeImage(admin: NonNullable<Awaited<ReturnType<typeof getAdmin>>>, path: string) {
+  if (!path.startsWith('home/')) return;
+  const { data: remaining, error: lookupError } = await admin.supabase.from('home_images')
+    .select('slot_key').eq('image_path', path).limit(1).maybeSingle();
+  if (lookupError) {
+    console.error('Home image cleanup reference check failed', lookupError);
+    return;
+  }
+  if (remaining) return;
+  const { data: galleryUse, error: galleryError } = await admin.supabase.from('gallery_images')
+    .select('id').eq('image_path', path).maybeSingle();
+  if (galleryError) {
+    console.error('Gallery image cleanup reference check failed', galleryError);
+    return;
+  }
+  if (galleryUse) return;
+  const { error: cleanupError } = await admin.supabase.storage.from(galleryConfig.storageBucket).remove([path]);
+  if (cleanupError) console.error('Unused home image cleanup failed', cleanupError);
 }
 
 export async function POST(request: NextRequest, context: Context) {
@@ -54,10 +74,7 @@ export async function POST(request: NextRequest, context: Context) {
     }
 
     revalidatePath('/');
-    if (previous?.image_path && !previous.gallery_image_id && !isLegacyImagePath(previous.image_path)) {
-      const { error: cleanupError } = await storage.remove([previous.image_path]);
-      if (cleanupError) console.error('Old home image cleanup failed', cleanupError);
-    }
+    if (previous?.image_path && !previous.gallery_image_id) await removeUnusedHomeImage(admin, previous.image_path);
     return NextResponse.json({ slot_key: slot, image_path: path, gallery_image_id: null, alt_text: altText.data, imageUrl: storage.getPublicUrl(path).data.publicUrl }, { status: 201 });
   } catch (error) {
     console.error('Home image replacement failed', error);
@@ -110,12 +127,19 @@ export async function PATCH(request: NextRequest, context: Context) {
     const admin = await getAdmin();
     if (!admin) return NextResponse.json({ error: 'Access denied.' }, { status: 403 });
     const parsed = reuseSchema.safeParse(await request.json());
-    if (!parsed.success) return NextResponse.json({ error: 'Choose a gallery photo and enter a description of 1–300 characters.' }, { status: 400 });
+    if (!parsed.success) return NextResponse.json({ error: 'Choose an uploaded image and enter a description of 1–300 characters.' }, { status: 400 });
 
     const { data: galleryImage, error: galleryError } = await admin.supabase.from('gallery_images')
-      .select('id,image_path').eq('id', parsed.data.galleryImageId).maybeSingle();
+      .select('id,image_path').eq('image_path', parsed.data.imagePath).maybeSingle();
     if (galleryError) throw galleryError;
-    if (!galleryImage) return NextResponse.json({ error: 'That gallery image is no longer available.' }, { status: 404 });
+    let imagePath = galleryImage?.image_path;
+    if (!imagePath && parsed.data.imagePath.startsWith('home/')) {
+      const { data: homeImage, error: homeError } = await admin.supabase.from('home_images')
+        .select('image_path').eq('image_path', parsed.data.imagePath).limit(1).maybeSingle();
+      if (homeError) throw homeError;
+      imagePath = homeImage?.image_path;
+    }
+    if (!imagePath || isLegacyImagePath(imagePath)) return NextResponse.json({ error: 'That uploaded image is no longer available.' }, { status: 404 });
 
     const { data: previous, error: readError } = await admin.supabase.from('home_images')
       .select('image_path,gallery_image_id').eq('slot_key', slot).maybeSingle();
@@ -123,27 +147,24 @@ export async function PATCH(request: NextRequest, context: Context) {
 
     const { error: saveError } = await admin.supabase.from('home_images').upsert({
       slot_key: slot,
-      image_path: galleryImage.image_path,
-      gallery_image_id: galleryImage.id,
+      image_path: imagePath,
+      gallery_image_id: galleryImage?.id ?? null,
       alt_text: parsed.data.altText,
     }, { onConflict: 'slot_key' });
     if (saveError) throw saveError;
 
     revalidatePath('/');
-    if (previous?.image_path && !previous.gallery_image_id && !isLegacyImagePath(previous.image_path) && previous.image_path !== galleryImage.image_path) {
-      const { error: cleanupError } = await admin.supabase.storage.from(galleryConfig.storageBucket).remove([previous.image_path]);
-      if (cleanupError) console.error('Old home image cleanup failed', cleanupError);
-    }
+    if (previous?.image_path && !previous.gallery_image_id && previous.image_path !== imagePath) await removeUnusedHomeImage(admin, previous.image_path);
     return NextResponse.json({
       slot_key: slot,
-      image_path: galleryImage.image_path,
-      gallery_image_id: galleryImage.id,
+      image_path: imagePath,
+      gallery_image_id: galleryImage?.id ?? null,
       alt_text: parsed.data.altText,
-      imageUrl: galleryImageUrl(admin.supabase.storage, galleryImage.image_path),
+      imageUrl: galleryImageUrl(admin.supabase.storage, imagePath),
     });
   } catch (error) {
-    console.error('Home gallery image selection failed', error);
-    return NextResponse.json({ error: 'Could not use this gallery image.' }, { status: 500 });
+    console.error('Home uploaded image selection failed', error);
+    return NextResponse.json({ error: 'Could not use this uploaded image.' }, { status: 500 });
   }
 }
 
@@ -160,10 +181,7 @@ export async function DELETE(request: NextRequest, context: Context) {
     const { error: deleteError } = await admin.supabase.from('home_images').delete().eq('slot_key', slot);
     if (deleteError) throw deleteError;
     revalidatePath('/');
-    if (!current.gallery_image_id && !isLegacyImagePath(current.image_path)) {
-      const { error: cleanupError } = await admin.supabase.storage.from(galleryConfig.storageBucket).remove([current.image_path]);
-      if (cleanupError) console.error('Home image cleanup failed', cleanupError);
-    }
+    if (!current.gallery_image_id) await removeUnusedHomeImage(admin, current.image_path);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Home image reset failed', error);

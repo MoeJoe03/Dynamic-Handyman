@@ -52,6 +52,10 @@ export const servicesData: ServiceItem[] = [
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDMZZfvYj_ogC5PHef0pfHlXLvLzpPTh-RMe90qSLqs4X9KVxWpGb-A6pnZAblexERrNdb1071916ossFFyR8nCya2G-g-A88PJZL10Ll7H-zEAAtFnpSMg8emwJ-Ut4Qe77-ExeaPX8jOVIYzIZPOgK4Pf9dY72OPMbf36GmZLOxJrwPT8dQbwt_ufRzMrlbsXzbXV2kM65P0p4aLdJfZvr-ppHZcuyxcOk0EXXvao_O09Hu49gEKmog",
         alt: "Commercial Facility Electrical Infrastructure"
+      },
+      {
+        url: "/images/services/electrical-fourth.webp",
+        alt: "Illustrative image of an electrician working on a distribution board"
       }
     ]
   },
@@ -91,6 +95,10 @@ export const servicesData: ServiceItem[] = [
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuBSl_WQz4_BUPFnnPx43a9J3C9qQyxe_oSjrch_YwfFQLrWmqKXnAY2Y1iqcCe_1n6mP7spblWkDZ9qKySWszfAhObjFdFc236E_hjyfy3O35LeRd21Zdosg-AhcP-A-XCpHb0iCgk7hk6GhRxlh7Ucm5xdGM2vt_lGZ7nH3EVQAc6WGJ841DM6dh-blVhAdTfXhvYUxSv6ae6NO_8IbFdXGZ-j5XD5CcepMsyOxK6TvpYi1hWfcVZAIw",
         alt: "Architectural Exterior Facade Coating"
+      },
+      {
+        url: "/images/services/painting-fourth.webp",
+        alt: "Illustrative image of exterior painting and wall preparation"
       }
     ]
   },
@@ -130,6 +138,10 @@ export const servicesData: ServiceItem[] = [
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuD5OjL5fFG3bg8g9TSK_Tl-8tkssi-4cXBBC9mSrji4Fggqt6mqoCCbt4j0-WHOTL50ikJK2TjB_9lKCnOgDsmTVd7Itph68suVGkjC_328q4ST4o9ftphAGsbj5eD3k1-_X8asbinHYdnRg2Ieip4aNeNM9Km0sgwFXnNZn71sSoHWCTL1xCsfnBNJdpiKDlgjf0MvHeRYWie3KCpbdV3rFGUWJgTB4iXMYIzCrR7xyoLTKZnBvhwKeA",
         alt: "Modern Architectural Cabinetry and Wardrobe"
+      },
+      {
+        url: "/images/services/carpentry-fourth.webp",
+        alt: "Illustrative image of built-in cupboard carpentry"
       }
     ]
   },
@@ -169,6 +181,10 @@ export const servicesData: ServiceItem[] = [
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDMZZfvYj_ogC5PHef0pfHlXLvLzpPTh-RMe90qSLqs4X9KVxWpGb-A6pnZAblexERrNdb1071916ossFFyR8nCya2G-g-A88PJZL10Ll7H-zEAAtFnpSMg8emwJ-Ut4Qe77-ExeaPX8jOVIYzIZPOgK4Pf9dY72OPMbf36GmZLOxJrwPT8dQbwt_ufRzMrlbsXzbXV2kM65P0p4aLdJfZvr-ppHZcuyxcOk0EXXvao_O09Hu49gEKmog",
         alt: "Precision Structural Plumbing and Fixture Fitting"
+      },
+      {
+        url: "/images/services/plumbing-fourth.webp",
+        alt: "Illustrative image of bathroom pipe repairs"
       }
     ]
   },
@@ -208,6 +224,10 @@ export const servicesData: ServiceItem[] = [
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuAoAhZZMUpgtzUlw2rH5D24DlgUltO0jio6axjNlyuj1ar5ae7qYIyQCfcYv-QYwuUJRcbfNHGTTPLZr1jU3c12rQAe-zZNS_bTKj2jBzpqPpfeOfAfFWRFwaBO3WvDiZbhWEqJ2ps9idODDcRsTx1_CZsQTqOz1-7dxz_hlQ7y4JCC_xmgdBvBCdFIzVD0sFlaa7YvWXbutFnX8yzrz00CACU-kVH2BHKAifudggIdC-wqhcSgbjZo-A",
         alt: "Structural Frame Alteration and Site Fabrication"
+      },
+      {
+        url: "/images/services/palisades-fourth.webp",
+        alt: "Illustrative image of a steel gate and carport installation"
       }
     ]
   },
@@ -246,6 +266,10 @@ export const servicesData: ServiceItem[] = [
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuC-R9slRj8pHriM1qJRCenS2nTSqmSNIFOVWRtT0xQc1oAi428N7wPN2Shqed0pKdQqO_CPoHvu6CwulsjUHfLlX9rBQpqJOh0PAZV6QTxsLqCsDeFg17xH-jPETXzG170dLWk9Vhdt4_QLfWu0PDviYFc0K3SqLug6DHJeD2VzNy3Os0J7qL1ALpCJRWksmLqLIu2kUx-DglPvB9dRvVxegx7SawZWXz5_wdQeosiCVMp8BLMLp1NMEw",
         alt: "Aluminium Glazing & Window Fitting"
+      },
+      {
+        url: "/images/services/paving-fourth.webp",
+        alt: "Illustrative image of interlocking driveway paving installation"
       }
     ]
   },
