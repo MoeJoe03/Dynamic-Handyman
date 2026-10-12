@@ -19,12 +19,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "electrical",
     ref: "01",
-    title: "Electrical Installations & Repairs (COC's)",
+    title: "Electrical Repairs and Certificates of Compliance",
     subtitle: "Certified Distribution & Safe Power Management",
     badge: "Certified",
     complianceSpec: "SANS 10142-1 Accredited Compliance",
     turnaroundEstimate: "Same-Day Emergency / 24-48h Project SLA",
-    description: "SANS 10142-1 certified electrical repairs, upgrades, fault findings, and compliance certificates for residential homes and corporate facilities across Gauteng. From chronic tripping resolution to turnkey DB board rewiring.",
+    description: "Electrical repairs, upgrades and fault finding for homes, offices and commercial properties, including DB board work, lighting and power points.",
     subServices: [
       "DB board upgrades & rewiring",
       "Fault diagnostics & tripping",
@@ -58,12 +58,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "painting",
     ref: "02",
-    title: "Painting (Interior • Exterior • Roofs)",
+    title: "Painting, Roof Coatings and Damp-Proofing",
     subtitle: "High-Durability Architectural Coating Systems",
     badge: "Architectural Coating",
     complianceSpec: "Master Prep & UV Weather-Seal Warranty",
     turnaroundEstimate: "2 - 5 Days Based on Square Meterage",
-    description: "Master preparation, crack repairs, damp sealing, and architectural coatings for interior feature rooms, perimeter walls, structural roofs, and corporate office parks. Using premium acrylics and industrial enamels.",
+    description: "Interior and exterior painting, roof coatings, crack repairs and damp-proofing for homes, offices and commercial properties.",
     subServices: [
       "Interior walls & ceilings",
       "Exterior masonry & weather-seal",
@@ -97,12 +97,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "carpentry",
     ref: "03",
-    title: "Carpentry (Built-in Cupboards • Ceilings • Doors • Skirting)",
+    title: "Carpentry, Cupboards, Doors and Ceilings",
     subtitle: "Precision Joinery, Custom Cabinetry & Architectural Woodwork",
     badge: "Precision Joinery",
     complianceSpec: "Fine Millwork Tolerances (< 1mm)",
     turnaroundEstimate: "3 - 7 Working Days Fabrication & Fit",
-    description: "Bespoke built-in cupboards (BICs), kitchen adjustments, door hanging, acoustic ceiling paneling, decorative cornices, and architectural skirting boards crafted to millimeter precision.",
+    description: "Practical carpentry and joinery services for repairs, installations and improvements throughout the property.",
     subServices: [
       "Built-in bedroom cupboards",
       "Cabinet hinge & handle fixing",
@@ -136,12 +136,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "plumbing",
     ref: "04",
-    title: "Plumbing",
+    title: "Plumbing Repairs and Geyser Services",
     subtitle: "Hydraulic Systems, Sanitaryware & Geyser Maintenance",
     badge: "Hydraulics",
     complianceSpec: "SANS 10252 Plumbing Standards",
     turnaroundEstimate: "Same-Day Leaks / 24h Geyser Replacement",
-    description: "Prompt resolution for burst pipes, geyser replacements, thermostat calibrations, pressure valves, bathroom fixtures, and corporate drainage systems with certified hydraulic fittings.",
+    description: "Plumbing repairs and maintenance for bathrooms, kitchens, geysers, pipes and drainage systems.",
     subServices: [
       "Burst pipe & leak repairs",
       "Geyser replacement & thermostats",
@@ -175,12 +175,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "palisades",
     ref: "05",
-    title: "Palisades & Carports",
+    title: "Palisade Fencing, Gates and Carports",
     subtitle: "Custom Steel Fabrication, Boundary Security & Carports",
     badge: "Steel Fabrication",
     complianceSpec: "Structural Steel Welding & Heavy Foundation Spec",
     turnaroundEstimate: "3 - 7 Working Days Site Installation",
-    description: "Robust steel palisade fencing, motorized sliding gates, cantilever and 4-post vehicle carports engineered for maximum structural durability and weather protection against severe Gauteng storms.",
+    description: "Steel fabrication and installation for boundary security, vehicle protection and property improvements.",
     subServices: [
       "Steel palisade boundary fencing",
       "Pedestrian & driveway sliding gates",
@@ -214,12 +214,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "paving",
     ref: "06",
-    title: "Paving & Property Alterations",
+    title: "Paving and Property Alterations",
     subtitle: "Engineered Driveway Paving, Kerbing & Structural Alterations",
     badge: "Structural Alterations",
     complianceSpec: "Compacted Sub-Base & Load-Bearing Standards",
     turnaroundEstimate: "4 - 8 Days Site Preparation & Laying",
-    description: "Interlocking paving, bevel pavers, driveway restorations, kerbing, and minor building alterations for domestic homes, business entrances, and industrial yards.",
+    description: "Paving, masonry repairs and minor property alterations for homes, businesses and outdoor areas.",
     subServices: [
       "Driveway & walkway paving",
       "Paving repairs & sunken patch re-leveling",
@@ -252,12 +252,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "maintenance",
     ref: "07",
-    title: "Domestic & Corporate Maintenance, Repairs & Renovations",
+    title: "Property Maintenance and Renovations",
     subtitle: "One Accountable Team for Homes and Workplaces",
     badge: "Property Maintenance",
     complianceSpec: "Planned Maintenance & Quality Handover",
     turnaroundEstimate: "Scheduled to Suit Your Property",
-    description: "Responsive property maintenance for homes, offices, and commercial premises across Gauteng. We coordinate repairs and renovation work across multiple trades, from small maintenance jobs to larger planned improvements.",
+    description: "Ongoing property maintenance and renovation support for homeowners, landlords, offices and commercial properties.",
     subServices: [
       "Home and office maintenance",
       "General repairs and fault finding",
@@ -282,12 +282,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "glass-works",
     ref: "08",
-    title: "Glass Works (New Installations & Repairs)",
+    title: "Glass and Glazing Repairs",
     subtitle: "Glass Replacement, Fitting & Adjustments",
     badge: "Glazing",
     complianceSpec: "Secure Glass Fitting & Weather Sealing",
     turnaroundEstimate: "Scheduled After Site Measurement",
-    description: "Glass installation and repair for residential and commercial properties, including replacement panes, glazing adjustments, and sealing to restore a secure, neat, weather-resistant finish.",
+    description: "Glass replacement, window repairs and glazing services for residential and commercial properties.",
     subServices: [
       "Broken glass replacement",
       "New glass installations",
@@ -311,12 +311,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "flooring",
     ref: "09",
-    title: "Flooring (Tiles • Carpets • Laminates)",
+    title: "Tiling, Flooring and Carpets",
     subtitle: "Floor Preparation, Installation & Repairs",
     badge: "Flooring",
     complianceSpec: "Level Substrate & Clean Finish",
     turnaroundEstimate: "Based on Room Size and Preparation",
-    description: "Flooring installation and repair for homes and businesses, with suitable preparation and tidy finishing for tiled, carpeted, and laminated spaces.",
+    description: "Flooring installation and repair for homes, offices and commercial spaces.",
     subServices: [
       "Floor and wall tiling",
       "Carpet installation and replacement",
@@ -340,12 +340,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "gutters-fascia",
     ref: "10",
-    title: "Gutters, Down Pipes & Fascia Boards",
+    title: "Gutter, Downpipe and Fascia Repairs",
     subtitle: "Roofline Water Management & Repairs",
     badge: "Roofline Systems",
     complianceSpec: "Secure Fixings & Directed Stormwater Runoff",
     turnaroundEstimate: "Scheduled After Roofline Inspection",
-    description: "Repair and replacement of gutters, down pipes, and fascia boards to help protect walls and foundations from uncontrolled roof runoff and weather damage.",
+    description: "Roofline repairs that help direct rainwater away from walls, foundations and other parts of the property.",
     subServices: [
       "Gutter leak and joint repairs",
       "Gutter replacement and realignment",
@@ -369,12 +369,12 @@ export const servicesData: ServiceItem[] = [
   {
     id: "aluminium-windows-doors",
     ref: "11",
-    title: "Aluminium Windows & Doors",
+    title: "Aluminium Windows and Doors",
     subtitle: "Aluminium Framing, Glazing & Hardware",
     badge: "Aluminium Fitting",
     complianceSpec: "Weather-Sealed Frames & Smooth Operation",
     turnaroundEstimate: "Scheduled After Site Measurement",
-    description: "Installation, adjustment, and repair of aluminium windows and doors for residential and commercial properties, including frame sealing, glazing, and hardware servicing.",
+    description: "Aluminium window and door installation, repairs, adjustments and hardware maintenance.",
     subServices: [
       "Aluminium window installation",
       "Aluminium door installation",

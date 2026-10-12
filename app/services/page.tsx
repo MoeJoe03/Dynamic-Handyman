@@ -79,8 +79,8 @@ export default function ServicesPage() {
 
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02] uppercase text-white">
-                Complete Handyman Services<br />
-                <span className="text-slate-300">in Johannesburg</span>
+                Handyman, Home Repair and Renovation Services<br />
+                <span className="text-slate-300">in Alberton</span>
               </h1>
             </div>
               </div>

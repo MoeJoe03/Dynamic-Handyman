@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Multi-Trade Services & Capabilities | Dynamic Handyman (PTY) LTD',
+  title: 'Handyman, Home Repair and Renovation Services in Alberton | Dynamic Handyman',
   description:
-    'Comprehensive property maintenance, repairs, renovations and alterations across Gauteng. SANS 10142-1 certified electrical COCs, interior/exterior painting, custom carpentry joinery, plumbing hydraulics, and engineered carports & palisades.',
+    'Explore electrical repairs and certificates of compliance, painting, carpentry, plumbing, paving and property renovations in Alberton and across Gauteng.',
   openGraph: {
-    title: 'Multi-Trade Services & Capabilities | Dynamic Handyman (PTY) LTD',
+    title: 'Handyman, Home Repair and Renovation Services in Alberton | Dynamic Handyman',
     description:
-      'Explore Dynamic Handyman\'s accredited multi-trade capabilities across Gauteng. SANS 10142-1 Electrical COCs, Architectural Painting, Custom Carpentry BICs, Plumbing Hydraulics, and Engineered Palisades & Carports.',
+      'Explore Dynamic Handyman services in Alberton and Gauteng, including electrical repairs, painting, carpentry, plumbing, paving and property renovations.',
     type: 'website',
     url: 'https://dynamichandyman.co.za/services',
   },
