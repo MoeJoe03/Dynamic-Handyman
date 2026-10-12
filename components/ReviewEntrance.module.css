@@ -1,0 +1,53 @@
+.entrance {
+  transform-origin: 50% 12px;
+}
+
+.entrance[data-review-entrance='pending'] {
+  opacity: 0;
+  transform: perspective(900px) translateY(24px) rotateX(7deg) scale(1.025);
+}
+
+.entrance[data-review-entrance='entering'] {
+  animation: fasten-card 1300ms ease-out both;
+  animation-delay: var(--review-entry-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.screw {
+  transform-origin: center;
+}
+
+.secondScrew { --review-screw-offset: 80ms; }
+.thirdScrew { --review-screw-offset: 160ms; }
+.fourthScrew { --review-screw-offset: 240ms; }
+
+.entrance[data-review-entrance='entering'] .screw {
+  animation: drill-screw 800ms cubic-bezier(.2, .65, .25, 1) both;
+  animation-delay: calc(var(--review-entry-delay, 0ms) + 180ms + var(--review-screw-offset, 0ms));
+  will-change: transform, opacity;
+}
+
+@keyframes fasten-card {
+  0% { opacity: 0; transform: perspective(900px) translateY(24px) rotateX(7deg) scale(1.025); }
+  20% { opacity: 1; transform: perspective(900px) translateY(0) rotateX(0) scale(1); }
+  36%, 46%, 56% { transform: translateX(-.65px) rotate(-.12deg); }
+  41%, 51%, 61% { transform: translateX(.65px) rotate(.12deg); }
+  76%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes drill-screw {
+  0% { opacity: 0; transform: translateY(-10px) scale(1.8) rotate(-900deg); }
+  12% { opacity: 1; }
+  65% { transform: translateY(-1px) scale(1.15) rotate(-90deg); }
+  85% { transform: translateY(1px) scale(.96) rotate(12deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrance[data-review-entrance], .entrance[data-review-entrance] .screw {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}

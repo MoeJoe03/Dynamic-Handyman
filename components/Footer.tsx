@@ -98,7 +98,7 @@ export function Footer() {
             </p>
             <div className="pt-2">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/dynamichandyman/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-xs text-slate-300 hover:text-white transition-colors"
@@ -120,7 +120,7 @@ export function Footer() {
           </div>
           <div className="mt-4 sm:mt-0 flex space-x-6">
             <span>Maintenance • Repairs • Renovations</span>
-            <span>Johannesburg / Pretoria</span>
+            <span>Alberton and surrounding Gauteng areas</span>
           </div>
         </div>
       </div>

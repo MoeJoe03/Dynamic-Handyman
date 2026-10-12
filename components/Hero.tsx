@@ -21,7 +21,7 @@ export function Hero() {
         {/* Right Column: Supporting Copy & CTAs */}
         <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-8">
           <p className="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed font-normal">
-            Professional domestic and corporate maintenance, repairs and renovations across multiple trades — handled by one reliable team. Eliminate the stress of coordinating fragmented contractors.
+            Dynamic Handyman provides reliable home repairs, property maintenance and renovation services in Alberton and selected areas of Gauteng. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we give homeowners, landlords and businesses one practical point of contact.
           </p>
 
           <div className="flex flex-wrap items-center gap-3.5 sm:gap-4">

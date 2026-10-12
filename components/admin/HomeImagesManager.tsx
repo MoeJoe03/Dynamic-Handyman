@@ -32,6 +32,7 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
   const [message, setMessage] = useState('');
   const altTextChanged = altText.trim() !== (override?.alt_text ?? slot.defaultAlt).trim();
   const dirty = Boolean(file || selectedImage || altTextChanged);
+  const previewUrl = preview ?? selectedImage?.imageUrl ?? override?.imageUrl ?? slot.defaultImageUrl;
 
   useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
   useEffect(() => {
@@ -81,6 +82,10 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
 
   async function saveDraft(): Promise<boolean> {
     if (!dirty) return true;
+    if (!file && !selectedImage && !override?.imageUrl && !slot.defaultImageUrl) {
+      setMessage('Upload a photo or choose an uploaded image before saving.');
+      return false;
+    }
     if (!altText.trim() || altText.trim().length > 300) {
       setMessage('Describe this image in 1–300 characters before saving.');
       return false;
@@ -135,21 +140,21 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
   }
 
   async function restore() {
-    if (!override || !window.confirm(`Restore the original image for ${slot.label}?`)) return;
+    if (!override || !window.confirm(slot.optional ? `Remove ${slot.label} from the review photo rotation?` : `Restore the original image for ${slot.label}?`)) return;
     setBusy(true);
     setMessage('');
     try {
       const response = await fetch(`/api/admin/home-images/${slot.key}`, { method: 'DELETE' });
       const body = await response.json();
-      if (!response.ok) throw new Error(body.error ?? 'Could not restore the original image.');
+      if (!response.ok) throw new Error(body.error ?? (slot.optional ? 'Could not remove this photo.' : 'Could not restore the original image.'));
       onChange(slot.key);
       setAltText(slot.defaultAlt);
       setFile(null);
       setSelectedImage(null);
       setPreview(null);
-      setMessage('Original image restored.');
+      setMessage(slot.optional ? 'Photo removed from the review photo rotation.' : 'Original image restored.');
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Could not restore the original image.');
+      setMessage(error instanceof Error ? error.message : slot.optional ? 'Could not remove this photo.' : 'Could not restore the original image.');
     } finally {
       setBusy(false);
     }
@@ -157,14 +162,14 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
 
   return <article className="overflow-hidden border border-[#D9DEE2] bg-white">
     <div className="relative aspect-[4/3] bg-[#E8EFF4]">
-      <Image src={preview ?? selectedImage?.imageUrl ?? override?.imageUrl ?? slot.defaultImageUrl} alt={preview || selectedImage ? 'Selected replacement preview' : override?.alt_text ?? slot.defaultAlt} fill unoptimized={Boolean(preview)} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover" />
+      {previewUrl ? <Image src={previewUrl} alt={preview || selectedImage ? 'Selected replacement preview' : override?.alt_text ?? slot.defaultAlt} fill unoptimized={Boolean(preview)} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover" /> : <div className="flex h-full items-center justify-center px-6 text-center text-sm text-slate-600">Add another photo from the same reviewed project.</div>}
     </div>
     <div className="p-5">
-      <p className="text-[11px] font-bold uppercase tracking-wider text-[#19547E]">{override?.gallery_image_id ? 'Gallery image' : override && override.image_path !== slot.defaultImageUrl ? 'Uploaded image' : 'Original image'}</p>
+      <p className="text-[11px] font-bold uppercase tracking-wider text-[#19547E]">{override?.gallery_image_id ? 'Gallery image' : override && override.image_path !== slot.defaultImageUrl ? 'Uploaded image' : slot.optional ? 'Optional photo' : 'Original image'}</p>
       <h3 className="mt-1 text-lg font-bold text-[#123E61]">{displayLabel ?? slot.label}</h3>
       {dirty && <p className="mt-1 text-xs font-semibold text-amber-800">Unsaved changes</p>}
       <form onSubmit={save} className="mt-4 space-y-4">
-        <label className="block text-sm font-semibold text-[#123E61]">Replacement photo
+        <label className="block text-sm font-semibold text-[#123E61]">{slot.optional && !override ? 'Project photo' : 'Replacement photo'}
           <input type="file" accept="image/jpeg,image/png,image/webp" onChange={selectFile} disabled={busy || savingAll} className="peer sr-only" />
           <span className={`mt-2 inline-flex min-h-11 items-center border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#123E61] ${busy || savingAll ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:bg-[#E8EFF4]'}`}>Upload file</span>
           <span className="mt-2 block truncate text-xs font-normal text-slate-600" title={file?.name ?? ''}>{file?.name ?? 'No file selected'}</span>
@@ -188,7 +193,7 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
         </label>
         <div className="flex flex-wrap gap-2">
           <button type="submit" disabled={busy || savingAll || !dirty} className="min-h-11 bg-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white disabled:opacity-50">{busy ? 'Saving…' : file || selectedImage ? 'Save image' : 'Save alt text'}</button>
-          {override && <button type="button" onClick={restore} disabled={busy || savingAll} className="min-h-11 border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] disabled:opacity-50">Restore original</button>}
+          {override && <button type="button" onClick={restore} disabled={busy || savingAll} className="min-h-11 border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] disabled:opacity-50">{slot.optional ? 'Remove photo' : 'Restore original'}</button>}
         </div>
       </form>
       {message && <p role="status" className="mt-3 text-sm text-slate-700">{message}</p>}
@@ -204,7 +209,7 @@ export function HomeImagesManager({ initialOverrides, initialError }: { initialO
   const [savingAll, setSavingAll] = useState(false);
   const [saveAllMessage, setSaveAllMessage] = useState('');
   const saveHandlers = useRef(new Map<string, SaveImage>());
-  const sections = ['Hero carousel', 'Service carousels', 'Featured projects', 'Other home sections'] as const;
+  const sections = ['Hero carousel', 'Service carousels', 'Featured projects', 'Review project photos', 'Other home sections'] as const;
   const dirtyCount = Object.values(dirtyKeys).filter(Boolean).length;
 
   const onDirtyChange = useCallback((key: string, dirty: boolean) => {
@@ -272,7 +277,7 @@ export function HomeImagesManager({ initialOverrides, initialError }: { initialO
       <div>
         <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[.2em] text-[#19547E]">{galleryConfig.businessName}</p>
         <h1 className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">HOME IMAGES</h1>
-        <p className="mt-2 max-w-2xl text-sm text-slate-600">Replace any home page photo with a new upload or reuse an image already uploaded in the Gallery or Home Images manager. Each position keeps its original image until you save a replacement.</p>
+        <p className="mt-2 max-w-2xl text-sm text-slate-600">Replace any home page photo with a new upload or reuse an image already uploaded in the Gallery or Home Images manager. Optional review photos appear after you save an image.</p>
       </div>
       <div className="flex flex-wrap gap-2">
         <Link href="/" target="_blank" className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">View home page</Link>
@@ -294,6 +299,7 @@ export function HomeImagesManager({ initialOverrides, initialError }: { initialO
     {initialError && <p role="alert" className="mb-6 border border-red-300 bg-red-50 p-4 text-sm text-red-800">{initialError}</p>}
     {sections.map((section) => <section key={section} className="mb-12" aria-label={section}>
       <h2 className="mb-5 text-2xl font-bold text-[#123E61]">{section}</h2>
+      {section === 'Review project photos' && <p className="mb-5 max-w-3xl text-sm text-slate-600">Use photos from the same reviewed project to show the different services completed. The photos rotate automatically while the customer reviews stay in place. Additional photos are optional; each unique image appears once.</p>}
       {section === 'Service carousels' ? <div className="space-y-10">
         {homeServicesData.map((service) => <div key={service.id} className="border-t-2 border-[#D9DEE2] pt-6 first:border-t-0 first:pt-0" aria-label={`${service.title} carousel images`}>
           <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
@@ -307,7 +313,7 @@ export function HomeImagesManager({ initialOverrides, initialError }: { initialO
             {homeImageSlots.filter((slot) => slot.section === section && slot.key.startsWith(`service-${service.id}-`)).map((slot, index) => renderCard(slot, `Image ${index + 1}`))}
           </div>
         </div>)}
-      </div> : <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      </div> : <div className={`grid gap-5 md:grid-cols-2 ${section === 'Review project photos' ? 'xl:grid-cols-4' : 'xl:grid-cols-3'}`}>
         {homeImageSlots.filter((slot) => slot.section === section).map((slot) => renderCard(slot))}
       </div>}
     </section>)}

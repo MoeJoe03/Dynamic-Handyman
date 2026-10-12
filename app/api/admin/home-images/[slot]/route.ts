@@ -96,6 +96,7 @@ export async function PUT(request: NextRequest, context: Context) {
       .select('image_path,gallery_image_id').eq('slot_key', slot).maybeSingle();
     if (readError) throw readError;
     const imagePath = current?.image_path ?? homeImageSlotMap[slot].defaultImageUrl;
+    if (!imagePath) return NextResponse.json({ error: 'Upload a photo or choose an uploaded image before saving its description.' }, { status: 400 });
     const galleryImageId = current?.gallery_image_id ?? null;
     const { error: saveError } = await admin.supabase.from('home_images').upsert({
       slot_key: slot,

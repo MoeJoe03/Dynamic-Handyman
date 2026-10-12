@@ -1,16 +1,22 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { LiveWorkShowcase } from '@/components/LiveWorkShowcase';
 import { Hero } from '@/components/Hero';
 import { ServiceAccordion } from '@/components/ServiceAccordion';
 import { ProjectGallery } from '@/components/ProjectGallery';
 import { AboutSection } from '@/components/AboutSection';
+import { ServiceAreaSection } from '@/components/ServiceAreaSection';
 import { ReviewsSection } from '@/components/ReviewsSection';
 import { QuoteForm } from '@/components/QuoteForm';
 import { Footer } from '@/components/Footer';
 import { getPublicHomeImages } from '@/lib/home-images/queries';
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  alternates: { canonical: 'https://dynamichandyman.co.za/' },
+};
 
 export default async function HomePage() {
   const homeImages = await getPublicHomeImages();
@@ -39,6 +45,8 @@ export default async function HomePage() {
 
         {/* 13 — ABOUT US */}
         <AboutSection homeImages={homeImages} />
+
+        <ServiceAreaSection />
 
         {/* 15 — CUSTOMER REVIEWS (PINNED NOTES & POLAROIDS) */}
         <ReviewsSection homeImages={homeImages} />

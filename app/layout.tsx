@@ -18,9 +18,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Handyman Services and Home Renovations in Alberton | Dynamic Handyman',
+  title: 'Handyman Services in Alberton | Dynamic Handyman',
   description:
-    'Professional multi-trade property maintenance, repairs, renovations and alterations for residential homes and corporate facilities across Gauteng, South Africa. SANS 10142-1 certified electrical COCs, architectural painting, carpentry joinery, plumbing, and steel carports.',
+    'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton and selected Gauteng areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
   keywords: [
     'Dynamic Handyman',
     'handyman services Gauteng',
@@ -36,9 +36,15 @@ export const metadata: Metadata = {
   authors: [{ name: 'Dynamic Handyman (PTY) LTD' }],
   metadataBase: new URL('https://dynamichandyman.co.za'),
   openGraph: {
-    title: 'Handyman Services and Home Renovations in Alberton | Dynamic Handyman',
+    title: 'Handyman Services in Alberton | Dynamic Handyman',
     description:
-      'Dependable domestic and corporate property maintenance, repairs and renovations handled by one reliable multi-trade team across Gauteng.',
+      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton and selected Gauteng areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+    images: [{
+      url: '/dynamic-handyman-home-og.png',
+      width: 1730,
+      height: 909,
+      alt: 'Dynamic Handyman handyman services in Alberton with a bathroom project image',
+    }],
     type: 'website',
     locale: 'en_ZA',
     url: 'https://dynamichandyman.co.za',
@@ -46,9 +52,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Handyman Services and Home Renovations in Alberton | Dynamic Handyman',
+    title: 'Handyman Services in Alberton | Dynamic Handyman',
     description:
-      'Dependable domestic and corporate property maintenance, repairs and renovations across Gauteng.',
+      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton and selected Gauteng areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+    images: ['/dynamic-handyman-home-og.png'],
   },
   robots: {
     index: true,

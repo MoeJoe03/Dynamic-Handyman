@@ -148,7 +148,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: "plumbing",
     ref: "04",
-    title: "Plumbing Repairs and Geyser Services",
+    title: "Plumbing",
     subtitle: "Hydraulic Systems, Sanitaryware & Geyser Maintenance",
     badge: "Hydraulics",
     complianceSpec: "SANS 10252 Plumbing Standards",
@@ -234,7 +234,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: "paving",
     ref: "06",
-    title: "Paving and Property Alterations",
+    title: "Paving",
     subtitle: "Engineered Driveway Paving, Kerbing & Structural Alterations",
     badge: "Structural Alterations",
     complianceSpec: "Compacted Sub-Base & Load-Bearing Standards",
@@ -245,8 +245,7 @@ export const servicesData: ServiceItem[] = [
       "Paving repairs & sunken patch re-leveling",
       "Kerbing, channels & drainage slopes",
       "Plastering, screeding & masonry repairs",
-      "High-pressure sealing & weed barrier",
-      "Interior wall knocking & drywall partitions"
+      "High-pressure sealing & weed barrier"
     ],
     keyDeliverables: [
       "Heavy soil compaction with mechanical wacker plate foundation",
@@ -288,6 +287,7 @@ export const servicesData: ServiceItem[] = [
       "Interior and exterior upgrades",
       "Preventive maintenance visits",
       "Multi-trade renovation projects",
+      "Interior wall knocking & drywall partitions",
       "Property inspections and quotations"
     ],
     keyDeliverables: [

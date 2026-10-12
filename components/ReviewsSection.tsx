@@ -1,10 +1,10 @@
-'use client';
-
 import React from 'react';
-import Image from 'next/image';
 import { reviewsData, aggregateReviewSummary, ReviewItem } from '../data/reviews';
 import { ScrewHead } from './ScrewHead';
-import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
+import { getReviewProjectPhotos, type HomeImageOverrides } from '@/config/home-images';
+import { ReviewProjectPhotos } from './ReviewProjectPhotos';
+import { ReviewEntrance } from './ReviewEntrance';
+import entranceStyles from './ReviewEntrance.module.css';
 
 export function ReviewsSection({ homeImages }: { homeImages: HomeImageOverrides }) {
   const renderStars = (rating: number = 5) => {
@@ -17,15 +17,15 @@ export function ReviewsSection({ homeImages }: { homeImages: HomeImageOverrides 
     );
   };
 
-  const renderReviewCard = (review: ReviewItem) => {
+  const renderReviewCard = (review: ReviewItem, delay = 0) => {
     return (
+      <ReviewEntrance key={review.id} delay={delay}>
       <div
-        key={review.id}
         className={`relative bg-[#f8f9fa] text-[#30323A] p-6 sm:p-7 rounded-sm shadow-xl border border-slate-200/90 ${review.rotation} hover:rotate-0 transition-all duration-300 group`}
       >
         {/* Architectural Screw Anchor (Screw head holding card with gentle rotation animation on hover) */}
         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 transition-transform duration-500 ease-out group-hover:rotate-[3deg] group-hover:scale-105">
-          <ScrewHead rotation={review.screwRotation} size={26} />
+          <ScrewHead rotation={review.screwRotation} size={26} className={entranceStyles.screw} />
         </div>
 
         {/* Card Header Without Profile Photo */}
@@ -43,6 +43,7 @@ export function ReviewsSection({ homeImages }: { homeImages: HomeImageOverrides 
           &ldquo;{review.quote}&rdquo;
         </p>
       </div>
+      </ReviewEntrance>
     );
   };
 
@@ -73,72 +74,51 @@ export function ReviewsSection({ homeImages }: { homeImages: HomeImageOverrides 
 
         {/* Screwed Notes & Polaroid Collage Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-start mb-12">
-          {/* Column 1: Ria Coetzee, Polaroid Photo & Johan de Swardt */}
+          {/* Column 1: Ria Coetzee and project photos */}
           <div className="lg:col-span-4 space-y-8">
             {/* Review 1: Ria Coetzee */}
             {renderReviewCard(reviewsData[0])}
 
-            {/* Polaroid 1: Bathroom Renovation with Tape */}
-            <div className="relative bg-white p-3.5 pb-6 rounded-sm shadow-xl border border-slate-200/90 rotate-2 hover:rotate-0 transition-transform duration-300 max-w-xs mx-auto group">
-              {/* Semi-translucent masking tape strip */}
-              <div
-                className="absolute -top-2.5 left-1/3 -translate-x-2 w-14 h-5 bg-amber-100/80 border border-amber-200/70 shadow-sm backdrop-blur-[0.5px] -rotate-6 z-10 pointer-events-none"
-                style={{
-                  clipPath: 'polygon(0% 5%, 98% 0%, 100% 95%, 2% 100%)',
-                }}
-              />
-              <div className="relative aspect-square overflow-hidden bg-neutral-100">
-                <Image
-                  src={getHomeImage(homeImages, 'reviews-photo').imageUrl}
-                  alt={getHomeImage(homeImages, 'reviews-photo').altText}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <p className="text-[11px] font-sans text-center text-slate-500 mt-3 italic">
-                Quality work. Every time.
-              </p>
-            </div>
+            {/* The project photos rotate while the review stays in place. */}
+            <ReviewProjectPhotos photos={getReviewProjectPhotos(homeImages)} review={reviewsData[1]} />
 
-            {/* Review 6: Johan de Swardt */}
-            {renderReviewCard(reviewsData[5])}
           </div>
 
-          {/* Column 2: Ashley Kleynhans, Mariaan Pretorius & Melissa Edwards */}
+          {/* Column 2: Mariaan Pretorius, Melissa Edwards & Johan de Swardt */}
           <div className="lg:col-span-4 space-y-8">
-            {/* Review 2: Ashley Kleynhans */}
-            {renderReviewCard(reviewsData[1])}
-
             {/* Review 3: Mariaan Pretorius */}
-            {renderReviewCard(reviewsData[2])}
+            {renderReviewCard(reviewsData[2], 100)}
 
             {/* Review 7: Melissa Edwards */}
-            {renderReviewCard(reviewsData[6])}
+            {renderReviewCard(reviewsData[6], 100)}
+
+            {/* Review 6: Johan de Swardt */}
+            {renderReviewCard(reviewsData[5], 100)}
           </div>
 
           {/* Column 3: Tracy Maistry, Petrus van Heerden & Overall Rating Card */}
           <div className="lg:col-span-4 space-y-8">
             {/* Review 4: Tracy Maistry */}
-            {renderReviewCard(reviewsData[3])}
+            {renderReviewCard(reviewsData[3], 200)}
 
             {/* Review 5: Petrus van Heerden */}
-            {renderReviewCard(reviewsData[4])}
+            {renderReviewCard(reviewsData[4], 200)}
 
             {/* Overall Rating Feature Card (Bolted Industrial Plate with 4 Corner Screws) */}
+            <ReviewEntrance delay={200}>
             <div className="relative bg-[#071c2c] text-white p-7 sm:p-8 rounded-xl shadow-2xl border-2 border-sky-400/40 rotate-1 hover:rotate-0 transition-transform duration-300">
               {/* 4 Corner Screws */}
               <div className="absolute top-2.5 left-2.5 z-10">
-                <ScrewHead rotation={45} size={18} />
+                <ScrewHead rotation={45} size={18} className={entranceStyles.screw} />
               </div>
               <div className="absolute top-2.5 right-2.5 z-10">
-                <ScrewHead rotation={-30} size={18} />
+                <ScrewHead rotation={-30} size={18} className={`${entranceStyles.screw} ${entranceStyles.secondScrew}`} />
               </div>
               <div className="absolute bottom-2.5 left-2.5 z-10">
-                <ScrewHead rotation={15} size={18} />
+                <ScrewHead rotation={15} size={18} className={`${entranceStyles.screw} ${entranceStyles.thirdScrew}`} />
               </div>
               <div className="absolute bottom-2.5 right-2.5 z-10">
-                <ScrewHead rotation={75} size={18} />
+                <ScrewHead rotation={75} size={18} className={`${entranceStyles.screw} ${entranceStyles.fourthScrew}`} />
               </div>
 
               <div className="text-center pt-1">
@@ -164,6 +144,7 @@ export function ReviewsSection({ homeImages }: { homeImages: HomeImageOverrides 
                 </a>
               </div>
             </div>
+            </ReviewEntrance>
           </div>
         </div>
       </div>
