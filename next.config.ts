@@ -1,5 +1,9 @@
 import type {NextConfig} from 'next';
 
+const supabaseHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
+  : null;
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -23,6 +27,7 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      ...(supabaseHostname ? [{ protocol: 'https' as const, hostname: supabaseHostname, pathname: '/storage/v1/object/public/gallery/**' }] : []),
     ],
   },
   output: 'standalone',

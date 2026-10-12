@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Technical blueprint background with geometric diamond and service icons">
+<defs>
+ <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#77A5C5" stroke-opacity=".13" stroke-width="1"/></pattern>
+ <pattern id="minor" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0H0V12" fill="none" stroke="#77A5C5" stroke-opacity=".035" stroke-width=".7"/></pattern>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07365A"/><stop offset=".58" stop-color="#082F51"/><stop offset="1" stop-color="#062B49"/></linearGradient>
+ <linearGradient id="ice" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#8EC8F1"/></linearGradient>
+</defs>
+<rect width="1920" height="1080" fill="url(#bg)"/><rect width="1920" height="1080" fill="url(#minor)"/><rect width="1920" height="1080" fill="url(#grid)"/>
+<g fill="none" stroke="#A6D3F2" stroke-width="1" opacity=".36">
+ <path d="M0 56H1920M0 1015H340M1055 0V925M1455 0V1080M1560 70V1030"/>
+ <path d="M835 -40L1250 380M0 554Q285 740 285 1080" stroke-dasharray="8 9"/>
+ <path d="M1055 240H1640M1055 844H1660M1550 112H1860V1005H1550" stroke-dasharray="7 8"/>
+ <path d="M1055 540H1700M1320 0V1080" opacity=".5"/>
+ <path d="M1055 240V844M1460 0V1075"/>
+</g>
+<g fill="none" stroke="#B7DFFF" stroke-width="1.5" opacity=".65">
+ <path d="M0 1005H345M165 1005V1080"/><path d="M1055 240H1210M1055 240V375M1055 844H1220"/>
+ <path d="M1575 112H1840M1575 1005H1840M1575 112V1005"/>
+</g>
+<g fill="#D9F0FF"><rect x="160" y="1000" width="9" height="9"/><rect x="1050" y="235" width="9" height="9"/><rect x="1050" y="839" width="9" height="9"/><rect x="1451" y="72" width="9" height="9"/><rect x="1555" y="107" width="9" height="9"/><rect x="1555" y="1000" width="9" height="9"/></g>
+<!-- Geometric blueprint emblem -->
+<g transform="translate(1320 540)">
+ <circle r="293" fill="none" stroke="#BBDFF7" stroke-width="1.4" stroke-dasharray="11 10" opacity=".48"/>
+ <circle r="216" fill="none" stroke="#8AB9DC" stroke-width="1" opacity=".14"/>
+ <path d="M-294 0H294M0-390V390" stroke="#C8E8FC" stroke-width="1.6" opacity=".76"/>
+ <path d="M0-294L294 0 0 294-294 0Z" fill="none" stroke="url(#ice)" stroke-width="3"/>
+ <path d="M0-218L218 0 0 218-218 0Z" fill="none" stroke="#8EC8F1" stroke-opacity=".24" stroke-width="1.3"/>
+ <path d="M-294-294L294 294M-294 294L294-294" stroke="#8EC8F1" stroke-opacity=".23"/>
+ <path d="M0 0L294 294M0 0L-294-294" stroke="#C6E8FF" stroke-opacity=".13"/>
+ <path d="M0 294L294 0M-294 0L0-294" stroke="#8EC8F1" stroke-opacity=".35"/>
+ <path d="M0 294L255 39M0 265L225 40M0 238L198 40M0 212L170 40" stroke="#9CCDEA" stroke-opacity=".19"/>
+ <path d="M-340 0H340M0-340V340" stroke="#D4EDFF" stroke-opacity=".25" stroke-width="1"/>
+ <path d="M0-27L27 0 0 27-27 0Z" fill="#BDE3FF"/>
+ <g fill="#DDF2FF"><rect x="-5" y="-299" width="10" height="10"/><rect x="-5" y="289" width="10" height="10"/><rect x="-299" y="-5" width="10" height="10"/><rect x="289" y="-5" width="10" height="10"/></g>
+</g>
+<!-- right-side blueprint icon rack -->
+<g transform="translate(1680 154)" fill="none" stroke="#B8DEFC" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+ <path d="M-34 -50H150V900H-34" stroke-width="1.2" stroke-dasharray="6 8" opacity=".4"/>
+ <g transform="translate(0 0)"><rect width="120" height="120" stroke-width="1.7"/><path d="M63 18L37 70H62L53 104 91 52H66L79 18Z"/></g>
+ <g transform="translate(0 140)"><rect width="120" height="120" stroke-width="1.7"/><rect x="26" y="28" width="65" height="25" rx="5"/><path d="M91 40H100V63H63V83M63 83V104M55 83H71"/></g>
+ <g transform="translate(0 280)"><rect width="120" height="120" stroke-width="1.7"/><path d="M25 49L46 27 61 31 71 42 57 47 49 42 38 54 85 102 96 91 50 44M25 49L33 57"/></g>
+ <g transform="translate(0 420)"><rect width="120" height="120" stroke-width="1.7"/><path d="M43 35H78M60 35V48M44 48H76V58H89Q99 58 99 69V83H84V75H76V83H59V75H41V83H25V68Q25 58 36 58H44Z"/><path d="M91 93Q83 104 91 109Q99 104 91 93Z"/></g>
+ <g transform="translate(0 560)"><rect width="120" height="120" stroke-width="1.7"/><path d="M26 93V39L39 22 52 39V93M52 93V39L65 22 78 39V93M78 93V39L91 22 104 39V93M22 70H107M22 93H107"/></g>
+ <g transform="translate(0 700)"><rect width="120" height="120" stroke-width="1.7"/><path d="M77 25Q60 18 50 31Q44 39 48 50L23 78Q15 88 24 97Q32 105 42 96L69 69Q81 74 91 64Q101 54 97 42L79 57 66 44Z"/><circle cx="31" cy="88" r="4"/></g>
+</g>
+</svg>

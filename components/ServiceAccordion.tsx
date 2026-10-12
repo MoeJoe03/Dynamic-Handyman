@@ -3,18 +3,66 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { servicesData, ServiceItem } from '../data/services';
+import { homeServicesData, ServiceItem } from '../data/services';
+import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
 import {
   ElectricalSvg,
   PaintingSvg,
   CarpentrySvg,
   PlumbingSvg,
   PalisadesCarportsSvg,
+  PavingSvg,
 } from './icons/TradeSvgs';
 
-export function ServiceAccordion() {
-  // Default to first service expanded (like Stitch screenshot where Electrical is expanded)
-  const [activeId, setActiveId] = useState<string | null>('electrical');
+function ServiceImageCarousel({ service, homeImages }: { service: ServiceItem; homeImages: HomeImageOverrides }) {
+  const slides = service.images.slice(0, 4).map((image, index) => {
+    const selected = getHomeImage(homeImages, `service-${service.id}-${index + 1}`);
+    return { url: selected.imageUrl, alt: selected.altText };
+  });
+
+  while (slides.length < 4 && slides.length > 0) {
+    slides.push(slides[slides.length % service.images.length]);
+  }
+
+  const loopSlides = [...slides, ...slides];
+
+  return (
+    <div className="relative min-w-0 lg:col-span-8" aria-label="Service project image carousel">
+      <div className="overflow-hidden rounded-lg border border-[#D9DEE2]/60 bg-transparent sm:rounded-2xl">
+        <div
+          className="animate-marquee flex w-[400%] motion-reduce:animate-none"
+          style={{ animationDuration: '24s' }}
+        >
+          {loopSlides.map((img, imgIdx) => (
+            <div
+              key={`${img.url}-${imgIdx}`}
+              className="w-[12.5%] shrink-0 px-1.5 first:pl-0 last:pr-0 sm:px-2"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-transparent sm:rounded-xl">
+                <Image
+                  src={img.url}
+                  alt={img.alt}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                  className="object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-3 flex items-center justify-between">
+        <span className="text-[10px] font-mono tracking-widest uppercase text-slate-500">
+          Project images • Auto-rotating
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverrides }) {
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const toggleService = (id: string) => {
     setActiveId(activeId === id ? null : id);
@@ -32,6 +80,8 @@ export function ServiceAccordion() {
         return <PlumbingSvg className="w-16 h-12 object-contain" />;
       case 'palisades':
         return <PalisadesCarportsSvg className="w-16 h-12 object-contain" />;
+      case 'paving':
+        return <PavingSvg className="w-16 h-12 object-contain" />;
       default:
         return <ElectricalSvg className="w-16 h-12 object-contain" />;
     }
@@ -46,7 +96,7 @@ export function ServiceAccordion() {
             (01 — SERVICES)
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#30323A] mb-5">
-            Everything Your Property Needs.
+            Handyman, Maintenance and Renovation Services
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
             From everyday repairs to complete alterations, Dynamic Handyman provides a wide range of maintenance and renovation services for homes, businesses, and industrial facilities.
@@ -58,7 +108,7 @@ export function ServiceAccordion() {
           className="border-t border-[#D9DEE2] divide-y divide-[#D9DEE2]"
           data-purpose="services-accordion-container"
         >
-          {servicesData.map((service: ServiceItem) => {
+          {homeServicesData.map((service: ServiceItem) => {
             const isOpen = activeId === service.id;
 
             return (
@@ -81,13 +131,16 @@ export function ServiceAccordion() {
                       {getServiceSvg(service.id)}
                     </div>
 
-                    <div>
+                    <div className="max-w-3xl">
                       <span className="text-[10px] font-mono font-bold tracking-widest text-slate-400 block">
                         TRADE REF: {service.ref}
                       </span>
                       <h3 className="text-sm sm:text-lg md:text-xl font-extrabold text-[#30323A] uppercase tracking-tight">
                         {service.title}
                       </h3>
+                      <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
+                        {service.description}
+                      </p>
                     </div>
                   </div>
 
@@ -116,11 +169,7 @@ export function ServiceAccordion() {
                   <div className="pb-8 sm:pb-10 pt-2 px-2 sm:pl-24 sm:pr-8 border-t border-[#D9DEE2]/70 animate-in fade-in duration-200">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                       {/* Left: Sub-services and CTAs */}
-                      <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                          {service.description}
-                        </p>
-
+                      <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
                         <div className="flex flex-wrap gap-2">
                           {service.subServices.map((sub, idx) => (
                             <span
@@ -148,24 +197,8 @@ export function ServiceAccordion() {
                         </div>
                       </div>
 
-                      {/* Right: 3 Real Project Workmanship Images */}
-                      <div className="lg:col-span-6 grid grid-cols-3 gap-2.5 sm:gap-3">
-                        {service.images.map((img, imgIdx) => (
-                          <div
-                            key={imgIdx}
-                            className="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-200 shadow-sm border border-[#D9DEE2]/50 relative group"
-                          >
-                            <Image
-                              src={img.url}
-                              alt={img.alt}
-                              fill
-                              sizes="(max-width: 768px) 30vw, 20vw"
-                              className="object-cover transition-transform duration-500 group-hover:scale-105"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                        ))}
-                      </div>
+                      {/* Right: Auto-moving four-image workmanship carousel */}
+                      <ServiceImageCarousel service={service} homeImages={homeImages} />
                     </div>
                   </div>
                 )}

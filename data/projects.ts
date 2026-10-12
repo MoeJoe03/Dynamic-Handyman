@@ -1,7 +1,19 @@
 export interface ProjectItem {
   id: string;
   category: string;
-  filterKey: 'electrical' | 'painting' | 'carpentry' | 'plumbing' | 'palisades' | 'renovations';
+  filterKey:
+    | 'electrical'
+    | 'painting'
+    | 'carpentry'
+    | 'plumbing'
+    | 'palisades'
+    | 'renovations'
+    | 'maintenance'
+    | 'glass-works'
+    | 'flooring'
+    | 'gutters-fascia'
+    | 'aluminium-windows-doors';
+  additionalFilterKeys?: Array<'maintenance' | 'glass-works' | 'flooring' | 'gutters-fascia' | 'aluminium-windows-doors'>;
   title: string;
   subtitle: string;
   location: string;
@@ -18,6 +30,11 @@ export const galleryFilters = [
   { key: 'plumbing', label: 'Plumbing & Hydraulics' },
   { key: 'palisades', label: 'Palisades & Carports' },
   { key: 'renovations', label: 'Renovations' },
+  { key: 'maintenance', label: 'Domestic & Corporate Maintenance' },
+  { key: 'glass-works', label: 'Glass Works' },
+  { key: 'flooring', label: 'Flooring' },
+  { key: 'gutters-fascia', label: 'Gutters, Down Pipes & Fascia' },
+  { key: 'aluminium-windows-doors', label: 'Aluminium Windows & Doors' },
 ] as const;
 
 export const projectsData: ProjectItem[] = [
@@ -89,6 +106,7 @@ export const projectsData: ProjectItem[] = [
     id: 'project-5',
     category: 'Palisades & Carports',
     filterKey: 'palisades',
+    additionalFilterKeys: ['gutters-fascia'],
     title: 'Palisades & Carports',
     subtitle: 'Custom Steel Fabrication & Automation',
     location: 'Centurion, Gauteng',
@@ -105,6 +123,7 @@ export const projectsData: ProjectItem[] = [
     id: 'project-6',
     category: 'Renovations',
     filterKey: 'renovations',
+    additionalFilterKeys: ['maintenance'],
     title: 'Renovations',
     subtitle: 'Corporate Office Alterations & Fit-Out',
     location: 'Rosebank, Johannesburg',

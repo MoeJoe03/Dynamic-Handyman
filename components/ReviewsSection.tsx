@@ -4,8 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import { reviewsData, aggregateReviewSummary, ReviewItem } from '../data/reviews';
 import { ScrewHead } from './ScrewHead';
+import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
 
-export function ReviewsSection() {
+export function ReviewsSection({ homeImages }: { homeImages: HomeImageOverrides }) {
   const renderStars = (rating: number = 5) => {
     return (
       <div className="flex items-center space-x-1 text-amber-400 text-xs mt-1" aria-label={`${rating} out of 5 stars`}>
@@ -88,8 +89,8 @@ export function ReviewsSection() {
               />
               <div className="relative aspect-square overflow-hidden bg-neutral-100">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWjcarXKsl3O6UiJWxxL93fcrdvQPy5mB59SXy84-koWMYPu7Ph7W-l0t7JBozPyWcOniH8fVDd9A735tO-o1HQDgaYtHsQudA5mY_u2O4xeQ804YN0Ny0-SNLHAFVzU3N4uo3_AGE1pnatD_k-7wQEKJlGgismUGZSCSweMgwql6CoPxM30ozdG5yNYXv0yF-cdVTkbHmaCbUE_xHCTzT_vvCN3UCS3Umd0MZhi2-GnPnHxH5mbBvhA"
-                  alt="Finished bathroom renovation"
+                  src={getHomeImage(homeImages, 'reviews-photo').imageUrl}
+                  alt={getHomeImage(homeImages, 'reviews-photo').altText}
                   fill
                   className="object-cover transition-transform duration-500 hover:scale-105"
                   referrerPolicy="no-referrer"

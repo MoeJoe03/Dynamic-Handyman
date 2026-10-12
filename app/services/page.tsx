@@ -13,6 +13,11 @@ import {
   PlumbingSvg,
   PalisadesCarportsSvg,
   PavingSvg,
+  MaintenanceSvg,
+  GlassWorksSvg,
+  FlooringSvg,
+  GuttersFasciaSvg,
+  AluminiumWindowsDoorsSvg,
 } from '@/components/icons/TradeSvgs';
 
 export default function ServicesPage() {
@@ -30,6 +35,16 @@ export default function ServicesPage() {
         return <PalisadesCarportsSvg className="w-16 h-12 object-contain" />;
       case 'paving':
         return <PavingSvg className="w-16 h-12 object-contain" />;
+      case 'maintenance':
+        return <MaintenanceSvg className="w-16 h-12 object-contain" />;
+      case 'glass-works':
+        return <GlassWorksSvg className="w-16 h-12 object-contain" />;
+      case 'flooring':
+        return <FlooringSvg className="w-16 h-12 object-contain" />;
+      case 'gutters-fascia':
+        return <GuttersFasciaSvg className="w-16 h-12 object-contain" />;
+      case 'aluminium-windows-doors':
+        return <AluminiumWindowsDoorsSvg className="w-16 h-12 object-contain" />;
       default:
         return <ElectricalSvg className="w-16 h-12 object-contain" />;
     }
@@ -42,20 +57,33 @@ export default function ServicesPage() {
 
       <main className="flex-grow">
         {/* HERO SECTION FOR SERVICES */}
-        <section className="relative bg-white pt-12 sm:pt-16 pb-6 sm:pb-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="max-w-4xl mx-auto text-center">
+        <section className="relative bg-white pt-6 pb-8 sm:pb-12 border-b border-[#D9DEE2]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative min-h-[340px] sm:min-h-[420px] lg:min-h-[500px] overflow-hidden border border-[#0C2B44] bg-[#082F51] shadow-xl">
+              <Image
+                src="/dynamic-handyman-services-hero.svg"
+                alt="Technical blueprint featuring symbols for electrical, plumbing, carpentry, painting, fencing, and paving services"
+                fill
+                priority
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#062B49]/95 via-[#062B49]/85 to-[#062B49]/10" />
+              <div className="relative z-10 flex min-h-[340px] sm:min-h-[420px] lg:min-h-[500px] items-center px-6 py-10 sm:px-10 lg:px-14">
+            <div className="max-w-3xl">
               {/* Technical Eyebrow / Sub Heading */}
-              <div className="inline-flex items-center justify-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-400 mb-4">
-                <span className="w-2 h-2 rounded-full bg-[#123E61] shrink-0" />
+              <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
+                <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
                 <span>(01 — COMPREHENSIVE TRADE CAPABILITIES • GAUTENG)</span>
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-3xl sm:text-5xl lg:text-[50px] font-extrabold tracking-tighter leading-[1.05] uppercase text-[#30323A] text-center">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02] uppercase text-white">
                 Complete Handyman Services<br />
-                <span className="text-[#123E61]">in Johannesburg</span>
+                <span className="text-slate-300">in Johannesburg</span>
               </h1>
+            </div>
+              </div>
             </div>
           </div>
         </section>
@@ -151,7 +179,7 @@ export default function ServicesPage() {
 
                     {/* Single Main Image Column */}
                     <div className={`lg:col-span-6 ${isEven ? 'lg:order-1' : ''}`}>
-                      <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] w-full rounded-sm overflow-hidden bg-neutral-900 border border-[#D9DEE2] shadow-sm group">
+                      <div className="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] w-full rounded-sm overflow-hidden bg-neutral-900 border border-[#D9DEE2] shadow-sm group">
                         <Image
                           src={trade.images[0].url}
                           alt={trade.images[0].alt}

@@ -11,10 +11,10 @@ export function Hero() {
             <span>(00 — PROPERTY MAINTENANCE • REPAIRS • RENOVATIONS)</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tighter leading-[0.95] uppercase">
-            One Team.<br />
-            Every Trade.<br />
-            <span className="text-slate-300">Done Right.</span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-6xl font-extrabold tracking-tighter leading-[0.95] uppercase">
+            Handyman Services<br />
+            and Home Renovations<br />
+            <span className="text-slate-300">in Alberton</span>
           </h1>
         </div>
 

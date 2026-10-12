@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
+import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
 
-export function AboutSection() {
+export function AboutSection({ homeImages }: { homeImages: HomeImageOverrides }) {
   return (
     <section className="py-20 lg:py-28 bg-white border-t border-[#D9DEE2]" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,8 +33,8 @@ export function AboutSection() {
             {/* Workmanship photograph (artisan driving screw with precision cordless drill into timber decking) */}
             <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#D9DEE2]/70 bg-neutral-100 group aspect-[16/10] sm:aspect-[16/9]">
               <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU_gfQYJFb2m2FmgnHV0RjZK7LSAUjtk1-lhmRfHpaFzNW3A3VKYSeBrVyGBsh517HezrI6-nWw-SbfhQjoNXbtb7nVllPQjKnP3zB_lYjNbxYrvf8wr26THxkthEa2P5FRycWasPsKJ8Yv0mvfIJJuJDA56L-AYKlrCEl4IufQJPPkgpF-Dd9A781D0tFEGE_dDKLfJp_DP0vzwwerqNnNmU2XO4O7H7zWB7THJdVTzJ2OebE6DIEPg"
-                alt="Skilled handyman artisan driving screw with precision cordless drill into timber decking"
+                src={getHomeImage(homeImages, 'about-workmanship').imageUrl}
+                alt={getHomeImage(homeImages, 'about-workmanship').altText}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

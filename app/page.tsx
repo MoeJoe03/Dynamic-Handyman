@@ -8,8 +8,12 @@ import { AboutSection } from '@/components/AboutSection';
 import { ReviewsSection } from '@/components/ReviewsSection';
 import { QuoteForm } from '@/components/QuoteForm';
 import { Footer } from '@/components/Footer';
+import { getPublicHomeImages } from '@/lib/home-images/queries';
 
-export default function HomePage() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const homeImages = await getPublicHomeImages();
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
       {/* 04 — HEADER */}
@@ -20,7 +24,7 @@ export default function HomePage() {
         <section className="relative bg-white pt-5 sm:pt-6 pb-16 lg:pb-24" id="hero">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Visual Editorial Craft Strip */}
-            <LiveWorkShowcase />
+            <LiveWorkShowcase homeImages={homeImages} />
 
             {/* Confident Architectural Statement Panel */}
             <Hero />
@@ -28,16 +32,16 @@ export default function HomePage() {
         </section>
 
         {/* 09 — SERVICES ACCORDION */}
-        <ServiceAccordion />
+        <ServiceAccordion homeImages={homeImages} />
 
         {/* 11 & 12 — PROJECT GALLERY & GALLERY CTA */}
-        <ProjectGallery />
+        <ProjectGallery homeImages={homeImages} />
 
         {/* 13 — ABOUT US */}
-        <AboutSection />
+        <AboutSection homeImages={homeImages} />
 
         {/* 15 — CUSTOMER REVIEWS (PINNED NOTES & POLAROIDS) */}
-        <ReviewsSection />
+        <ReviewsSection homeImages={homeImages} />
 
         {/* 18 — CONTACT ESTIMATE REQUISITION */}
         <section id="contact" className="bg-white border-t border-[#D9DEE2]">

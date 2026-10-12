@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Architectural blueprint background for Our Work gallery">
+<defs>
+ <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#8CB5D0" stroke-opacity=".085" stroke-width="1"/></pattern>
+ <pattern id="major" width="160" height="160" patternUnits="userSpaceOnUse"><path d="M160 0H0V160" fill="none" stroke="#A5CEE5" stroke-opacity=".085" stroke-width="1.3"/></pattern>
+ <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V10" stroke="#B8DAEF" stroke-opacity=".32" stroke-width="1"/></pattern>
+ <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#B8DDF3" stop-opacity=".30"/><stop offset="1" stop-color="#3A7DA9" stop-opacity=".07"/></linearGradient>
+ <clipPath id="frame"><rect width="1920" height="1080"/></clipPath>
+</defs>
+<g clip-path="url(#frame)">
+<rect width="1920" height="1080" fill="#073355"/><rect width="1920" height="1080" fill="url(#grid)"/><rect width="1920" height="1080" fill="url(#major)"/>
+<g fill="none" stroke="#B5D5E9" stroke-width="1.3" opacity=".55">
+ <path d="M0 520A570 570 0 0 1 305 1080" stroke-dasharray="9 10"/><path d="M0 984H450M135 984V1080"/><path d="M890 -80L1346 376M850 1080L1560 370"/><path d="M1056 170H1780M1056 170V795M1480 0V1050" stroke-opacity=".55"/>
+ <path d="M1070 365H1850M1070 830H1860M1030 575H1920" stroke-opacity=".4"/>
+</g>
+<g fill="none" stroke="#D8EAF5" stroke-width="1.7" opacity=".82">
+ <circle cx="1344" cy="540" r="235" stroke-dasharray="8 9" opacity=".65"/>
+ <path d="M1120 540L1344 316L1568 540L1344 764Z" stroke-width="2.5"/>
+ <path d="M1344 316V764M1120 540H1568"/><path d="M1192 540L1344 388L1496 540L1344 692Z" opacity=".25"/>
+ <path d="M1100 310H1570M1100 310V800M1570 310V800" opacity=".35"/>
+</g>
+<path d="M1344 521L1363 540L1344 559L1325 540Z" fill="#B8DBF3"/>
+<g fill="#C6E4F6"><rect x="1051" y="165" width="7" height="7"/><rect x="1051" y="791" width="7" height="7"/><rect x="1476" y="165" width="8" height="8"/><rect x="1564" y="535" width="8" height="8"/><rect x="1339" y="759" width="9" height="9"/><rect x="130" y="980" width="10" height="10"/></g>
+<!-- Architectural structure: right-side completed-building elevation -->
+<g stroke="#C8E5F5" stroke-width="2" stroke-linejoin="round" fill="none" opacity=".82">
+ <path d="M1550 217L1818 25L2070 194M1550 244L1818 62L2070 215"/>
+ <path d="M1550 244V474L1818 304L1920 349M1818 62V304M1660 168V402M1760 97V340"/>
+ <path d="M1595 248L1818 93L1920 158V412L1818 355L1595 498Z" opacity=".5"/>
+ <path d="M1550 475L1818 305L1920 350M1550 500L1818 331L1920 375"/>
+ <path d="M1690 390V290L1810 214V314M1832 200V330"/>
+ <path d="M1605 500L1920 500M1660 500V725M1810 500V775M1910 500V824" opacity=".55"/>
+</g>
+<path d="M1580 232L1818 68L1920 137V321L1818 274L1580 436Z" fill="url(#hatch)" opacity=".36"/>
+<!-- two stacked architectural project studies -->
+<g stroke="#C7E5F6" stroke-width="1.8" fill="none" opacity=".85">
+ <path d="M1490 580L1920 475V520L1490 635Z"/>
+ <path d="M1540 622V893M1540 893L1920 927M1600 606V894M1810 551V920"/>
+ <path d="M1600 690L1810 645V850L1600 858Z"/><path d="M1630 686V854M1725 661V851" opacity=".65"/>
+ <path d="M1540 893L1920 927L1810 982L1440 925Z"/>
+ <path d="M1450 945L1810 1008L1920 951" opacity=".55"/>
+ <path d="M1490 790L1920 825M1500 830L1920 866" opacity=".35"/>
+</g>
+<path d="M1600 690L1810 645V850L1600 858Z" fill="url(#glass)"/>
+<path d="M1540 893L1920 927L1810 982L1440 925Z" fill="url(#hatch)" opacity=".28"/>
+<!-- project panels and measuring construction marks -->
+<g stroke="#A9D4EF" fill="none" stroke-width="1.5" opacity=".6">
+ <rect x="1088" y="390" width="253" height="264"/><path d="M1088 654H1341V805H1088Z" fill="url(#glass)"/>
+ <rect x="1498" y="274" width="182" height="180" fill="url(#hatch)"/><rect x="1498" y="592" width="200" height="310" fill="url(#hatch)"/>
+ <path d="M1048 346H1140M1048 346V700M1050 700H1140M1715 275H1770V454H1715" stroke-dasharray="7 8"/>
+ <path d="M1060 870H1780M1060 870V1020M1460 880V1040" opacity=".5"/>
+</g>
+<g fill="#B8DFF5"><rect x="1084" y="386" width="7" height="7"/><rect x="1084" y="801" width="7" height="7"/><rect x="1337" y="650" width="7" height="7"/><rect x="1494" y="588" width="7" height="7"/></g>
+</g></svg>

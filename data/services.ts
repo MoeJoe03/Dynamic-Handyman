@@ -248,5 +248,155 @@ export const servicesData: ServiceItem[] = [
         alt: "Aluminium Glazing & Window Fitting"
       }
     ]
+  },
+  {
+    id: "maintenance",
+    ref: "07",
+    title: "Domestic & Corporate Maintenance, Repairs & Renovations",
+    subtitle: "One Accountable Team for Homes and Workplaces",
+    badge: "Property Maintenance",
+    complianceSpec: "Planned Maintenance & Quality Handover",
+    turnaroundEstimate: "Scheduled to Suit Your Property",
+    description: "Responsive property maintenance for homes, offices, and commercial premises across Gauteng. We coordinate repairs and renovation work across multiple trades, from small maintenance jobs to larger planned improvements.",
+    subServices: [
+      "Home and office maintenance",
+      "General repairs and fault finding",
+      "Interior and exterior upgrades",
+      "Preventive maintenance visits",
+      "Multi-trade renovation projects",
+      "Property inspections and quotations"
+    ],
+    keyDeliverables: [
+      "A clear scope and itemized quotation before work begins",
+      "Coordinated trade work through one point of contact",
+      "Protection of occupied work and living areas",
+      "Site cleanup and a clear handover on completion"
+    ],
+    images: [
+      {
+        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDMZZfvYj_ogC5PHef0pfHlXLvLzpPTh-RMe90qSLqs4X9KVxWpGb-A6pnZAblexERrNdb1071916ossFFyR8nCya2G-g-A88PJZL10Ll7H-zEAAtFnpSMg8emwJ-Ut4Qe77-ExeaPX8jOVIYzIZPOgK4Pf9dY72OPMbf36GmZLOxJrwPT8dQbwt_ufRzMrlbsXzbXV2kM65P0p4aLdJfZvr-ppHZcuyxcOk0EXXvao_O09Hu49gEKmog",
+        alt: "Commercial property maintenance and renovation work"
+      }
+    ]
+  },
+  {
+    id: "glass-works",
+    ref: "08",
+    title: "Glass Works (New Installations & Repairs)",
+    subtitle: "Glass Replacement, Fitting & Adjustments",
+    badge: "Glazing",
+    complianceSpec: "Secure Glass Fitting & Weather Sealing",
+    turnaroundEstimate: "Scheduled After Site Measurement",
+    description: "Glass installation and repair for residential and commercial properties, including replacement panes, glazing adjustments, and sealing to restore a secure, neat, weather-resistant finish.",
+    subServices: [
+      "Broken glass replacement",
+      "New glass installations",
+      "Window and door glazing repairs",
+      "Glass putty and seal replacement",
+      "Shopfront and office glazing maintenance"
+    ],
+    keyDeliverables: [
+      "Accurate site measurements before glass is ordered",
+      "Safe removal and disposal of damaged glass",
+      "Secure fitting with neat perimeter sealing",
+      "Operation and finish checked at handover"
+    ],
+    images: [
+      {
+        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuC-R9slRj8pHriM1qJRCenS2nTSqmSNIFOVWRtT0xQc1oAi428N7wPN2Shqed0pKdQqO_CPoHvu6CwulsjUHfLlX9rBQpqJOh0PAZV6QTxsLqCsDeFg17xH-jPETXzG170dLWk9Vhdt4_QLfWu0PDviYFc0K3SqLug6DHJeD2VzNy3Os0J7qL1ALpCJRWksmLqLIu2kUx-DglPvB9dRvVxegx7SawZWXz5_wdQeosiCVMp8BLMLp1NMEw",
+        alt: "Aluminium window glazing and glass fitting"
+      }
+    ]
+  },
+  {
+    id: "flooring",
+    ref: "09",
+    title: "Flooring (Tiles • Carpets • Laminates)",
+    subtitle: "Floor Preparation, Installation & Repairs",
+    badge: "Flooring",
+    complianceSpec: "Level Substrate & Clean Finish",
+    turnaroundEstimate: "Based on Room Size and Preparation",
+    description: "Flooring installation and repair for homes and businesses, with suitable preparation and tidy finishing for tiled, carpeted, and laminated spaces.",
+    subServices: [
+      "Floor and wall tiling",
+      "Carpet installation and replacement",
+      "Laminate flooring installation",
+      "Removal of damaged floor finishes",
+      "Grout, trim and transition repairs"
+    ],
+    keyDeliverables: [
+      "Subfloor assessment and preparation",
+      "Straight, consistent installation lines",
+      "Neat edges, transitions and skirting details",
+      "Final cleanup and inspection of the finished floor"
+    ],
+    images: [
+      {
+        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDhn1sUA6cb-u7_UcSjwVtj8mYU_9j9n2KM-whcFNotHerF1_AL4BDn6l5hxIcs7BnakIhhjbw-rjNRkdaigAzx8BCN0nldDNdOLdJDM8-HkAMDMkgyYgXK9E2UZ-FbxS3vGj3n9DAcq0vRFFpMC5-JovMRR_Y7C9oFUrPv0BuQf2FPXmvyW1ZDyoNaWWPG4nx0iT75PQIPYG6D_WhOp1dYapgfiYYyFYaOqAiTGkKC3w4iw6ZqKl7diw",
+        alt: "Paving and flooring finish installation"
+      }
+    ]
+  },
+  {
+    id: "gutters-fascia",
+    ref: "10",
+    title: "Gutters, Down Pipes & Fascia Boards",
+    subtitle: "Roofline Water Management & Repairs",
+    badge: "Roofline Systems",
+    complianceSpec: "Secure Fixings & Directed Stormwater Runoff",
+    turnaroundEstimate: "Scheduled After Roofline Inspection",
+    description: "Repair and replacement of gutters, down pipes, and fascia boards to help protect walls and foundations from uncontrolled roof runoff and weather damage.",
+    subServices: [
+      "Gutter leak and joint repairs",
+      "Gutter replacement and realignment",
+      "Down pipe installation and clearing",
+      "Fascia board repair and replacement",
+      "Stormwater discharge improvements"
+    ],
+    keyDeliverables: [
+      "Roofline inspection and runoff assessment",
+      "Correct gutter fall and secure bracket spacing",
+      "Sealed joints and firmly connected down pipes",
+      "Water flow checked after installation or repair"
+    ],
+    images: [
+      {
+        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCWBax_T46uynpNADscXDGNia53Vtqt3pDjUalC-YisLuULknn1B90Koezbct_9d1CQTMsgPGcZeV4vymQHc6C5YAk9OTLt12X49yKeFuVC8hRqcNjBs1YFZ1Zf440cOvK0Ktuvsjy4LWfilLn3g0XBglfqc-l-R8bLP57-hQyAlbCaGLEPLIK4rAM_HIIdvnGpTkYX_m-Shw8JtnQ8IUr9Q4KvhmztTLBh33a5HQCKVt05tNFuDDlxVw",
+        alt: "Carport roof sheeting and integrated guttering"
+      }
+    ]
+  },
+  {
+    id: "aluminium-windows-doors",
+    ref: "11",
+    title: "Aluminium Windows & Doors",
+    subtitle: "Aluminium Framing, Glazing & Hardware",
+    badge: "Aluminium Fitting",
+    complianceSpec: "Weather-Sealed Frames & Smooth Operation",
+    turnaroundEstimate: "Scheduled After Site Measurement",
+    description: "Installation, adjustment, and repair of aluminium windows and doors for residential and commercial properties, including frame sealing, glazing, and hardware servicing.",
+    subServices: [
+      "Aluminium window installation",
+      "Aluminium door installation",
+      "Window and door alignment repairs",
+      "Handles, locks and rollers",
+      "Weather seals and glazing maintenance"
+    ],
+    keyDeliverables: [
+      "Accurate opening measurement and frame alignment",
+      "Secure frame fixing and perimeter weather sealing",
+      "Functional locks, handles and rollers",
+      "Window and door operation checked at handover"
+    ],
+    images: [
+      {
+        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuC-R9slRj8pHriM1qJRCenS2nTSqmSNIFOVWRtT0xQc1oAi428N7wPN2Shqed0pKdQqO_CPoHvu6CwulsjUHfLlX9rBQpqJOh0PAZV6QTxsLqCsDeFg17xH-jPETXzG170dLWk9Vhdt4_QLfWu0PDviYFc0K3SqLug6DHJeD2VzNy3Os0J7qL1ALpCJRWksmLqLIu2kUx-DglPvB9dRvVxegx7SawZWXz5_wdQeosiCVMp8BLMLp1NMEw",
+        alt: "Aluminium window and door framing installation"
+      }
+    ]
   }
 ];
+
+export const homeServicesData = servicesData.filter((service) =>
+  ["electrical", "painting", "carpentry", "plumbing", "palisades", "paving"].includes(service.id)
+);

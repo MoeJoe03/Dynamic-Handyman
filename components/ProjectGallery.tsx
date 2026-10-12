@@ -4,8 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { projectsData } from '../data/projects';
+import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
 
-export function ProjectGallery() {
+export function ProjectGallery({ homeImages }: { homeImages: HomeImageOverrides }) {
   const featuredProjects = projectsData.slice(0, 6);
 
   return (
@@ -18,8 +19,8 @@ export function ProjectGallery() {
               <span>OUR WORK</span>
               <span className="w-8 h-[2px] bg-[#123E61]" />
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-[#30323A] leading-tight">
-              Real Jobs, Done Right <span className="text-[#123E61]">Across Johannesburg</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#30323A] leading-tight">
+              Recent Handyman and Renovation Projects <span className="text-[#123E61]">in Alberton and Gauteng</span>
             </h2>
             <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-2 font-mono">
               Quality Work You Can See
@@ -35,14 +36,14 @@ export function ProjectGallery() {
 
         {/* 6 Project Cards Grid (Clean visual cards with no pop-up dialogs) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-14 lg:mb-16">
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => (
             <div
               key={project.id}
               className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 shadow-sm border border-[#D9DEE2]/60"
             >
               <Image
-                src={project.image}
-                alt={project.subtitle}
+                src={getHomeImage(homeImages, `featured-project-${index + 1}`).imageUrl}
+                alt={getHomeImage(homeImages, `featured-project-${index + 1}`).altText}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100"
@@ -106,8 +107,8 @@ export function ProjectGallery() {
             {/* Right Visual Graphic / Image overlay */}
             <div className="lg:col-span-4 h-56 sm:h-64 lg:h-full relative overflow-hidden bg-[#0C2B44]">
               <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlToBl-T_N0crEe1z9CiGxVnnpaGVcBexGXKDm19s998PWYLgWGLs2edAN_JiH6UqsuTje_KgrQa0EhZtwfJxePgY-MZ-t8ge5T_L9gF-Fd8NQF5qdNNNYMwJf9rjRPRTA8IqskdQfkRDC42zexfhUhXXuNK9PHOPETVb4iRnTsVD4zB2Gg1r2qDAT7bvDdEO_dpbXyC3-aaeIb7-jLKZUj-FuHyVdo69xs9j1Jv5NrdnmZ7OFAKGNGg"
-                alt="High craftsmanship handover"
+                src={getHomeImage(homeImages, 'projects-cta').imageUrl}
+                alt={getHomeImage(homeImages, 'projects-cta').altText}
                 fill
                 className="object-cover opacity-35 mix-blend-luminosity"
                 referrerPolicy="no-referrer"

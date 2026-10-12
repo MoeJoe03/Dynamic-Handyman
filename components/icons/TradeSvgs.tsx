@@ -4,6 +4,110 @@ interface SvgProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
 }
 
+function TradeIconShell({
+  label,
+  className = "w-16 h-12 object-contain",
+  children,
+  ...props
+}: SvgProps & { label: string; children: React.ReactNode }) {
+  return (
+    <svg
+      aria-label={`Dynamic Handyman ${label} Service Icon`}
+      className={className}
+      fill="none"
+      role="img"
+      viewBox="0 0 320 240"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g fill="none" stroke="#123E61" strokeLinecap="square" strokeLinejoin="round" strokeWidth="4">
+        <path d="M160 24 L282 120 L160 216 L38 120 Z" />
+        <path d="M124 0L196 56M196 0L124 56M0 90L76 150M0 150L76 90M244 90L320 150M244 150L320 90M124 184L196 240M196 184L124 240" />
+      </g>
+      <g fill="#19547E" opacity=".42">
+        <circle cx="92" cy="55" r="2.5" /><circle cx="112" cy="55" r="2.5" />
+        <circle cx="208" cy="55" r="2.5" /><circle cx="228" cy="55" r="2.5" />
+        <circle cx="66" cy="76" r="2.5" /><circle cx="88" cy="76" r="2.5" />
+        <circle cx="232" cy="76" r="2.5" /><circle cx="254" cy="76" r="2.5" />
+        <circle cx="44" cy="98" r="2.5" /><circle cx="66" cy="98" r="2.5" />
+        <circle cx="254" cy="98" r="2.5" /><circle cx="276" cy="98" r="2.5" />
+        <circle cx="44" cy="142" r="2.5" /><circle cx="66" cy="142" r="2.5" />
+        <circle cx="254" cy="142" r="2.5" /><circle cx="276" cy="142" r="2.5" />
+        <circle cx="66" cy="164" r="2.5" /><circle cx="88" cy="164" r="2.5" />
+        <circle cx="232" cy="164" r="2.5" /><circle cx="254" cy="164" r="2.5" />
+        <circle cx="92" cy="185" r="2.5" /><circle cx="112" cy="185" r="2.5" />
+        <circle cx="208" cy="185" r="2.5" /><circle cx="228" cy="185" r="2.5" />
+      </g>
+      {children}
+    </svg>
+  );
+}
+
+export function MaintenanceSvg(props: SvgProps) {
+  return (
+    <TradeIconShell label="Property Maintenance" {...props}>
+      <g fill="#123E61">
+        <path d="M119 81C126 70 140 66 151 72L137 86L149 98L163 84C169 96 165 110 155 117L124 148L108 132L139 101C132 96 125 90 119 81Z" />
+        <path d="M177 123L193 139L151 181C145 187 135 187 129 181C123 175 123 165 129 159L171 117Z" />
+        <path d="M184 82L201 99L191 109L174 92Z" />
+      </g>
+      <path d="M139 149L171 117" stroke="#FFFFFF" strokeWidth="4" />
+      <circle cx="140" cy="170" r="5" fill="#FFFFFF" />
+    </TradeIconShell>
+  );
+}
+
+export function GlassWorksSvg(props: SvgProps) {
+  return (
+    <TradeIconShell label="Glass Works" {...props}>
+      <g stroke="#123E61" strokeWidth="7" strokeLinejoin="round">
+        <rect x="112" y="70" width="96" height="100" rx="2" />
+        <path d="M160 72V168M114 120H206" />
+      </g>
+      <path d="M164 83L151 111L169 119L153 151" stroke="#19547E" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="160" cy="120" r="5" fill="#123E61" />
+    </TradeIconShell>
+  );
+}
+
+export function FlooringSvg(props: SvgProps) {
+  return (
+    <TradeIconShell label="Flooring" {...props}>
+      <path d="M111 108L160 80L209 108L160 136Z" fill="#123E61" />
+      <path d="M111 108V132L160 160V136M209 108V132L160 160" fill="#19547E" stroke="#123E61" strokeWidth="3" />
+      <g fill="none" stroke="#FFFFFF" strokeWidth="3">
+        <path d="M135 94L184 122M160 80V136M111 120L160 148M209 120L160 148" />
+        <path d="M135 122V146M184 122V146" />
+      </g>
+      <path d="M123 172H197" stroke="#123E61" strokeWidth="5" strokeLinecap="round" />
+    </TradeIconShell>
+  );
+}
+
+export function GuttersFasciaSvg(props: SvgProps) {
+  return (
+    <TradeIconShell label="Gutters and Fascia" {...props}>
+      <path d="M105 115L160 77L215 115" stroke="#123E61" strokeWidth="8" strokeLinejoin="round" />
+      <path d="M112 115H208V130H178V123H112Z" fill="#123E61" />
+      <path d="M194 130V174H178V139" fill="none" stroke="#123E61" strokeWidth="8" strokeLinejoin="round" />
+      <path d="M186 153V171" stroke="#FFFFFF" strokeWidth="3" />
+      <path d="M159 132C159 132 146 151 146 160C146 169 152 175 160 175C168 175 174 169 174 160C174 151 159 132 159 132Z" fill="#19547E" />
+    </TradeIconShell>
+  );
+}
+
+export function AluminiumWindowsDoorsSvg(props: SvgProps) {
+  return (
+    <TradeIconShell label="Aluminium Windows and Doors" {...props}>
+      <rect x="105" y="67" width="110" height="110" rx="2" stroke="#123E61" strokeWidth="8" />
+      <path d="M160 69V175M108 122H212" stroke="#123E61" strokeWidth="6" />
+      <path d="M151 91V112M169 133V154" stroke="#19547E" strokeWidth="5" strokeLinecap="round" />
+      <circle cx="151" cy="117" r="3.5" fill="#123E61" />
+      <circle cx="169" cy="128" r="3.5" fill="#123E61" />
+    </TradeIconShell>
+  );
+}
+
 // 01: Electrical Installations & Repairs (COC's)
 export function ElectricalSvg({ className = "w-16 h-12 object-contain", ...props }: SvgProps) {
   return (
@@ -369,11 +473,13 @@ export function PavingSvg({ className = "w-16 h-12 object-contain", ...props }: 
         <circle cx="208" cy="185" r="2.5" />
         <circle cx="228" cy="185" r="2.5" />
       </g>
-      <g fill="#123E61">
-        <path d="M160 85 L190 102 L160 119 L130 102 Z" />
-        <path d="M125 106 L155 123 L125 140 L95 123 Z" />
-        <path d="M195 106 L225 123 L195 140 L165 123 Z" />
-        <path d="M160 128 L190 145 L160 162 L130 145 Z" />
+      {/* Perspective paving bed with staggered pavers and visible joints */}
+      <path d="M160 72 L235 115 L160 158 L85 115 Z" fill="#123E61" />
+      <g fill="none" stroke="#FFFFFF" strokeLinecap="square" strokeLinejoin="round" strokeWidth="2.5" opacity=".9">
+        <path d="M111 100 L209 100M85 115H235M111 130L209 130" />
+        <path d="M135 86L135 114M160 73V100M185 86V114" />
+        <path d="M110 101V128M135 115V143M160 101V129M185 115V143M210 101V128" />
+        <path d="M135 144V129M160 157V130M185 144V129" />
       </g>
     </svg>
   );
