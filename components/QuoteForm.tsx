@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { contactPhone } from '@/config/contact';
 import { servicesData } from '@/data/services';
 
-export function QuoteForm({ serviceArea = 'Alberton, Johannesburg, and surrounding areas' }: { serviceArea?: string }) {
+export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { serviceArea?: string }) {
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
@@ -104,7 +104,7 @@ export function QuoteForm({ serviceArea = 'Alberton, Johannesburg, and surroundi
                 Direct Email
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                info@dynamichandyman.co.za
+                admin@dynamichandyman.co.za
               </p>
             </div>
 

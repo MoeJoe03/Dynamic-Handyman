@@ -21,13 +21,13 @@ const siteMono = localFont({
 export const metadata: Metadata = {
   title: 'Handyman Services in Alberton | Dynamic Handyman',
   description:
-    'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton, Johannesburg, and surrounding areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+    'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote for electrical, plumbing, painting and more.',
   authors: [{ name: 'Dynamic Handyman (PTY) LTD' }],
   metadataBase: new URL('https://dynamichandyman.co.za'),
   openGraph: {
     title: 'Handyman Services in Alberton | Dynamic Handyman',
     description:
-      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton, Johannesburg, and surrounding areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+      'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote for electrical, plumbing, painting and more.',
     images: [{
       url: '/dynamic-handyman-home-og.png',
       width: 1730,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Handyman Services in Alberton | Dynamic Handyman',
     description:
-      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton, Johannesburg, and surrounding areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+      'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote for electrical, plumbing, painting and more.',
     images: ['/dynamic-handyman-home-og.png'],
   },
   robots: {
@@ -62,11 +62,11 @@ export default function RootLayout({
     '@type': 'HomeAndConstructionBusiness',
     name: 'Dynamic Handyman (PTY) LTD',
     description:
-      'Professional multi-trade property maintenance, repairs and renovations in Alberton, Johannesburg, and surrounding areas.',
+      'Professional handyman services, home repairs, property maintenance and renovations based in Alberton and serving nearby suburbs.',
     slogan: 'Rely On Our Ability.',
     areaServed: serviceAreas,
     telephone: contactPhone.international,
-    email: 'info@dynamichandyman.co.za',
+    email: 'admin@dynamichandyman.co.za',
     currenciesAccepted: 'ZAR',
     paymentAccepted: 'EFT, Cash, Credit Card',
     openingHours: 'Mo,Tu,We,Th,Fr 07:30-17:00, Sa 08:00-13:00',

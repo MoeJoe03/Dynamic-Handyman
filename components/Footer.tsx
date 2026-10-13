@@ -89,7 +89,7 @@ function FooterContent({ currentYear, serviceArea }: { currentYear: number; serv
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Email:</span>
-              info@dynamichandyman.co.za
+              admin@dynamichandyman.co.za
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Operating Scope:</span>
@@ -134,7 +134,7 @@ function FooterContent({ currentYear, serviceArea }: { currentYear: number; serv
   );
 }
 
-export function Footer({ serviceArea = 'Alberton, Johannesburg, and surrounding areas' }: { serviceArea?: string }) {
+export function Footer({ serviceArea = 'Alberton and nearby suburbs' }: { serviceArea?: string }) {
   const currentYear = new Date().getFullYear();
 
   return (
