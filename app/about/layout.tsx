@@ -1,15 +1,26 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Us | Professional Multi-Trade Contractors | Dynamic Handyman (PTY) LTD',
+  title: 'About Dynamic Handyman | Alberton Contractor',
   description:
-    'Learn about Dynamic Handyman (PTY) LTD: Alberton-based multi-trade property maintenance, repairs, and renovations in Alberton, Johannesburg, and surrounding areas. Dedicated to reliable workmanship and single-contractor accountability.',
+    'Learn about Dynamic Handyman, an Alberton-based contractor providing multi-trade repairs, property maintenance and renovations in Alberton and nearby suburbs.',
+  alternates: {
+    canonical: 'https://dynamichandyman.co.za/about',
+  },
   openGraph: {
-    title: 'About Us | Dynamic Handyman (PTY) LTD',
+    title: 'About Dynamic Handyman | Alberton Contractor',
     description:
-      'One Team. Every Trade. Done Right. Learn about Dynamic Handyman\'s standards, multi-trade capabilities, and service area in Alberton, Johannesburg, and surrounding areas.',
+      'Meet Dynamic Handyman, an Alberton-based contractor helping homeowners, landlords and businesses with repairs, maintenance and renovations.',
     type: 'website',
     url: 'https://dynamichandyman.co.za/about',
+    images: ['/dynamic-handyman-about-og.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Dynamic Handyman | Alberton Contractor',
+    description:
+      'Meet Dynamic Handyman, an Alberton-based contractor helping homeowners, landlords and businesses with repairs, maintenance and renovations.',
+    images: ['/dynamic-handyman-about-og.png'],
   },
 };
 

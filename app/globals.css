@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
   body {
     font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     color: #30323A;
@@ -35,4 +39,50 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Public-site micro interactions; independent translate preserves existing transforms. */
+@media (prefers-reduced-motion: no-preference) {
+  body[data-public-motion] :is(a, button) {
+    transition-property: color, background-color, border-color, box-shadow, opacity, translate, transform;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+  }
+
+  body[data-public-motion] :is(input, textarea, select) {
+    transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  }
+
+  body[data-public-motion] :is(main a[class*="bg-"], main a[class*="border"], button[type="submit"], button[aria-pressed]):active {
+    translate: 0 1px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body[data-public-motion] :is(main a[class*="bg-"], main a[class*="border"], header a[class*="bg-"], button[type="submit"], button[aria-pressed]):hover {
+    translate: 0 -2px;
+  }
+
+  body[data-public-motion] a > svg:last-child {
+    transition: translate 200ms ease-out;
+  }
+
+  body[data-public-motion] a:hover > svg:last-child {
+    translate: 2px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth {
+    scroll-behavior: auto;
+  }
+
+  body[data-public-motion] *,
+  body[data-public-motion] *::before,
+  body[data-public-motion] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -8,5 +8,5 @@ export const serviceAreas = [
   'New Redruth',
   'Germiston',
   'Boksburg',
-  'Johannesburg',
+  'Johannesburg South',
 ];

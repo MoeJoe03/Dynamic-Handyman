@@ -16,7 +16,7 @@ export function ServiceAreaSection() {
           </p>
         </div>
         <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-[#D9DEE2] pt-8 sm:grid-cols-3 lg:grid-cols-5" aria-label="Areas served">
-          {[...serviceAreas.filter((area) => area !== 'Johannesburg'), 'Johannesburg South'].map((area) => (
+          {serviceAreas.map((area) => (
             <li key={area} className="border-l-2 border-sky-500 py-1 pl-3 text-sm font-semibold text-[#30323A] sm:text-base">
               {area}
             </li>

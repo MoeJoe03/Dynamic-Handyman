@@ -7,6 +7,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuoteForm } from '@/components/QuoteForm';
 import { galleryConfig, getCategoryLabel } from '@/config/gallery.config';
+import type { GalleryCategory } from '@/config/gallery.config';
 import type { GalleryImageView } from '@/lib/gallery/types';
 
 const collageAspects = [
@@ -21,8 +22,16 @@ const collageAspects = [
   'aspect-[4/5]',      // DB inverter system
 ];
 
-export function GalleryContent({ images, error }: { images: GalleryImageView[]; error: string | null }) {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+export function GalleryContent({
+  images,
+  error,
+  initialCategory = 'all',
+}: {
+  images: GalleryImageView[];
+  error: string | null;
+  initialCategory?: GalleryCategory | 'all';
+}) {
+  const [activeFilter, setActiveFilter] = useState<string>(initialCategory);
 
   const filteredProjects =
     activeFilter === 'all'
@@ -55,21 +64,20 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
               {/* Technical Eyebrow */}
               <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
                 <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                <span>(02 — PROJECT PORTFOLIO • ALBERTON &amp; JOHANNESBURG)</span>
+                <span>(02 — PROJECT PORTFOLIO • ALBERTON &amp; SURROUNDING AREAS)</span>
               </div>
 
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02] uppercase text-white mb-5">
-                Our Work<br />
+                Our Handyman Work in Alberton<br />
                 <span className="block text-xl sm:text-3xl lg:text-4xl mt-2 text-slate-300">
-                  Property Maintenance, Repairs &amp; Renovations in{' '}
-                  <span className="text-sky-200">Johannesburg</span>
+                  Property Maintenance, Repairs &amp; Renovations in Alberton and Nearby Areas
                 </span>
               </h1>
 
               {/* Sub-heading */}
               <p className="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed font-normal max-w-3xl">
-                Explore completed projects by Dynamic Handyman, from electrical and plumbing work to painting, carpentry and property renovations in Alberton, Johannesburg, and surrounding areas.
+                Explore completed electrical, plumbing, painting, carpentry, paving and renovation projects by Dynamic Handyman. Our work includes projects in Alberton and nearby suburbs, with selected work completed across the wider Johannesburg area.
               </p>
             </div>
               </div>

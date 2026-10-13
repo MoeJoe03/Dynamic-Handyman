@@ -89,7 +89,7 @@ function FooterContent({ currentYear, serviceArea }: { currentYear: number; serv
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Email:</span>
-              admin@dynamichandyman.co.za
+              <a href="mailto:admin@dynamichandyman.co.za">admin@dynamichandyman.co.za</a>
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Operating Scope:</span>

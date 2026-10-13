@@ -1,21 +1,32 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { contactPhone } from '@/config/contact';
 import { servicesData } from '@/data/services';
 
-export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { serviceArea?: string }) {
+export function QuoteForm({
+  serviceArea = 'Alberton and nearby suburbs',
+  initialServiceId,
+}: {
+  serviceArea?: string;
+  initialServiceId?: string;
+}) {
+  const initialServiceTitle = servicesData.find((service) => service.id === initialServiceId)?.title ?? servicesData[0].title;
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
     emailAddress: '',
-    serviceCategory: servicesData[0].title,
+    serviceCategory: initialServiceTitle,
     projectDetails: '',
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [website, setWebsite] = useState('');
+  const sending = useRef(false);
+  const submission = useRef<{ payload: string; id: string } | null>(null);
 
   const validate = () => {
     const errs: { [key: string]: string } = {};
@@ -42,16 +53,42 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (sending.current || !validate()) return;
 
+    sending.current = true;
     setIsSubmitting(true);
-    // Simulate brief network request
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitError('');
+    try {
+      const details = {
+        ...formData,
+        fullName: formData.fullName.trim(),
+        phoneNumber: formData.phoneNumber.trim(),
+        emailAddress: formData.emailAddress.trim(),
+        projectDetails: formData.projectDetails.trim(),
+        website,
+      };
+      const payload = JSON.stringify(details);
+      if (submission.current?.payload !== payload) {
+        submission.current = { payload, id: crypto.randomUUID() };
+      }
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...details, requestId: submission.current.id }),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        throw new Error(result.error || 'Your request could not be sent. Please try again.');
+      }
       setIsSubmitted(true);
-    }, 400);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Your request could not be sent. Please try again or contact us by phone or WhatsApp.');
+    } finally {
+      sending.current = false;
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
@@ -59,10 +96,13 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
       fullName: '',
       phoneNumber: '',
       emailAddress: '',
-      serviceCategory: servicesData[0].title,
+      serviceCategory: initialServiceTitle,
       projectDetails: '',
     });
     setErrors({});
+    setSubmitError('');
+    setWebsite('');
+    submission.current = null;
     setIsSubmitted(false);
   };
 
@@ -104,7 +144,7 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                 Direct Email
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                admin@dynamichandyman.co.za
+                <a href="mailto:admin@dynamichandyman.co.za">admin@dynamichandyman.co.za</a>
               </p>
             </div>
 
@@ -157,6 +197,11 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                 </p>
 
                 <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="quoteWebsite">Leave this field empty</label>
+                    <input id="quoteWebsite" name="website" autoComplete="off" tabIndex={-1} value={website} onChange={(e) => setWebsite(e.target.value)} />
+                  </div>
+                  <fieldset disabled={isSubmitting} className="min-w-0 space-y-6">
                   {/* 1. Name at the top */}
                   <div>
                     <label
@@ -168,6 +213,7 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                     <input
                       type="text"
                       id="fullName"
+                      maxLength={120}
                       value={formData.fullName}
                       onChange={(e) => {
                         setFormData({ ...formData, fullName: e.target.value });
@@ -196,6 +242,7 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                       <input
                         type="tel"
                         id="phoneNumber"
+                        maxLength={18}
                         value={formData.phoneNumber}
                         onChange={(e) => {
                           setFormData({ ...formData, phoneNumber: e.target.value });
@@ -222,6 +269,7 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                       <input
                         type="email"
                         id="emailAddress"
+                        maxLength={254}
                         value={formData.emailAddress}
                         onChange={(e) => {
                           setFormData({ ...formData, emailAddress: e.target.value });
@@ -277,6 +325,7 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                     </label>
                     <textarea
                       id="projectDetails"
+                      maxLength={5000}
                       rows={5}
                       value={formData.projectDetails}
                       onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
@@ -286,6 +335,7 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                   </div>
 
                   {/* Submit Button & WhatsApp Quick Link */}
+                  {submitError && <p role="alert" className="text-sm text-rose-200">{submitError}</p>}
                   <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                     <button
                       type="submit"
@@ -305,6 +355,7 @@ export function QuoteForm({ serviceArea = 'Alberton and nearby suburbs' }: { ser
                       <span>→</span>
                     </a>
                   </div>
+                  </fieldset>
                 </form>
               </div>
             </div>

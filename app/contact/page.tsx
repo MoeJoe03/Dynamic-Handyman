@@ -2,8 +2,17 @@ import Image from 'next/image';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuoteForm } from '@/components/QuoteForm';
+import { servicesData } from '@/data/services';
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ service?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const requestedService = Array.isArray(params.service) ? params.service[0] : params.service;
+  const initialServiceId = servicesData.some((service) => service.id === requestedService) ? requestedService : undefined;
+
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
       {/* HEADER */}
@@ -66,7 +75,7 @@ export default function ContactPage() {
 
         {/* CONTACT ESTIMATE REQUISITION (SAME AS HOME PAGE) */}
         <section id="contact" className="bg-white">
-          <QuoteForm />
+          <QuoteForm initialServiceId={initialServiceId} />
         </section>
       </main>
 

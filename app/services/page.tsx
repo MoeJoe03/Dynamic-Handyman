@@ -85,7 +85,7 @@ export default function ServicesPage() {
               {/* Technical Eyebrow / Sub Heading */}
               <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
                 <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                <span>(01 — COMPREHENSIVE TRADE CAPABILITIES • JOHANNESBURG)</span>
+                <span>(01 — COMPREHENSIVE TRADE CAPABILITIES • ALBERTON)</span>
               </div>
 
               {/* Main Heading */}
@@ -94,7 +94,7 @@ export default function ServicesPage() {
                 <span className="text-slate-300">in Alberton</span>
               </h1>
               <p className="mt-6 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
-                Dynamic Handyman provides reliable handyman services, home repairs, property maintenance and renovation work in Alberton, Johannesburg, and surrounding areas. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we provide one practical point of contact for maintaining and improving your property.
+                Dynamic Handyman provides reliable handyman services, home repairs, property maintenance and renovation work in Alberton and nearby suburbs. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we provide one practical point of contact for maintaining and improving your property.
               </p>
             </div>
               </div>
@@ -162,13 +162,13 @@ export default function ServicesPage() {
 
                       <div className="flex flex-wrap items-center gap-4 pt-2">
                         <Link
-                          href="/contact"
+                          href={`/contact?service=${trade.id}`}
                           className="px-6 py-3 bg-[#123E61] hover:bg-[#0C2B44] text-white text-xs font-bold tracking-widest uppercase transition-colors shadow-sm"
                         >
                           {quoteButtonLabels[trade.id]}
                         </Link>
                         <Link
-                          href="/gallery"
+                          href={`/gallery?category=${trade.id}`}
                           className="px-6 py-3 border border-[#123E61] text-[#123E61] hover:bg-neutral-50 text-xs font-bold tracking-widest uppercase transition-colors"
                         >
                           View Completed Works
@@ -196,6 +196,49 @@ export default function ServicesPage() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden border-t border-[#D9DEE2] bg-[#F4F7F9] py-16 sm:py-24">
+          <div className="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full border border-[#19547E]/10 sm:-right-12 sm:-top-40 sm:h-[28rem] sm:w-[28rem]" />
+          <div className="pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full border border-[#19547E]/10 sm:right-8 sm:-top-28 sm:h-80 sm:w-80" />
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-center lg:gap-16">
+              <div className="max-w-3xl">
+                <p className="mb-4 flex items-center gap-3 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#19547E]">
+                  <span className="h-2 w-2 rounded-full bg-[#00B8E8]" aria-hidden="true" />
+                  Local service area
+                </p>
+                <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#123E61] sm:text-4xl lg:text-5xl">
+                  Handyman Services in Alberton and Nearby Suburbs
+                </h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+                  Dynamic Handyman provides electrical, plumbing, painting, carpentry, paving, property maintenance and renovation services in Alberton and selected nearby suburbs.
+                </p>
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+                  We regularly assist customers in areas such as Meyersdal, Brackendowns, Brackenhurst, Randhart, New Redruth, Vauxhall, Germiston, Boksburg and Johannesburg South. Contact us to confirm availability for your suburb.
+                </p>
+              </div>
+
+              <aside className="relative border-l-2 border-[#00B8E8] bg-white p-6 shadow-[0_18px_45px_rgba(18,62,97,0.09)] sm:p-8">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-slate-400">
+                  Need help with a project?
+                </span>
+                <p className="mt-3 text-xl font-bold leading-snug text-[#123E61]">
+                  Let&apos;s find the right solution for your property.
+                </p>
+                <Link
+                  href="/contact"
+                  className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 bg-[#123E61] px-5 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#0C2B44] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00B8E8]"
+                >
+                  Request a Quote
+                  <span aria-hidden="true">→</span>
+                </Link>
+                <p className="mt-3 text-center text-xs text-slate-500">
+                  We&apos;ll confirm service availability for your suburb.
+                </p>
+              </aside>
+            </div>
           </div>
         </section>
       </main>

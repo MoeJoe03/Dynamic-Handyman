@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
+import { PublicMotion } from './PublicMotion';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,6 +35,7 @@ export function Header() {
           : 'bg-white border-[#D9DEE2]'
       }`}
     >
+      <PublicMotion />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3 min-h-[4.75rem] sm:min-h-[5.25rem]">
           {/* Logo Left */}
