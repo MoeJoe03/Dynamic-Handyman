@@ -132,7 +132,7 @@ export default function AboutPage() {
                   Regional Accountability
                 </h4>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Permanent workshop and operations dispatch anchored in Alberton, servicing properties throughout Johannesburg.
+                  Permanent workshop and operations dispatch anchored in Alberton, servicing properties in Johannesburg and surrounding areas.
                 </p>
               </div>
 

@@ -113,7 +113,7 @@ export function QuoteForm() {
                 Service Area
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                Alberton, Johannesburg and surrounding areas
+                Alberton, Johannesburg, and surrounding areas
               </p>
             </div>
 

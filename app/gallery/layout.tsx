@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Project Gallery | Real Workmanship Across Johannesburg | Dynamic Handyman',
+  title: 'Project Gallery | Alberton and Johannesburg | Dynamic Handyman',
   description:
-    'Browse Dynamic Handyman\'s project gallery: certified electrical DB boards & COCs, architectural painting, custom built-in cupboards, bathroom plumbing, and custom steel carports across Johannesburg, Pretoria, and Alberton.',
+    'Browse Dynamic Handyman\'s project gallery: electrical repairs, painting, carpentry, plumbing and custom steel carports in Alberton, Johannesburg, and surrounding areas.',
   openGraph: {
     title: 'Project Gallery | Dynamic Handyman (PTY) LTD',
     description:
-      'Real craftsmanship photography across Johannesburg: certified electricals, architectural coatings, precision joinery, plumbing, and steel carports.',
+      'Real project photography featuring electrical work, painting, joinery, plumbing and steel carports in Alberton, Johannesburg, and surrounding areas.',
     type: 'website',
     url: 'https://dynamichandyman.co.za/gallery',
   },

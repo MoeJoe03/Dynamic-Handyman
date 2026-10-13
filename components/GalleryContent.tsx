@@ -55,7 +55,7 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
               {/* Technical Eyebrow */}
               <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
                 <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                <span>(02 — PROJECT PORTFOLIO • JOHANNESBURG)</span>
+                <span>(02 — PROJECT PORTFOLIO • ALBERTON &amp; JOHANNESBURG)</span>
               </div>
 
               {/* Main Heading */}
@@ -69,7 +69,7 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
 
               {/* Sub-heading */}
               <p className="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed font-normal max-w-3xl">
-                Explore completed projects by Dynamic Handyman, from electrical and plumbing work to painting, carpentry and property renovations across Alberton, Johannesburg and surrounding areas.
+                Explore completed projects by Dynamic Handyman, from electrical and plumbing work to painting, carpentry and property renovations in Alberton, Johannesburg, and surrounding areas.
               </p>
             </div>
               </div>

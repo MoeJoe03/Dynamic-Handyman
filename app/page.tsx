@@ -26,7 +26,7 @@ export default async function HomePage() {
       <Header />
 
       <main className="flex-grow">
-        {/* 06 & 07 — HERO WITH LIVE TRADE SHOWCASE */}
+        {/* 06 & 07 — HERO WITH SERVICE IMAGE CAROUSEL */}
         <section className="relative bg-white pt-5 sm:pt-6 pb-16 lg:pb-24" id="hero">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Visual Editorial Craft Strip */}

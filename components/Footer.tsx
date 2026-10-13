@@ -19,7 +19,7 @@ function FooterContent({ currentYear }: { currentYear: number }) {
             </p>
 
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              Dynamic Handyman (PTY) LTD provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping and careful workmanship across Johannesburg.
+              Dynamic Handyman (PTY) LTD provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping and careful workmanship in Alberton, Johannesburg, and surrounding areas.
             </p>
 
             <p className="text-xs font-bold tracking-wider text-white pt-1">
@@ -45,7 +45,7 @@ function FooterContent({ currentYear }: { currentYear: number }) {
               </li>
               <li>
                 <Link href="/gallery" className="hover:text-white transition-colors">
-                  Project Gallery
+                  Our Work
                 </Link>
               </li>
               <li>
@@ -93,7 +93,7 @@ function FooterContent({ currentYear }: { currentYear: number }) {
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Operating Scope:</span>
-              Johannesburg &amp; Surrounding Areas
+              Alberton, Johannesburg, and surrounding areas
             </p>
             <div className="pt-2">
               <a
@@ -127,7 +127,7 @@ function FooterContent({ currentYear }: { currentYear: number }) {
           </div>
           <div className="mt-4 sm:mt-0 flex space-x-6">
             <span>Maintenance • Repairs • Renovations</span>
-            <span>Alberton, Johannesburg and surrounding areas</span>
+            <span>Alberton, Johannesburg, and surrounding areas</span>
           </div>
         </div>
       </div>

@@ -6,10 +6,10 @@ export function ServiceAreaSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <h2 id="service-area-heading" className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">
-            Handyman Services in Alberton and Surrounding Areas
+            Handyman Services in Alberton, Johannesburg and Surrounding Areas
           </h2>
           <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg">
-            Dynamic Handyman is based in Alberton and provides home repairs, property maintenance and renovation services to customers in Alberton, Johannesburg and surrounding areas.
+            Dynamic Handyman is based in Alberton and provides home repairs, property maintenance and renovation services in Alberton, Johannesburg, and surrounding areas.
           </p>
           <p className="mt-3 text-base leading-relaxed text-slate-700">
             <a href="/contact" className="font-semibold text-[#123E61] underline underline-offset-4 hover:text-[#0C2B44] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">Contact us</a> to confirm whether we cover your suburb.

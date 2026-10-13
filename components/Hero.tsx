@@ -21,18 +21,18 @@ export function Hero() {
         {/* Right Column: Supporting Copy & CTAs */}
         <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-8">
           <p className="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed font-normal">
-            Dynamic Handyman provides reliable home repairs, property maintenance and renovation services in Alberton, Johannesburg and surrounding areas. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we give homeowners, landlords and businesses one practical point of contact.
+            Dynamic Handyman provides reliable home repairs, property maintenance and renovation services in Alberton, Johannesburg, and surrounding areas. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we give homeowners, landlords and businesses one practical point of contact.
           </p>
 
           <div className="flex flex-wrap items-center gap-3.5 sm:gap-4">
             <a
-              href="#contact"
+              href="/contact"
               className="px-6 sm:px-7 py-3.5 bg-white text-[#123E61] hover:bg-neutral-100 text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm border border-white"
             >
               Get a Quote
             </a>
             <a
-              href="#gallery"
+              href="/gallery"
               className="px-6 sm:px-7 py-3.5 border border-white/30 text-white hover:bg-white/10 text-xs font-bold tracking-widest uppercase inline-flex items-center space-x-2 transition-all duration-200"
             >
               <span>View Our Work</span>

@@ -95,7 +95,7 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
             Handyman, Maintenance and Renovation Services
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            From small home repairs to larger renovation projects, Dynamic Handyman provides practical maintenance and handyman services for homeowners, landlords, offices and businesses in Alberton, Johannesburg and surrounding areas.
+            From small home repairs to larger renovation projects, Dynamic Handyman provides practical maintenance and handyman services for homeowners, landlords, offices and businesses in Alberton, Johannesburg, and surrounding areas.
           </p>
         </div>
 
@@ -137,13 +137,21 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
                       <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
                         {service.description}
                       </p>
+                      <div className="mt-3 flex flex-wrap items-center gap-2" aria-label={`Includes for ${service.title}`}>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#123E61]">Includes:</span>
+                        {service.subServices.map((sub, idx) => (
+                          <span
+                            key={idx}
+                            className="rounded-lg border border-[#D9DEE2]/70 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-[#123E61]"
+                          >
+                            {sub}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3 sm:space-x-4 shrink-0">
-                    <span className="hidden sm:inline-block text-[11px] font-semibold text-slate-400 uppercase tracking-widest">
-                      {service.badge}
-                    </span>
+                  <div className="flex items-center shrink-0">
                     <div
                       className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#123E61] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 ${
                         isOpen ? 'bg-[#0C2B44]' : 'group-hover:scale-105'
@@ -161,34 +169,25 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
                 </button>
 
                 {/* Expanded Content Drawer */}
-                {isOpen && (
-                  <div className="pb-8 sm:pb-10 pt-2 px-2 sm:pl-24 sm:pr-8 border-t border-[#D9DEE2]/70 animate-in fade-in duration-200">
+                  <div
+                    className={`${isOpen ? 'block animate-in fade-in duration-200' : 'hidden'} pb-8 sm:pb-10 pt-2 px-2 sm:pl-24 sm:pr-8 border-t border-[#D9DEE2]/70`}
+                    aria-hidden={!isOpen}
+                  >
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                       {/* Left: Sub-services and CTAs */}
                       <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
-                        <div className="flex flex-wrap gap-2">
-                          {service.subServices.map((sub, idx) => (
-                            <span
-                              key={idx}
-                              className="bg-slate-100 hover:bg-slate-200 text-[#123E61] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D9DEE2]/70 transition-colors"
-                            >
-                              {sub}
-                            </span>
-                          ))}
-                        </div>
-
                         <div className="flex flex-wrap items-center gap-3 pt-2">
                           <a
-                            href="#contact"
+                            href="/contact"
                             className="px-6 py-3 bg-[#123E61] hover:bg-[#0C2B44] text-white text-xs font-bold tracking-widest uppercase rounded-lg transition-all shadow-sm"
                           >
                             Request A Quote
                           </a>
                           <a
-                            href="#gallery"
+                            href={`/services#trade-${service.id}`}
                             className="px-6 py-3 border border-[#123E61] text-[#123E61] hover:bg-neutral-100 text-xs font-bold tracking-widest uppercase rounded-lg transition-all"
                           >
-                            View Works
+                            View Service
                           </a>
                         </div>
                       </div>
@@ -197,7 +196,6 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
                       <ServiceImageCarousel service={service} homeImages={homeImages} />
                     </div>
                   </div>
-                )}
               </div>
             );
           })}
