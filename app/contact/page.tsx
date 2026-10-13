@@ -32,7 +32,7 @@ export default function ContactPage() {
                 {/* Technical Eyebrow */}
                 <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
                   <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                  <span>(04 — DIRECT REQUISITION &amp; ESTIMATES • GAUTENG)</span>
+                  <span>(04 — DIRECT REQUISITION &amp; ESTIMATES • JOHANNESBURG)</span>
                 </div>
 
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[0.98] uppercase text-white">

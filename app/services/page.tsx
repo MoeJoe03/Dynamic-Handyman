@@ -85,7 +85,7 @@ export default function ServicesPage() {
               {/* Technical Eyebrow / Sub Heading */}
               <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
                 <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                <span>(01 — COMPREHENSIVE TRADE CAPABILITIES • GAUTENG)</span>
+                <span>(01 — COMPREHENSIVE TRADE CAPABILITIES • JOHANNESBURG)</span>
               </div>
 
               {/* Main Heading */}
@@ -94,7 +94,7 @@ export default function ServicesPage() {
                 <span className="text-slate-300">in Alberton</span>
               </h1>
               <p className="mt-6 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
-                Dynamic Handyman provides reliable handyman services, home repairs, property maintenance and renovation work in Alberton and selected areas of Gauteng. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we provide one practical point of contact for maintaining and improving your property.
+                Dynamic Handyman provides reliable handyman services, home repairs, property maintenance and renovation work in Alberton and selected areas of Johannesburg. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we provide one practical point of contact for maintaining and improving your property.
               </p>
             </div>
               </div>

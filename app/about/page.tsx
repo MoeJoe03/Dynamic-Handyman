@@ -109,7 +109,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <p className="text-[11px] font-mono text-slate-500 uppercase tracking-wider text-center">
-                  Precision timber decking fastening with cordless impact driver • Gauteng
+                  Precision timber decking fastening with cordless impact driver • Johannesburg
                 </p>
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function AboutPage() {
                   Regional Accountability
                 </h4>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Permanent workshop and operations dispatch anchored in Alberton, servicing properties throughout Gauteng.
+                  Permanent workshop and operations dispatch anchored in Alberton, servicing properties throughout Johannesburg.
                 </p>
               </div>
 

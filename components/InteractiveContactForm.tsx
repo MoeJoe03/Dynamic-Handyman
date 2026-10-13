@@ -106,7 +106,7 @@ export function InteractiveContactForm() {
 • Trade: ${activeTrade.name}
 • Property: ${activeProperty.label}
 • Urgency: ${activeUrgency.label}
-• Location: ${formData.suburb || 'Gauteng'}
+• Location: ${formData.suburb || 'Johannesburg'}
 • Notes: ${formData.description || 'Please call back'}`;
     return `${contactPhone.whatsappUrl}?text=${encodeURIComponent(text)}`;
   };

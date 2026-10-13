@@ -88,7 +88,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Modal Action Footer */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
             <span className="text-xs text-slate-500 font-mono">
-              Certified Multi-Trade Workmanship • Gauteng
+              Certified Multi-Trade Workmanship • Johannesburg
             </span>
             <div className="flex items-center space-x-3">
               <button

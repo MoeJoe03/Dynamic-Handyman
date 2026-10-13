@@ -36,7 +36,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'electrical',
     title: 'Electrical',
     subtitle: 'Distribution Board & Sub-Circuit Wiring',
-    location: 'Bedfordview, Gauteng',
+    location: 'Bedfordview, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCuroIwgygiqhg0GpMdyZbaWlmYwILupLltCfXOBPOyROroqkyotDoDZ57kcxgDWRMD6LJEA-y6L5itLjWcuR21a8u-xm3VFbv2ZkUD6NYl-hqZ-Vqo5VqP5i2IZxZAthN10PhVC0wjhJ-VbSHrMwjxvyoSOZdWFRh6zDJFKyuBaSyQLu-CcmF15W3zntT0DsFajMP9lz4K-l5Tx9ZWo1wH5WGgNeWmPxBk7aWTAqx7iaAbYOrIcpNfmQ',
     scope: [
       '3-Phase Main DB Board rebuild and neat wiring loom',
@@ -60,7 +60,7 @@ export const projectsData: ProjectItem[] = [
       'UV-resistant pure acrylic exterior topcoats (Charcoal & Crisp White)',
       'Waterproof sealing on parapets and window sills'
     ],
-    description: 'Comprehensive transformation of a modern luxury residence exterior. Required thorough damp diagnosis, structural hairline crack filling, and triple-coat protective architectural paint engineered for severe Gauteng hailstorm resilience.'
+    description: 'Comprehensive transformation of a modern luxury residence exterior. Required thorough damp diagnosis, structural hairline crack filling, and triple-coat protective architectural paint engineered for severe Johannesburg hailstorm resilience.'
   },
   {
     id: 'project-3',
@@ -101,7 +101,7 @@ export const projectsData: ProjectItem[] = [
     additionalFilterKeys: ['gutters-fascia'],
     title: 'Palisades & Carports',
     subtitle: 'Custom Steel Fabrication & Automation',
-    location: 'Centurion, Gauteng',
+    location: 'Centurion',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWBax_T46uynpNADscXDGNia53Vtqt3pDjUalC-YisLuULknn1B90Koezbct_9d1CQTMsgPGcZeV4vymQHc6C5YAk9OTLt12X49yKeFuVC8hRqcNjBs1YFZ1Zf440cOvK0Ktuvsjy4LWfilLn3g0XBglfqc-l-R8bLP57-hQyAlbCaGLEPLIK4rAM_HIIdvnGpTkYX_m-Shw8JtnQ8IUr9Q4KvhmztTLBh33a5HQCKVt05tNFuDDlxVw',
     scope: [
       'Heavy-gauge galvanized steel cantilever 2-vehicle carport',
@@ -133,7 +133,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'paving',
     title: 'Structural Alterations',
     subtitle: 'Engineered Paving & Boundary Integration',
-    location: 'Alberton, Gauteng',
+    location: 'Alberton, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDhn1sUA6cb-u7_UcSjwVtj8mYU_9j9n2KM-whcFNotHerF1_AL4BDn6l5hxIcs7BnakIhhjbw-rjNRkdaigAzx8BCN0nldDNdOLdJDM8-HkAMDMkgyYgXK9E2UZ-FbxS3vGj3n9DAcq0vRFFpMC5-JovMRR_Y7C9oFUrPv0BuQf2FPXmvyW1ZDyoNaWWPG4nx0iT75PQIPYG6D_WhOp1dYapgfiYYyFYaOqAiTGkKC3w4iw6ZqKl7diw',
     scope: [
       'Excavation and 150mm compacted sub-base preparation',

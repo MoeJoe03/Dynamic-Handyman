@@ -55,7 +55,7 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
               {/* Technical Eyebrow */}
               <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
                 <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                <span>(02 — PROJECT PORTFOLIO • GAUTENG)</span>
+                <span>(02 — PROJECT PORTFOLIO • JOHANNESBURG)</span>
               </div>
 
               {/* Main Heading */}
@@ -63,13 +63,13 @@ export function GalleryContent({ images, error }: { images: GalleryImageView[]; 
                 Our Work<br />
                 <span className="block text-xl sm:text-3xl lg:text-4xl mt-2 text-slate-300">
                   Property Maintenance, Repairs &amp; Renovations in{' '}
-                  <span className="text-sky-200">Gauteng</span>
+                  <span className="text-sky-200">Johannesburg</span>
                 </span>
               </h1>
 
               {/* Sub-heading */}
               <p className="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed font-normal max-w-3xl">
-                Explore completed projects by Dynamic Handyman, from electrical and plumbing work to painting, carpentry and property renovations across Alberton, Johannesburg and surrounding Gauteng areas.
+                Explore completed projects by Dynamic Handyman, from electrical and plumbing work to painting, carpentry and property renovations across Alberton, Johannesburg and surrounding areas.
               </p>
             </div>
               </div>

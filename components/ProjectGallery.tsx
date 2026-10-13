@@ -20,7 +20,7 @@ export function ProjectGallery({ homeImages }: { homeImages: HomeImageOverrides 
               <span className="w-8 h-[2px] bg-[#123E61]" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#30323A] leading-tight">
-              Recent Handyman and Renovation Projects <span className="text-[#123E61]">in Alberton and Gauteng</span>
+              Recent Handyman and Renovation Projects <span className="text-[#123E61]">in Alberton and Johannesburg</span>
             </h2>
             <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-2 font-mono">
               Quality Work You Can See
