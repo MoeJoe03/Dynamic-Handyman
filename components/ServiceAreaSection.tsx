@@ -1,15 +1,4 @@
-const serviceAreas = [
-  'Alberton',
-  'Vauxhall',
-  'Meyersdal',
-  'Brackendowns',
-  'Brackenhurst',
-  'Randhart',
-  'New Redruth',
-  'Germiston',
-  'Boksburg',
-  'Johannesburg South',
-];
+import { serviceAreas } from '@/config/service-areas';
 
 export function ServiceAreaSection() {
   return (

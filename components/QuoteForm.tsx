@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react';
 import { contactPhone } from '@/config/contact';
+import { servicesData } from '@/data/services';
 
 export function QuoteForm() {
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
     emailAddress: '',
-    serviceCategory: 'Electrical',
+    serviceCategory: servicesData[0].title,
     projectDetails: '',
   });
 
@@ -29,9 +30,7 @@ export function QuoteForm() {
       errs.phoneNumber = 'Please enter a valid phone number';
     }
 
-    if (!formData.emailAddress.trim()) {
-      errs.emailAddress = 'Please enter your email address';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailAddress.trim())) {
+    if (formData.emailAddress.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailAddress.trim())) {
       errs.emailAddress = 'Please enter a valid email address';
     }
 
@@ -60,7 +59,7 @@ export function QuoteForm() {
       fullName: '',
       phoneNumber: '',
       emailAddress: '',
-      serviceCategory: 'Electrical',
+      serviceCategory: servicesData[0].title,
       projectDetails: '',
     });
     setErrors({});
@@ -81,9 +80,9 @@ export function QuoteForm() {
             (04 — DIRECT INQUIRY)
           </span>
 
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase tracking-tight text-[#30323A] mb-6">
-            Let&apos;s Talk About Your Project.
-          </h3>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase tracking-tight text-[#30323A] mb-6">
+            Request a Handyman or Renovation Quote
+          </h2>
 
           <p className="text-slate-600 text-sm leading-relaxed mb-10">
             Reach out via phone, email, or complete the quote requisition form. We respond promptly with actionable site visits or estimates.
@@ -105,18 +104,16 @@ export function QuoteForm() {
                 Direct Email
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                info@dynamichandyman.co.za{' '}
-                <span className="text-xs text-slate-400 font-normal">/ [Placeholder]</span>
+                info@dynamichandyman.co.za
               </p>
             </div>
 
             <div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">
-                Operational Service Area
+                Service Area
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                Gauteng &amp; Surrounding Areas{' '}
-                <span className="text-xs text-slate-400 font-normal">/ [Alberton, JHB, PTA]</span>
+                Alberton and selected surrounding areas of Gauteng
               </p>
             </div>
 
@@ -152,9 +149,9 @@ export function QuoteForm() {
           {!isSubmitted ? (
             <div className="flex-1 flex flex-col justify-between">
               <div>
-                <h4 className="text-xl sm:text-2xl lg:text-3xl font-extrabold uppercase text-white tracking-tight mb-2.5">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold uppercase text-white tracking-tight mb-2.5">
                   Request A Project Estimate
-                </h4>
+                </h3>
                 <p className="text-xs sm:text-sm text-slate-200 mb-7 font-normal leading-relaxed">
                   Please provide your contact and service requirements. All estimates are free of obligation.
                 </p>
@@ -220,7 +217,7 @@ export function QuoteForm() {
                         htmlFor="emailAddress"
                         className="block text-[11px] font-bold uppercase tracking-wider text-slate-200 mb-2"
                       >
-                        Email Address *
+                        Email Address (optional)
                       </label>
                       <input
                         type="email"
@@ -260,13 +257,10 @@ export function QuoteForm() {
                         errors.serviceCategory ? 'border-red-400 ring-2 ring-red-400' : 'border-[#D9DEE2]'
                       } px-4.5 py-3.5 text-sm focus:ring-2 focus:ring-sky-400 focus:border-white outline-none transition-colors shadow-inner`}
                     >
-                      <option value="Electrical">Electrical Installations &amp; Repairs (COCs)</option>
-                      <option value="Painting">Painting (Interior • Exterior • Roofs)</option>
-                      <option value="Carpentry">Carpentry &amp; Built-In Cupboards</option>
-                      <option value="Plumbing">Plumbing Services &amp; Geysers</option>
-                      <option value="Palisades">Palisades &amp; Carports (Steel Fabrication)</option>
-                      <option value="Renovations">Property Alterations &amp; Renovations</option>
-                      <option value="Multiple">Multiple Combined Trades</option>
+                      {servicesData.map((service) => (
+                        <option key={service.id} value={service.title}>{service.title}</option>
+                      ))}
+                      <option value="Multiple Combined Trades">Multiple Combined Trades</option>
                     </select>
                     {errors.serviceCategory && (
                       <p className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.serviceCategory}</p>
@@ -339,10 +333,12 @@ export function QuoteForm() {
                   <span className="text-slate-500 uppercase">Contact Phone</span>
                   <span className="font-bold text-[#30323A]">{formData.phoneNumber}</span>
                 </div>
-                <div className="flex justify-between border-b border-neutral-200 pb-1.5">
-                  <span className="text-slate-500 uppercase">Email</span>
-                  <span className="font-bold text-[#30323A]">{formData.emailAddress}</span>
-                </div>
+                {formData.emailAddress.trim() && (
+                  <div className="flex justify-between border-b border-neutral-200 pb-1.5">
+                    <span className="text-slate-500 uppercase">Email</span>
+                    <span className="font-bold text-[#30323A]">{formData.emailAddress}</span>
+                  </div>
+                )}
                 <div className="flex justify-between border-b border-neutral-200 pb-1.5">
                   <span className="text-slate-500 uppercase">Service Division</span>
                   <span className="font-bold text-[#123E61]">{formData.serviceCategory}</span>

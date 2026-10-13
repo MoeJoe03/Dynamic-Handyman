@@ -1,38 +1,27 @@
 import type { Metadata } from 'next';
-import { Manrope, JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import { contactPhone } from '@/config/contact';
+import { serviceAreas } from '@/config/service-areas';
 import './globals.css';
 
-const manrope = Manrope({
-  subsets: ['latin'],
+const siteSans = localFont({
+  src: '../public/fonts/manrope-variable.ttf',
   variable: '--font-sans',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: '300 800',
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
+const siteMono = localFont({
+  src: '../public/fonts/jetbrains-mono-variable.ttf',
   variable: '--font-mono',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: '400 700',
 });
 
 export const metadata: Metadata = {
   title: 'Handyman Services in Alberton | Dynamic Handyman',
   description:
     'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton and selected Gauteng areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
-  keywords: [
-    'Dynamic Handyman',
-    'handyman services Gauteng',
-    'property maintenance Alberton',
-    'electrical COC certificate Johannesburg',
-    'house painting Pretoria',
-    'custom carpentry joinery',
-    'plumbing repairs Gauteng',
-    'carports and palisades',
-    'corporate office maintenance',
-    'home renovations Sandton',
-  ],
   authors: [{ name: 'Dynamic Handyman (PTY) LTD' }],
   metadataBase: new URL('https://dynamichandyman.co.za'),
   openGraph: {
@@ -75,16 +64,7 @@ export default function RootLayout({
     description:
       'Professional multi-trade property maintenance, repairs, renovations and alterations across Gauteng.',
     slogan: 'Rely On Our Ability.',
-    areaServed: [
-      'Alberton',
-      'Johannesburg',
-      'Pretoria',
-      'Sandton',
-      'Randburg',
-      'Centurion',
-      'Bedfordview',
-      'Gauteng',
-    ],
+    areaServed: serviceAreas,
     telephone: contactPhone.international,
     email: 'info@dynamichandyman.co.za',
     currenciesAccepted: 'ZAR',
@@ -94,7 +74,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`scroll-smooth ${manrope.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`scroll-smooth ${siteSans.variable} ${siteMono.variable}`}>
       <head>
         <script
           type="application/ld+json"

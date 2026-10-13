@@ -2,12 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { Logo } from './Logo';
 import { contactPhone } from '@/config/contact';
+import { aggregateReviewSummary } from '@/data/reviews';
+import { AnimatedFooterArtwork } from '@/components/layout/AnimatedFooterArtwork';
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
-
+function FooterContent({ currentYear }: { currentYear: number }) {
   return (
-    <footer className="bg-[#123E61] text-white border-t border-[#0C2B44] pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-white/10">
@@ -20,7 +19,7 @@ export function Footer() {
             </p>
 
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              Dynamic Handyman (PTY) LTD provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping, and guaranteed craftsmanship across Gauteng.
+              Dynamic Handyman (PTY) LTD provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping and careful workmanship across Gauteng.
             </p>
 
             <p className="text-xs font-bold tracking-wider text-white pt-1">
@@ -110,6 +109,14 @@ export function Footer() {
                 <span>Facebook Official</span>
               </a>
             </div>
+            <a
+              href={aggregateReviewSummary.googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-xs text-slate-300 underline underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              Read our Google reviews
+            </a>
           </div>
         </div>
 
@@ -124,6 +131,18 @@ export function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+  );
+}
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <>
+      <footer className="bg-[#123E61] text-white border-t border-[#0C2B44] pt-16 pb-12">
+        <FooterContent currentYear={currentYear} />
+      </footer>
+      <AnimatedFooterArtwork />
+    </>
   );
 }

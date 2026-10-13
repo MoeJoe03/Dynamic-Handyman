@@ -55,9 +55,9 @@ export function AboutSection({ homeImages }: { homeImages: HomeImageOverrides })
         >
           <div className="border-t-2 border-[#123E61] pt-6">
             <span className="text-xs font-mono font-bold text-slate-400">01</span>
-            <h4 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
+            <h3 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
               Multi-Trade Expertise
-            </h4>
+            </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               Eliminate the confusion of multiple vendors. Complete electrical, plumbing, carpentry, and building services under one roof.
             </p>
@@ -65,9 +65,9 @@ export function AboutSection({ homeImages }: { homeImages: HomeImageOverrides })
 
           <div className="border-t-2 border-[#123E61] pt-6">
             <span className="text-xs font-mono font-bold text-slate-400">02</span>
-            <h4 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
+            <h3 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
               Domestic & Corporate
-            </h4>
+            </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               Scalable solutions tailored for individual private homeowners, sectional titles, office complexes, and retail stores.
             </p>
@@ -75,9 +75,9 @@ export function AboutSection({ homeImages }: { homeImages: HomeImageOverrides })
 
           <div className="border-t-2 border-[#123E61] pt-6">
             <span className="text-xs font-mono font-bold text-slate-400">03</span>
-            <h4 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
+            <h3 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
               Quality Workmanship
-            </h4>
+            </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               From preliminary site assessments to final cleaning and handover, our standard is high-spec finish and durable results.
             </p>
@@ -85,9 +85,9 @@ export function AboutSection({ homeImages }: { homeImages: HomeImageOverrides })
 
           <div className="border-t-2 border-[#123E61] pt-6">
             <span className="text-xs font-mono font-bold text-slate-400">04</span>
-            <h4 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
+            <h3 className="text-sm font-extrabold uppercase tracking-tight text-[#30323A] mt-2 mb-2">
               One Team. Multiple Solutions.
-            </h4>
+            </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               A single point of contact, consolidated billing, transparent quotes, and reliable turnarounds on every single project.
             </p>

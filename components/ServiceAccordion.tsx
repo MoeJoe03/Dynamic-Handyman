@@ -205,6 +205,9 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
 
         {/* Section Action Footer */}
         <div className="mt-12 sm:mt-16 text-center">
+          <p className="mx-auto mb-6 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            We also provide property maintenance, renovations, glass and glazing, flooring, gutter repairs, and aluminium window and door services.
+          </p>
           <Link
             href="/services"
             className="inline-flex items-center space-x-3 px-8 py-4 bg-[#123E61] hover:bg-[#0C2B44] text-white text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm border border-transparent hover:border-[#123E61]"

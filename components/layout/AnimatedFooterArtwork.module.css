@@ -1,0 +1,14 @@
+.artwork {
+  width: 100%;
+  aspect-ratio: 2171 / 724;
+  overflow: hidden;
+  background: #07345a;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+

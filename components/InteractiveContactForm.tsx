@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { contactPhone } from '@/config/contact';
+import { servicesData } from '@/data/services';
 
 interface TradeOption {
   id: string;
@@ -10,13 +11,19 @@ interface TradeOption {
   icon: string;
 }
 
+const tradeIcons: Record<string, string> = {
+  electrical: '⚡', painting: '🎨', carpentry: '🪵', plumbing: '🔧',
+  palisades: '🚗', paving: '🧱', maintenance: '🏗️', 'glass-works': '🪟',
+  flooring: '◩', 'gutters-fascia': '🏠', 'aluminium-windows-doors': '🚪',
+};
+
 const tradeOptions: TradeOption[] = [
-  { id: 'electrical', name: 'Electrical & COCs', code: 'ELEC', icon: '⚡' },
-  { id: 'painting', name: 'Painting & Coatings', code: 'PNTG', icon: '🎨' },
-  { id: 'carpentry', name: 'Carpentry & Joinery', code: 'CRPT', icon: '🪵' },
-  { id: 'plumbing', name: 'Plumbing & Geyser', code: 'PLMB', icon: '🔧' },
-  { id: 'palisades', name: 'Palisades & Carports', code: 'STEL', icon: '🚗' },
-  { id: 'renovations', name: 'Alterations & Snags', code: 'STRC', icon: '🏗️' },
+  ...servicesData.map((service) => ({
+    id: service.id,
+    name: service.title,
+    code: service.ref,
+    icon: tradeIcons[service.id] ?? '🛠️',
+  })),
   { id: 'multiple', name: 'Multiple Combined Trades', code: 'COMB', icon: '🛠️' },
 ];
 
@@ -68,9 +75,9 @@ export function InteractiveContactForm() {
       errs.phoneNumber = 'Please enter a valid telephone number';
     }
 
-    if (!formData.emailAddress.trim()) {
-      errs.emailAddress = 'Email address is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailAddress.trim())) {
+    if (contactMethod === 'email' && !formData.emailAddress.trim()) {
+      errs.emailAddress = 'Enter an email address for an email response';
+    } else if (formData.emailAddress.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailAddress.trim())) {
       errs.emailAddress = 'Please enter a valid email address';
     }
 
@@ -147,7 +154,7 @@ export function InteractiveContactForm() {
                     }`}
                   >
                     <span className="text-base shrink-0">{trade.icon}</span>
-                    <span className="text-xs font-bold uppercase tracking-tight line-clamp-1">
+                    <span className="text-xs font-bold uppercase tracking-tight">
                       {trade.name}
                     </span>
                   </button>
@@ -277,7 +284,7 @@ export function InteractiveContactForm() {
               {/* Email */}
               <div>
                 <label htmlFor="interactiveEmail" className="block text-[11px] font-bold uppercase tracking-wider text-[#30323A] mb-1.5">
-                  Email Address *
+                  Email Address {contactMethod === 'email' ? '(required for email response)' : '(optional)'}
                 </label>
                 <input
                   type="email"
@@ -426,10 +433,12 @@ export function InteractiveContactForm() {
               <span className="text-slate-500 uppercase">Contact Phone</span>
               <span className="font-bold text-[#30323A]">{formData.phoneNumber}</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-100 pb-2">
-              <span className="text-slate-500 uppercase">Email</span>
-              <span className="font-bold text-[#30323A]">{formData.emailAddress}</span>
-            </div>
+            {formData.emailAddress.trim() && (
+              <div className="flex justify-between border-b border-neutral-100 pb-2">
+                <span className="text-slate-500 uppercase">Email</span>
+                <span className="font-bold text-[#30323A]">{formData.emailAddress}</span>
+              </div>
+            )}
             <div className="flex justify-between border-b border-neutral-100 pb-2">
               <span className="text-slate-500 uppercase">Urgency</span>
               <span className="font-bold text-[#123E61]">{activeUrgency.label}</span>
