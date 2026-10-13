@@ -94,7 +94,7 @@ export default function ServicesPage() {
                 <span className="text-slate-300">in Alberton</span>
               </h1>
               <p className="mt-6 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
-                Dynamic Handyman provides reliable handyman services, home repairs, property maintenance and renovation work in Alberton and selected areas of Johannesburg. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we provide one practical point of contact for maintaining and improving your property.
+                Dynamic Handyman provides reliable handyman services, home repairs, property maintenance and renovation work in Alberton, Johannesburg and surrounding areas. From electrical and plumbing repairs to painting, carpentry, paving and multi-trade renovations, we provide one practical point of contact for maintaining and improving your property.
               </p>
             </div>
               </div>

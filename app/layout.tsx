@@ -21,13 +21,13 @@ const siteMono = localFont({
 export const metadata: Metadata = {
   title: 'Handyman Services in Alberton | Dynamic Handyman',
   description:
-    'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton and selected Johannesburg areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+    'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton, Johannesburg and surrounding areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
   authors: [{ name: 'Dynamic Handyman (PTY) LTD' }],
   metadataBase: new URL('https://dynamichandyman.co.za'),
   openGraph: {
     title: 'Handyman Services in Alberton | Dynamic Handyman',
     description:
-      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton and selected Johannesburg areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton, Johannesburg and surrounding areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
     images: [{
       url: '/dynamic-handyman-home-og.png',
       width: 1730,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Handyman Services in Alberton | Dynamic Handyman',
     description:
-      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton and selected Johannesburg areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
+      'Dynamic Handyman provides home repairs, maintenance and renovations in Alberton, Johannesburg and surrounding areas. Request a quote for electrical, plumbing, painting, carpentry and more.',
     images: ['/dynamic-handyman-home-og.png'],
   },
   robots: {

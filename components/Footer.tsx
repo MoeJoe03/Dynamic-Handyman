@@ -127,7 +127,7 @@ function FooterContent({ currentYear }: { currentYear: number }) {
           </div>
           <div className="mt-4 sm:mt-0 flex space-x-6">
             <span>Maintenance • Repairs • Renovations</span>
-            <span>Alberton and surrounding Johannesburg areas</span>
+            <span>Alberton, Johannesburg and surrounding areas</span>
           </div>
         </div>
       </div>

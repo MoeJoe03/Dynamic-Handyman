@@ -9,7 +9,7 @@ export function ServiceAreaSection() {
             Handyman Services in Alberton and Surrounding Areas
           </h2>
           <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg">
-            Dynamic Handyman is based in Alberton and provides home repairs, property maintenance and renovation services to customers in Alberton and selected surrounding areas of Johannesburg.
+            Dynamic Handyman is based in Alberton and provides home repairs, property maintenance and renovation services to customers in Alberton, Johannesburg and surrounding areas.
           </p>
           <p className="mt-3 text-base leading-relaxed text-slate-700">
             <a href="/contact" className="font-semibold text-[#123E61] underline underline-offset-4 hover:text-[#0C2B44] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">Contact us</a> to confirm whether we cover your suburb.

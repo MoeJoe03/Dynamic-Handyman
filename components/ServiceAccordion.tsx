@@ -95,7 +95,7 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
             Handyman, Maintenance and Renovation Services
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            From small home repairs to larger renovation projects, Dynamic Handyman provides practical maintenance and handyman services for homeowners, landlords, offices and businesses in Alberton and surrounding Johannesburg areas.
+            From small home repairs to larger renovation projects, Dynamic Handyman provides practical maintenance and handyman services for homeowners, landlords, offices and businesses in Alberton, Johannesburg and surrounding areas.
           </p>
         </div>
 
