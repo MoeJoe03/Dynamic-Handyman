@@ -20,7 +20,7 @@ export function ProjectGallery({ homeImages }: { homeImages: HomeImageOverrides 
               <span className="w-8 h-[2px] bg-[#123E61]" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#30323A] leading-tight">
-              Recent Handyman and Renovation Projects <span className="text-[#123E61]">in Alberton and Johannesburg</span>
+              Recent Handyman and Renovation Projects <span className="text-[#123E61]">in Alberton and Surrounding Areas</span>
             </h2>
             <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-2 font-mono">
               Quality Work You Can See
@@ -54,7 +54,7 @@ export function ProjectGallery({ homeImages }: { homeImages: HomeImageOverrides 
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex items-end justify-between p-6 sm:p-7">
                 <div>
                   <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-sky-300 block mb-1">
-                    {project.location}
+                    {project.location.replace(/, Johannesburg$/, '')}
                   </span>
                   <h3 className="text-white font-extrabold text-base sm:text-lg lg:text-xl uppercase tracking-tight">
                     {project.title}

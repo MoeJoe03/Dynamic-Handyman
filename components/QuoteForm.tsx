@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { contactPhone } from '@/config/contact';
 import { servicesData } from '@/data/services';
 
-export function QuoteForm() {
+export function QuoteForm({ serviceArea = 'Alberton, Johannesburg, and surrounding areas' }: { serviceArea?: string }) {
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
@@ -113,7 +113,7 @@ export function QuoteForm() {
                 Service Area
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                Alberton, Johannesburg, and surrounding areas
+                {serviceArea}
               </p>
             </div>
 

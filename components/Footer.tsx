@@ -5,7 +5,7 @@ import { contactPhone } from '@/config/contact';
 import { aggregateReviewSummary } from '@/data/reviews';
 import { AnimatedFooterArtwork } from '@/components/layout/AnimatedFooterArtwork';
 
-function FooterContent({ currentYear }: { currentYear: number }) {
+function FooterContent({ currentYear, serviceArea }: { currentYear: number; serviceArea: string }) {
   return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Grid */}
@@ -19,7 +19,7 @@ function FooterContent({ currentYear }: { currentYear: number }) {
             </p>
 
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              Dynamic Handyman (PTY) LTD provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping and careful workmanship in Alberton, Johannesburg, and surrounding areas.
+              Dynamic Handyman (PTY) LTD provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping and careful workmanship in {serviceArea}.
             </p>
 
             <p className="text-xs font-bold tracking-wider text-white pt-1">
@@ -93,7 +93,7 @@ function FooterContent({ currentYear }: { currentYear: number }) {
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Operating Scope:</span>
-              Alberton, Johannesburg, and surrounding areas
+              {serviceArea}
             </p>
             <div className="pt-2">
               <a
@@ -127,20 +127,20 @@ function FooterContent({ currentYear }: { currentYear: number }) {
           </div>
           <div className="mt-4 sm:mt-0 flex space-x-6">
             <span>Maintenance • Repairs • Renovations</span>
-            <span>Alberton, Johannesburg, and surrounding areas</span>
+            <span>{serviceArea}</span>
           </div>
         </div>
       </div>
   );
 }
 
-export function Footer() {
+export function Footer({ serviceArea = 'Alberton, Johannesburg, and surrounding areas' }: { serviceArea?: string }) {
   const currentYear = new Date().getFullYear();
 
   return (
     <>
       <footer className="bg-[#123E61] text-white border-t border-[#0C2B44] pt-16 pb-12">
-        <FooterContent currentYear={currentYear} />
+        <FooterContent currentYear={currentYear} serviceArea={serviceArea} />
       </footer>
       <AnimatedFooterArtwork />
     </>

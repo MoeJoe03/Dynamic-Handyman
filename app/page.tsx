@@ -15,6 +15,22 @@ import { getPublicHomeImages } from '@/lib/home-images/queries';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
+  description: 'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote for electrical, plumbing, painting and more.',
+  openGraph: {
+    title: 'Handyman Services in Alberton | Dynamic Handyman',
+    description: 'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote today.',
+    type: 'website',
+    locale: 'en_ZA',
+    url: 'https://dynamichandyman.co.za/',
+    siteName: 'Dynamic Handyman (PTY) LTD',
+    images: [{ url: '/dynamic-handyman-home-og.png', width: 1730, height: 909, alt: 'Dynamic Handyman handyman services in Alberton with a bathroom project image' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Handyman Services in Alberton | Dynamic Handyman',
+    description: 'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote today.',
+    images: ['/dynamic-handyman-home-og.png'],
+  },
   alternates: { canonical: 'https://dynamichandyman.co.za/' },
 };
 
@@ -53,12 +69,12 @@ export default async function HomePage() {
 
         {/* 18 — CONTACT ESTIMATE REQUISITION */}
         <section id="contact" className="bg-white border-t border-[#D9DEE2]">
-          <QuoteForm />
+          <QuoteForm serviceArea="Alberton and surrounding areas" />
         </section>
       </main>
 
       {/* 20 — FOOTER */}
-      <Footer />
+      <Footer serviceArea="Alberton and surrounding areas" />
     </div>
   );
 }

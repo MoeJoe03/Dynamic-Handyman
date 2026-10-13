@@ -65,7 +65,7 @@ export function ReviewsSection({ homeImages }: { homeImages: HomeImageOverrides 
             <span className="w-8 h-[2px] bg-sky-400" />
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-white leading-tight">
-            Trusted by Homeowners <span className="text-sky-400">Across Alberton and Johannesburg</span>
+            Trusted by Homeowners <span className="text-sky-400">Across Alberton and Surrounding Areas</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-3">
             From full house revamps and Wendyhouse roof rebuilds to bathroom fitments and furniture assembly, our customers trust us to get the job done right.
