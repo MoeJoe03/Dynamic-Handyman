@@ -25,5 +25,5 @@ export default async function AdminGalleryPage() {
     imageUrl: galleryImageUrl(admin.supabase.storage, image.image_path),
   }));
 
-  return <GalleryManager initialImages={images} initialError={error ? 'Could not load gallery images. Refresh to try again.' : null} />;
+  return <GalleryManager userId={admin.userId} initialImages={images} initialError={error ? 'Could not load gallery images. Refresh to try again.' : null} />;
 }

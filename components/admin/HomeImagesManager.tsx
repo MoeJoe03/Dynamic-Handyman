@@ -1,5 +1,7 @@
 'use client';
 
+import { CmsTour } from './CmsTour';
+
 import { useCallback, useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -201,7 +203,7 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
   </article>;
 }
 
-export function HomeImagesManager({ initialOverrides, initialError }: { initialOverrides: HomeImageOverrides; initialError: string | null }) {
+export function HomeImagesManager({ userId, initialOverrides, initialError }: { userId: string; initialOverrides: HomeImageOverrides; initialError: string | null }) {
   const router = useRouter();
   const [overrides, setOverrides] = useState(initialOverrides);
   const [signingOut, setSigningOut] = useState(false);
@@ -285,6 +287,7 @@ export function HomeImagesManager({ initialOverrides, initialError }: { initialO
         <button type="button" onClick={signOut} disabled={signingOut} className="min-h-11 border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] disabled:opacity-50">Sign Out</button>
       </div>
     </header>
+      <CmsTour page="home-images" userId={userId} />
     <div className="sticky top-0 z-20 mb-6 flex flex-wrap items-center justify-between gap-3 border border-[#D9DEE2] bg-white/95 px-4 py-3 shadow-sm backdrop-blur" aria-live="polite">
       <div>
         <p className={`text-sm font-bold ${dirtyCount ? 'text-amber-800' : 'text-[#123E61]'}`}>

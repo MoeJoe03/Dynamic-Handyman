@@ -1,5 +1,7 @@
 'use client';
 
+import { CmsTour } from './CmsTour';
+
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,7 +20,7 @@ type QueuedFile = {
   error?: string;
 };
 
-export function GalleryManager({ initialImages, initialError }: { initialImages: GalleryImageView[]; initialError: string | null }) {
+export function GalleryManager({ userId, initialImages, initialError }: { userId: string; initialImages: GalleryImageView[]; initialError: string | null }) {
   const router = useRouter();
   const previews = useRef<string[]>([]);
   const [images, setImages] = useState(initialImages);
@@ -235,6 +237,7 @@ export function GalleryManager({ initialImages, initialError }: { initialImages:
           <button type="button" onClick={signOut} disabled={busy} className="min-h-11 border border-[#C9D2D9] bg-white px-5 py-3 text-xs font-bold uppercase tracking-wider hover:bg-slate-50">Sign Out</button>
         </div>
       </header>
+      <CmsTour page="gallery" userId={userId} />
 
       {message && <p role="status" className="mb-6 border border-[#C9D2D9] bg-white px-4 py-3 text-sm">{message}</p>}
 

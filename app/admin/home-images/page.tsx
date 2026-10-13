@@ -20,5 +20,5 @@ export default async function AdminHomeImagesPage() {
     ...row,
     imageUrl: galleryImageUrl(admin.supabase.storage, row.image_path),
   }]));
-  return <HomeImagesManager initialOverrides={overrides} initialError={error ? 'Could not load saved home images. Refresh before making changes.' : null} />;
+  return <HomeImagesManager userId={admin.userId} initialOverrides={overrides} initialError={error ? 'Could not load saved home images. Refresh before making changes.' : null} />;
 }
