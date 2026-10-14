@@ -88,7 +88,7 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 lg:mb-20">
           <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400 block mb-3">
-            (01 — SERVICES)
+            (SERVICES)
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#30323A] mb-5">
             Handyman, Maintenance and Renovation Services
@@ -127,9 +127,6 @@ export function ServiceAccordion({ homeImages }: { homeImages: HomeImageOverride
                     </div>
 
                     <div className="max-w-3xl">
-                      <span className="text-[10px] font-mono font-bold tracking-widest text-slate-400 block">
-                        TRADE REF: {service.ref}
-                      </span>
                       <h3 className="text-sm sm:text-lg md:text-xl font-extrabold text-[#30323A] uppercase tracking-tight">
                         {service.title}
                       </h3>

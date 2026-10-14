@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { isIP } from 'node:net';
 import { z } from 'zod';
 import { servicesData } from '@/data/services';
 
@@ -16,6 +17,44 @@ const inquirySchema = z.object({
 });
 
 const deliveryError = 'Your request could not be sent. Please try again or contact us by phone or WhatsApp.';
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const RATE_LIMIT_MAX_CLIENTS = 10_000;
+const quoteRateLimits = new Map<string, { count: number; resetAt: number }>();
+
+function getClientIp(request: NextRequest) {
+  // Vercel overwrites x-forwarded-for with the public client IP to prevent spoofing.
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const candidate = forwardedFor?.split(',')[0]?.trim();
+  return candidate && isIP(candidate) ? candidate : 'unknown';
+}
+
+function consumeQuoteRateLimit(clientIp: string, now = Date.now()) {
+  let entry = quoteRateLimits.get(clientIp);
+
+  if (!entry || entry.resetAt <= now) {
+    if (quoteRateLimits.size >= RATE_LIMIT_MAX_CLIENTS && !quoteRateLimits.has(clientIp)) {
+      for (const [key, value] of quoteRateLimits) {
+        if (value.resetAt <= now) quoteRateLimits.delete(key);
+      }
+      while (quoteRateLimits.size >= RATE_LIMIT_MAX_CLIENTS) {
+        const oldestKey = quoteRateLimits.keys().next().value;
+        if (oldestKey === undefined) break;
+        quoteRateLimits.delete(oldestKey);
+      }
+    }
+
+    entry = { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS };
+    quoteRateLimits.set(clientIp, entry);
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return { allowed: false, retryAfter: Math.max(1, Math.ceil((entry.resetAt - now) / 1000)) };
+  }
+
+  entry.count += 1;
+  return { allowed: true, retryAfter: 0 };
+}
 
 function formatInquiryReference(requestId: string, now = new Date()) {
   const date = new Intl.DateTimeFormat('en-CA', {
@@ -51,6 +90,20 @@ export async function POST(request: NextRequest) {
   const parsed = inquirySchema.safeParse(body);
   if (!parsed.success || parsed.data.website) {
     return NextResponse.json({ error: 'Please check your contact details and service selection.' }, { status: 400 });
+  }
+
+  const rateLimit = consumeQuoteRateLimit(getClientIp(request));
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: 'Too many quote requests were sent from this connection. Please try again later.' },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(rateLimit.retryAfter),
+          'Cache-Control': 'no-store',
+        },
+      },
+    );
   }
 
   const apiKey = process.env.RESEND_API_KEY;

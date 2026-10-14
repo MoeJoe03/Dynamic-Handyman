@@ -104,7 +104,7 @@ export default async function ContactPage({
         <section className="py-16 sm:py-24" aria-labelledby="contact-areas-heading">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_500px] lg:gap-16 lg:px-8">
             <div>
-              <span className="mb-3 block font-mono text-[11px] font-bold uppercase tracking-widest text-[#19547E]">06 — Where We Work</span>
+              <span className="mb-3 block font-mono text-[11px] font-bold uppercase tracking-widest text-[#19547E]">Where We Work</span>
               <h2 id="contact-areas-heading" className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">
                 Areas We Serve
               </h2>
@@ -117,8 +117,16 @@ export default async function ContactPage({
                   <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>
                 ))}
               </ul>
-              <p className="mt-6 text-sm leading-relaxed text-slate-600">
-                If your property is in one of these areas, contact us to discuss your project and confirm service availability.
+              <p className="mt-8 text-sm font-semibold leading-relaxed text-[#123E61]">
+                Wider service area:
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Selected project areas in Gauteng">
+                {['Sandton', 'Randburg', 'Roodepoort', 'Randfontein', 'Vereeniging', 'Pretoria'].map((area) => (
+                  <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                Availability outside our main service area depends on the project. Contact us to discuss your requirements.
               </p>
             </div>
             <div className="self-start overflow-hidden border border-[#D9DEE2] border-t-2 border-t-[#123E61] bg-[#F8F9F9]">

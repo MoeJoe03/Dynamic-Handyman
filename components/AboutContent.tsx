@@ -84,7 +84,7 @@ export function AboutContent() {
       <section className="border-y border-[#D9DEE2] bg-[#F8F9F9] py-16 sm:py-24">
         <div className={`${container} grid items-center gap-10 lg:grid-cols-2 lg:gap-16`}>
           <div>
-            <SectionLabel>01 — Our Story</SectionLabel>
+            <SectionLabel>Our Story</SectionLabel>
             <h2 className={heading}>Built Around Practical Solutions</h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600 sm:text-base">
               <p>Dynamic Handyman was established in 2020 by Ryan with a straightforward purpose: to provide customers with a dependable way to manage property repairs, improvements and renovations.</p>
@@ -107,7 +107,7 @@ export function AboutContent() {
       <section className="py-16 sm:py-24">
         <div className={container}>
           <div className="grid gap-5 lg:grid-cols-2 lg:items-end lg:gap-16">
-            <div><SectionLabel>02 — What We Do</SectionLabel><h2 className={heading}>One Company.<br />Multiple Trades.</h2></div>
+            <div><SectionLabel>What We Do</SectionLabel><h2 className={heading}>One Company.<br />Multiple Trades.</h2></div>
             <p className="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">Whether you’re maintaining a family home, preparing a rental property or planning improvements to commercial premises, Dynamic Handyman offers services across several trades.</p>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-px border border-[#D9DEE2] bg-[#D9DEE2] sm:grid-cols-2 lg:grid-cols-3">
@@ -125,7 +125,7 @@ export function AboutContent() {
 
       <section className="bg-[#123E61] py-16 text-white sm:py-20">
         <div className={container}>
-          <SectionLabel light>03 — Who We Work With</SectionLabel>
+          <SectionLabel light>Who We Work With</SectionLabel>
           <h2 className="max-w-2xl text-2xl font-extrabold uppercase leading-tight tracking-tight sm:text-3xl lg:text-4xl">Property Solutions for Different Needs</h2>
           <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-0">
             {clients.map(({ title, text, Icon }) => <div key={title} className="border-t border-white/20 pt-6 md:border-l md:border-t-0 md:px-8 md:pt-0 md:first:border-l-0 md:first:pl-0 md:last:pr-0"><Icon className="mb-5 text-sky-300" size={28} strokeWidth={1.5} aria-hidden="true" /><h3 className="text-lg font-bold">{title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-200">{text}</p></div>)}
@@ -136,37 +136,37 @@ export function AboutContent() {
 
       <section className="py-16 sm:py-24">
         <div className={`${container} grid gap-10 lg:grid-cols-2 lg:gap-20`}>
-          <div><SectionLabel>04 — Projects of Every Size</SectionLabel><h2 className={heading}>From Small Repairs to Larger Renovations</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">Not every project needs a full renovation, and not every repair is a small job.</p><p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">Dynamic Handyman accepts enquiries for a broad range of property projects, including:</p><p className="mt-6 border-l-2 border-sky-400 pl-5 text-sm font-semibold leading-relaxed text-[#123E61]">Whether you have a single task or several improvements planned, contact us to discuss the scope of work and request a quote.</p></div>
+          <div><SectionLabel>Projects of Every Size</SectionLabel><h2 className={heading}>From Small Repairs to Larger Renovations</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">Not every project needs a full renovation, and not every repair is a small job.</p><p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">Dynamic Handyman accepts enquiries for a broad range of property projects, including:</p><p className="mt-6 border-l-2 border-sky-400 pl-5 text-sm font-semibold leading-relaxed text-[#123E61]">Whether you have a single task or several improvements planned, contact us to discuss the scope of work and request a quote.</p></div>
           <ul className="divide-y divide-[#D9DEE2] border-y border-[#D9DEE2]">{projects.map((project) => <li key={project} className="flex items-start gap-4 py-4 text-sm leading-relaxed text-slate-600"><Check size={17} className="mt-0.5 shrink-0 text-[#19547E]" aria-hidden="true" />{project}</li>)}</ul>
         </div>
       </section>
 
       <section className="border-y border-[#D9DEE2] bg-[#F8F9F9] py-16 sm:py-24">
         <div className={container}>
-          <SectionLabel>05 — How We Work</SectionLabel><h2 className={heading}>A Straightforward Way to Get Started</h2>
-          <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{steps.map((step, index) => <li key={step.title} className="border-t-2 border-[#123E61] pt-5"><span className="font-mono text-3xl font-bold text-[#19547E]/40" aria-hidden="true">0{index + 1}</span><h3 className="mt-4 text-lg font-bold text-[#123E61]">{step.title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-600">{step.text}</p></li>)}</ol>
+          <SectionLabel>How We Work</SectionLabel><h2 className={heading}>A Straightforward Way to Get Started</h2>
+          <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{steps.map((step) => <li key={step.title} className="border-t-2 border-[#123E61] pt-5"><h3 className="text-lg font-bold text-[#123E61]">{step.title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-600">{step.text}</p></li>)}</ol>
           <Link href="/contact" className={`${button} mt-9 bg-[#123E61] text-white hover:bg-[#0C2B44]`}>Request Your Quote <span aria-hidden="true">→</span></Link>
         </div>
       </section>
 
       <section className="py-16 sm:py-24">
         <div className={`${container} grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-16`}>
-          <div><SectionLabel>06 — Where We Work</SectionLabel><h2 className={heading}>Local Handyman Services in Alberton &amp; Johannesburg South</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients in Alberton and surrounding areas.</p><p className="mt-5 text-sm font-semibold text-[#123E61]">Our main service locations include:</p><ul className="mt-4 flex flex-wrap gap-2">{serviceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><p className="mt-6 text-sm leading-relaxed text-slate-600">If your property is in one of these areas, contact us to discuss your project and confirm service availability.</p></div>
+          <div><SectionLabel>Where We Work</SectionLabel><h2 className={heading}>Local Handyman Services in Alberton &amp; Johannesburg South</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients in Alberton and surrounding areas.</p><p className="mt-5 text-sm font-semibold text-[#123E61]">Our main service locations include:</p><ul className="mt-4 flex flex-wrap gap-2">{serviceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><p className="mt-6 text-sm leading-relaxed text-slate-600">If your property is in one of these areas, contact us to discuss your project and confirm service availability.</p></div>
           <div className="self-start border border-[#D9DEE2] border-t-2 border-t-[#123E61] p-7 sm:p-8"><MapPin size={32} strokeWidth={1.5} className="text-[#19547E]" aria-hidden="true" /><h3 className="mt-6 text-xl font-bold text-[#123E61]">Based in Alberton</h3><address className="mt-4 text-sm not-italic leading-7 text-slate-600">Dynamic Handyman (Pty) Ltd<br />10 Vauxhall Street<br />Eden Park, Alberton, 1458</address><Link href="/contact" className={`${button} mt-6 w-full bg-[#123E61] text-center text-white hover:bg-[#0C2B44]`}>Contact Dynamic Handyman <ArrowUpRight className="shrink-0" size={16} aria-hidden="true" /></Link></div>
         </div>
       </section>
 
       <section className="border-t border-[#D9DEE2] bg-[#F8F9F9] py-16 sm:py-24">
         <div className={`${container} grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20`}>
-          <div><SectionLabel>07 — Why Choose Dynamic Handyman?</SectionLabel><h2 className={heading}>One Point of Contact for Your Property Projects</h2></div>
-          <div className="divide-y divide-[#D9DEE2]">{reasons.map((reason, index) => <div key={reason.title} className="flex gap-5 py-6 first:pt-0 last:pb-0"><span className="pt-1 font-mono text-xs font-bold text-[#19547E]" aria-hidden="true">0{index + 1}</span><div><h3 className="text-base font-bold text-[#123E61]">{reason.title}</h3><p className="mt-2 text-sm leading-relaxed text-slate-600">{reason.text}</p></div></div>)}</div>
+          <div><SectionLabel>Why Choose Dynamic Handyman?</SectionLabel><h2 className={heading}>One Point of Contact for Your Property Projects</h2></div>
+          <div className="divide-y divide-[#D9DEE2]">{reasons.map((reason) => <div key={reason.title} className="flex gap-5 py-6 first:pt-0 last:pb-0"><div><h3 className="text-base font-bold text-[#123E61]">{reason.title}</h3><p className="mt-2 text-sm leading-relaxed text-slate-600">{reason.text}</p></div></div>)}</div>
         </div>
       </section>
 
       <section className="py-12 sm:py-16">
         <div className={container}>
           <div className="grid gap-8 border border-[#0C2B44] bg-[#123E61] p-7 text-white sm:p-10 lg:grid-cols-[1fr_280px] lg:items-center lg:gap-16 lg:p-14">
-            <div><SectionLabel light>08 — Let’s Talk About Your Project</SectionLabel><h2 className="text-3xl font-extrabold uppercase leading-tight tracking-tight sm:text-4xl">Your Property.<br />Our Range of Skills.</h2><p className="mt-6 text-sm leading-relaxed text-slate-200">Need a handyman in Alberton or a nearby suburb? Planning repairs, maintenance or renovations for your home, rental property or business?</p><p className="mt-4 text-sm leading-relaxed text-slate-200">Dynamic Handyman is ready to discuss your requirements, whether the job is small, large or involves several trades.</p><a href={aggregateReviewSummary.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sky-200 underline decoration-sky-200/50 underline-offset-4 transition-colors hover:text-white">Read Our Google Reviews <ArrowUpRight size={15} aria-hidden="true" /></a><p className="mt-3 text-lg font-bold text-sky-200">Rely on our Ability!</p></div>
+            <div><SectionLabel light>Let’s Talk About Your Project</SectionLabel><h2 className="text-3xl font-extrabold uppercase leading-tight tracking-tight sm:text-4xl">Your Property.<br />Our Range of Skills.</h2><p className="mt-6 text-sm leading-relaxed text-slate-200">Need a handyman in Alberton or a nearby suburb? Planning repairs, maintenance or renovations for your home, rental property or business?</p><p className="mt-4 text-sm leading-relaxed text-slate-200">Dynamic Handyman is ready to discuss your requirements, whether the job is small, large or involves several trades.</p><a href={aggregateReviewSummary.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sky-200 underline decoration-sky-200/50 underline-offset-4 transition-colors hover:text-white">Read Our Google Reviews <ArrowUpRight size={15} aria-hidden="true" /></a><p className="mt-3 text-lg font-bold text-sky-200">Rely on our Ability!</p></div>
             <div className="flex flex-col gap-3"><Link href="/contact" className={`${button} bg-white text-[#123E61] hover:bg-sky-50`}>Request a Quote <ArrowUpRight size={16} aria-hidden="true" /></Link><a href={contactPhone.telHref} className={`${button} border border-white/40 text-white hover:bg-white/10`}><Phone size={16} aria-hidden="true" /> Call Us</a><a href={contactPhone.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${button} border border-white/40 text-white hover:bg-white/10`}><MessageCircle size={16} aria-hidden="true" /> WhatsApp Us</a><p className="mt-2 text-center font-mono text-xs text-sky-200">{contactPhone.display}</p></div>
           </div>
         </div>

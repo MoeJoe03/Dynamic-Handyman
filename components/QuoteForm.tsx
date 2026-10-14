@@ -115,21 +115,16 @@ export function QuoteForm({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28" id="quoteFormContainer">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         {/* Left Info Column */}
-        <div className="lg:col-span-5">
+        <div className="flex flex-col lg:col-span-5">
           <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400 block mb-3 font-mono">
-            (04 — DIRECT INQUIRY)
+            (DIRECT INQUIRY)
           </span>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase tracking-tight text-[#30323A] mb-6">
-            Request a Handyman or Renovation Quote
-          </h2>
-
-          <p className="text-slate-600 text-sm leading-relaxed mb-10">
-            Reach out via phone, email, or complete the quote requisition form. We respond promptly with actionable site visits or estimates.
-          </p>
-
           {/* Contact Data Strip */}
-          <div className="space-y-6 border-t border-[#D9DEE2] pt-8">
+          <div className="order-1 space-y-6 border-t border-[#D9DEE2] pt-8 lg:order-3">
+            <h2 className="text-xl font-extrabold uppercase tracking-tight text-[#123E61] sm:text-2xl">
+              Contact Details
+            </h2>
             <div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">
                 Phone
@@ -181,7 +176,7 @@ export function QuoteForm({
           </div>
 
           {/* Instant WhatsApp CTA */}
-          <div className="mt-10">
+          <div className="order-2 mt-8 lg:order-4 lg:mt-8">
             <a
               href={contactPhone.whatsappUrl}
               target="_blank"
@@ -194,6 +189,15 @@ export function QuoteForm({
               <span>Chat on WhatsApp</span>
             </a>
           </div>
+
+          <h2 className="order-3 mt-10 text-2xl font-extrabold uppercase tracking-tight text-[#30323A] sm:text-3xl lg:order-1 lg:mt-0 lg:mb-6 lg:text-4xl">
+            Request a Handyman or Renovation Quote
+          </h2>
+
+          <p className="order-4 mt-4 text-sm leading-relaxed text-slate-600 lg:order-2 lg:mt-0 lg:mb-10">
+            Reach out via phone, email, or complete the quote requisition form. We respond promptly with actionable site visits or estimates.
+          </p>
+
         </div>
 
         {/* Right Form Column - Balanced Height & Architectural Presence */}

@@ -27,9 +27,6 @@ export function LiveWorkShowcase({ homeImages }: { homeImages: HomeImageOverride
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent flex flex-col justify-end p-4 sm:p-5">
-                <span className="text-[10px] font-mono tracking-widest uppercase text-sky-300 font-semibold mb-1">
-                  {panel.ref}
-                </span>
                 <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wide leading-snug">
                   {panel.title}
                 </h4>

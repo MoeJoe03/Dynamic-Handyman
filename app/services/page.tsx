@@ -120,7 +120,7 @@ export default function ServicesPage() {
                         </div>
                         <div>
                           <div className="text-[10px] font-mono font-bold tracking-widest uppercase text-slate-400">
-                            TRADE DIVISION // {trade.ref}
+                            TRADE DIVISION
                           </div>
                           <span className="inline-block text-[11px] font-bold text-[#123E61] uppercase tracking-wider">
                             {trade.badge}

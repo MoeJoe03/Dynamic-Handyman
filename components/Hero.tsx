@@ -8,7 +8,7 @@ export function Hero() {
         <div className="lg:col-span-7">
           <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest text-slate-300 mb-5 sm:mb-6">
             <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-            <span>(00 — PROPERTY MAINTENANCE • REPAIRS • RENOVATIONS)</span>
+            <span>(PROPERTY MAINTENANCE • REPAIRS • RENOVATIONS)</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-6xl font-extrabold tracking-tighter leading-[0.95] uppercase">
