@@ -120,13 +120,16 @@ export default async function ContactPage({
               <p className="mt-8 text-sm font-semibold leading-relaxed text-[#123E61]">
                 Wider service area:
               </p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                Based in Alberton, Dynamic Handyman also travels to:
+              </p>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label="Selected project areas in Gauteng">
                 {['Sandton', 'Randburg', 'Roodepoort', 'Randfontein', 'Vereeniging', 'Pretoria'].map((area) => (
                   <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>
                 ))}
               </ul>
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                Availability outside our main service area depends on the project. Contact us to discuss your requirements.
+                Contact us with your project details so we can discuss the scope of work, scheduling and the appropriate quotation process for your location.
               </p>
             </div>
             <div className="self-start overflow-hidden border border-[#D9DEE2] border-t-2 border-t-[#123E61] bg-[#F8F9F9]">
