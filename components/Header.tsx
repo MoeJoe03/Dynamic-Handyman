@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import { PublicMotion } from './PublicMotion';
+import { businessConfig } from '@/config/business';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ export function Header() {
           <Link
             href="/"
             className="flex items-center group py-1 focus:outline-none focus:ring-2 focus:ring-[#123E61] focus:ring-offset-2 rounded"
-            aria-label="Dynamic Handyman (PTY) LTD Homepage"
+            aria-label={`${businessConfig.legalName} Homepage`}
           >
             <Logo />
           </Link>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { businessConfig } from '@/config/business';
 
 interface LogoProps {
   variant?: 'light' | 'dark' | 'footer';
@@ -16,7 +17,7 @@ export function Logo({ variant = 'light', className = '' }: LogoProps) {
         <div className="bg-white px-3 py-2 rounded-sm border border-slate-200/40 inline-block shadow-sm">
           <Image
             src={logoUrl}
-            alt="Dynamic Handyman (PTY) LTD Logo"
+            alt={`${businessConfig.legalName} logo`}
             width={180}
             height={54}
             className="h-10 sm:h-11 w-auto object-contain"
@@ -32,7 +33,7 @@ export function Logo({ variant = 'light', className = '' }: LogoProps) {
     <div className={`inline-flex items-center ${className}`}>
       <Image
         src={logoUrl}
-        alt="Dynamic Handyman (PTY) LTD Logo"
+        alt={`${businessConfig.legalName} logo`}
         width={220}
         height={65}
         className="h-12 sm:h-16 md:h-18 w-auto object-contain transition-opacity duration-200 hover:opacity-95"

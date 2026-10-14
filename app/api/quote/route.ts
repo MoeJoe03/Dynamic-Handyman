@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { isIP } from 'node:net';
 import { z } from 'zod';
 import { servicesData } from '@/data/services';
+import { businessConfig } from '@/config/business';
 
 export const runtime = 'nodejs';
 
@@ -138,8 +139,8 @@ export async function POST(request: NextRequest) {
         'Idempotency-Key': `quote-${requestId}`,
       },
       body: JSON.stringify({
-        from: 'Dynamic Handyman <admin@dynamichandyman.co.za>',
-        to: ['admin@dynamichandyman.co.za'],
+        from: `${businessConfig.brandName} <${businessConfig.email.address}>`,
+        to: [businessConfig.email.address],
         subject: `Quote inquiry: ${serviceCategory} — ${fullName}`,
         text,
         ...(emailAddress ? { reply_to: emailAddress } : {}),

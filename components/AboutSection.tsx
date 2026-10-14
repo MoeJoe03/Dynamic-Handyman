@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
+import { businessConfig } from '@/config/business';
 
 export function AboutSection({ homeImages }: { homeImages: HomeImageOverrides }) {
   return (
@@ -28,7 +29,7 @@ export function AboutSection({ homeImages }: { homeImages: HomeImageOverrides })
           {/* Right Column: Paragraph narrative & Workmanship Photo */}
           <div className="lg:col-span-6 flex flex-col justify-start">
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal mb-4">
-              Dynamic Handyman (PTY) LTD provides dependable property maintenance, repairs and renovations in Alberton and surrounding areas. From everyday repairs to larger improvements, our goal is simple: provide reliable workmanship through one team that can handle multiple trades.
+              {businessConfig.legalName} provides dependable property maintenance, repairs and renovations in Alberton and surrounding areas. From everyday repairs to larger improvements, our goal is simple: provide reliable workmanship through one team that can handle multiple trades.
             </p>
             <Link href="/about" className="mb-8 self-start text-sm font-bold text-[#123E61] underline underline-offset-4 hover:text-[#0C2B44] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">
               Learn More About Dynamic Handyman

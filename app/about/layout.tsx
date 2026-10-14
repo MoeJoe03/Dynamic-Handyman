@@ -1,25 +1,26 @@
 import type { Metadata } from 'next';
+import { businessConfig } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: 'About Dynamic Handyman | Alberton Contractor',
+  title: `About ${businessConfig.brandName} | Alberton Contractor`,
   description:
-    'Learn about Dynamic Handyman, an Alberton-based contractor providing multi-trade repairs, property maintenance and renovations in Alberton and nearby suburbs.',
+    businessConfig.metadata.aboutDescription,
   alternates: {
-    canonical: 'https://dynamichandyman.co.za/about',
+    canonical: `${businessConfig.websiteUrl}/about`,
   },
   openGraph: {
-    title: 'About Dynamic Handyman | Alberton Contractor',
+    title: `About ${businessConfig.brandName} | Alberton Contractor`,
     description:
-      'Meet Dynamic Handyman, an Alberton-based contractor helping homeowners, landlords and businesses with repairs, maintenance and renovations.',
+      businessConfig.metadata.aboutSocialDescription,
     type: 'website',
-    url: 'https://dynamichandyman.co.za/about',
+    url: `${businessConfig.websiteUrl}/about`,
     images: ['/dynamic-handyman-about-og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Dynamic Handyman | Alberton Contractor',
+    title: `About ${businessConfig.brandName} | Alberton Contractor`,
     description:
-      'Meet Dynamic Handyman, an Alberton-based contractor helping homeowners, landlords and businesses with repairs, maintenance and renovations.',
+      businessConfig.metadata.aboutSocialDescription,
     images: ['/dynamic-handyman-about-og.png'],
   },
 };

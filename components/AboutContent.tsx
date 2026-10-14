@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Building2, Check, Home, KeyRound, MapPin, MessageCircle, Phone } from 'lucide-react';
-import { contactPhone } from '@/config/contact';
+import { businessConfig } from '@/config/business';
 import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import { aggregateReviewSummary } from '@/data/reviews';
 import { ElectricalSvg, PlumbingSvg, PaintingSvg, CarpentrySvg, MaintenanceSvg, PalisadesCarportsSvg } from '@/components/icons/TradeSvgs';
@@ -41,7 +41,7 @@ const reasons = [
   { title: 'Multiple Trades Under One Company', text: 'Access a range of handyman, maintenance and renovation services without having to search for a separate provider for every task.' },
   { title: 'Small and Large Projects', text: 'From minor household repairs to substantial property improvements, we welcome enquiries across a broad range of project sizes.' },
   { title: 'Residential & Commercial Work', text: 'Our services are available to homeowners, landlords and commercial clients.' },
-  { title: 'Locally Based in Alberton', text: 'Established in 2020 and operating from Eden Park, Alberton, we serve customers across the surrounding communities.' },
+  { title: 'Locally Based in Alberton', text: `Established in ${businessConfig.establishedYear} and operating from ${businessConfig.address.addressLocality}, ${businessConfig.address.city}, we serve customers across the surrounding communities.` },
   { title: 'A Clear Starting Process', text: 'Get in touch, explain what you need and request a quote before deciding how to proceed.' },
 ];
 
@@ -56,12 +56,12 @@ export function AboutContent() {
         <div className={`${container} grid gap-10 lg:grid-cols-[1fr_320px] lg:items-center lg:gap-20`}>
           <div>
             <SectionLabel>Alberton based. Property focused.</SectionLabel>
-            <h2 className={heading}>Reliable Property Maintenance &amp; Renovations in Alberton Since 2020</h2>
+            <h2 className={heading}>Reliable Property Maintenance &amp; Renovations in Alberton Since {businessConfig.establishedYear}</h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-              <p>Dynamic Handyman (Pty) Ltd is an Alberton-based handyman, property maintenance and renovation company founded by Ryan in 2020.</p>
+              <p>{businessConfig.legalName} is an Alberton-based handyman, property maintenance and renovation company founded by {businessConfig.founder} in {businessConfig.establishedYear}.</p>
               <p>We help homeowners, landlords and commercial clients maintain, repair and improve their properties through a wide range of practical building and maintenance services.</p>
               <p>From smaller household repairs to larger renovation and commercial maintenance projects, we bring multiple trades together under one company, making it easier to get the work you need done.</p>
-              <p>Based in Eden Park, Alberton, we serve clients across our main local service areas and take on selected projects elsewhere in Gauteng.</p>
+              <p>Based in {businessConfig.address.addressLocality}, {businessConfig.address.city}, we serve clients across our main local service areas and take on selected projects elsewhere in Gauteng.</p>
             </div>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/contact" className={`${button} bg-[#123E61] text-white hover:bg-[#0C2B44]`}>Request a Quote <ArrowUpRight size={16} aria-hidden="true" /></Link>
@@ -72,11 +72,11 @@ export function AboutContent() {
             <span className="absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-[#123E61]" aria-hidden="true" />
             <span className="absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-[#123E61]" aria-hidden="true" />
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#19547E]">Established</p>
-            <p className="mt-2 text-7xl font-extrabold leading-none tracking-tighter text-[#123E61] sm:text-8xl">2020</p>
+            <p className="mt-2 text-7xl font-extrabold leading-none tracking-tighter text-[#123E61] sm:text-8xl">{businessConfig.establishedYear}</p>
             <div className="my-7 h-px bg-[#D9DEE2]" />
             <p className="text-2xl font-extrabold leading-tight text-[#123E61]">Rely on our Ability!</p>
-            <p className="mt-4 flex items-center gap-2 text-sm text-slate-600"><MapPin size={16} aria-hidden="true" /> Eden Park, Alberton</p>
-            <p className="mt-2 text-xs text-slate-500">Founded by Ryan · Dynamic Handyman (Pty) Ltd</p>
+            <p className="mt-4 flex items-center gap-2 text-sm text-slate-600"><MapPin size={16} aria-hidden="true" /> {businessConfig.address.addressLocality}, {businessConfig.address.city}</p>
+            <p className="mt-2 text-xs text-slate-500">Founded by {businessConfig.founder} · {businessConfig.legalName}</p>
           </div>
         </div>
       </section>
@@ -87,7 +87,7 @@ export function AboutContent() {
             <SectionLabel>Our Story</SectionLabel>
             <h2 className={heading}>Built Around Practical Solutions</h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-              <p>Dynamic Handyman was established in 2020 by Ryan with a straightforward purpose: to provide customers with a dependable way to manage property repairs, improvements and renovations.</p>
+              <p>{businessConfig.brandName} was established in {businessConfig.establishedYear} by {businessConfig.founder} with a straightforward purpose: to provide customers with a dependable way to manage property repairs, improvements and renovations.</p>
               <p>Properties require ongoing attention. Sometimes it’s a small repair that needs sorting out. Other times, it’s a larger project involving several different trades.</p>
               <p>Dynamic Handyman brings these services together, helping customers find practical solutions without having to approach a different business for every type of work.</p>
               <p>Today, the company works with homeowners, landlords and commercial clients across Alberton and surrounding communities.</p>
@@ -151,8 +151,8 @@ export function AboutContent() {
 
       <section className="py-16 sm:py-24">
         <div className={`${container} grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-16`}>
-          <div><SectionLabel>Where We Work</SectionLabel><h2 className={heading}>Local Handyman Services in Alberton &amp; Nearby Areas</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients across Alberton and nearby suburbs.</p><h3 className="mt-5 text-sm font-semibold text-[#123E61]">Main Service Locations</h3><ul className="mt-4 flex flex-wrap gap-2">{mainServiceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><h3 className="mt-6 text-sm font-semibold text-[#123E61]">Wider Service Areas</h3><p className="mt-2 text-sm leading-relaxed text-slate-600">Based in Alberton, Dynamic Handyman also travels to:</p><ul className="mt-4 flex flex-wrap gap-2">{widerServiceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><p className="mt-6 text-sm leading-relaxed text-slate-600">If your property is in one of these areas, contact us to discuss your project and confirm service availability.</p></div>
-          <div className="self-start border border-[#D9DEE2] border-t-2 border-t-[#123E61] p-7 sm:p-8"><MapPin size={32} strokeWidth={1.5} className="text-[#19547E]" aria-hidden="true" /><h3 className="mt-6 text-xl font-bold text-[#123E61]">Based in Alberton</h3><address className="mt-4 text-sm not-italic leading-7 text-slate-600">Dynamic Handyman (Pty) Ltd<br />10 Vauxhall Street<br />Eden Park, Alberton, 1458</address><Link href="/contact" className={`${button} mt-6 w-full bg-[#123E61] text-center text-white hover:bg-[#0C2B44]`}>Contact Dynamic Handyman <ArrowUpRight className="shrink-0" size={16} aria-hidden="true" /></Link></div>
+          <div><SectionLabel>Where We Work</SectionLabel><h2 className={heading}>Local Handyman Services in Alberton &amp; Nearby Areas</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">{businessConfig.brandName} is based at {businessConfig.address.formatted}, serving residential and commercial clients across Alberton and nearby suburbs.</p><h3 className="mt-5 text-sm font-semibold text-[#123E61]">Main Service Locations</h3><ul className="mt-4 flex flex-wrap gap-2">{mainServiceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><h3 className="mt-6 text-sm font-semibold text-[#123E61]">Wider Service Areas</h3><p className="mt-2 text-sm leading-relaxed text-slate-600">Based in Alberton, Dynamic Handyman also travels to:</p><ul className="mt-4 flex flex-wrap gap-2">{widerServiceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><p className="mt-6 text-sm leading-relaxed text-slate-600">If your property is in one of these areas, contact us to discuss your project and confirm service availability.</p></div>
+          <div className="self-start border border-[#D9DEE2] border-t-2 border-t-[#123E61] p-7 sm:p-8"><MapPin size={32} strokeWidth={1.5} className="text-[#19547E]" aria-hidden="true" /><h3 className="mt-6 text-xl font-bold text-[#123E61]">Based in Alberton</h3><address className="mt-4 text-sm not-italic leading-7 text-slate-600">{businessConfig.legalName}<br />{businessConfig.address.streetAddress}<br />{businessConfig.address.addressLocality}, {businessConfig.address.city}, {businessConfig.address.postalCode}</address><Link href="/contact" className={`${button} mt-6 w-full bg-[#123E61] text-center text-white hover:bg-[#0C2B44]`}>Contact Dynamic Handyman <ArrowUpRight className="shrink-0" size={16} aria-hidden="true" /></Link></div>
         </div>
       </section>
 
@@ -167,7 +167,7 @@ export function AboutContent() {
         <div className={container}>
           <div className="grid gap-8 border border-[#0C2B44] bg-[#123E61] p-7 text-white sm:p-10 lg:grid-cols-[1fr_280px] lg:items-center lg:gap-16 lg:p-14">
             <div><SectionLabel light>Let’s Talk About Your Project</SectionLabel><h2 className="text-3xl font-extrabold uppercase leading-tight tracking-tight sm:text-4xl">Your Property.<br />Our Range of Skills.</h2><p className="mt-6 text-sm leading-relaxed text-slate-200">Need a handyman in Alberton or a nearby suburb? Planning repairs, maintenance or renovations for your home, rental property or business?</p><p className="mt-4 text-sm leading-relaxed text-slate-200">Dynamic Handyman is ready to discuss your requirements, whether the job is small, large or involves several trades.</p><a href={aggregateReviewSummary.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sky-200 underline decoration-sky-200/50 underline-offset-4 transition-colors hover:text-white">Read Our Google Reviews <ArrowUpRight size={15} aria-hidden="true" /></a><p className="mt-3 text-lg font-bold text-sky-200">Rely on our Ability!</p></div>
-            <div className="flex flex-col gap-3"><Link href="/contact" className={`${button} bg-white text-[#123E61] hover:bg-sky-50`}>Request a Quote <ArrowUpRight size={16} aria-hidden="true" /></Link><a href={contactPhone.telHref} className={`${button} border border-white/40 text-white hover:bg-white/10`}><Phone size={16} aria-hidden="true" /> Call Us</a><a href={contactPhone.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${button} border border-white/40 text-white hover:bg-white/10`}><MessageCircle size={16} aria-hidden="true" /> WhatsApp Us</a><p className="mt-2 text-center font-mono text-xs text-sky-200">{contactPhone.display}</p></div>
+            <div className="flex flex-col gap-3"><Link href="/contact" className={`${button} bg-white text-[#123E61] hover:bg-sky-50`}>Request a Quote <ArrowUpRight size={16} aria-hidden="true" /></Link><a href={businessConfig.phone.telHref} className={`${button} border border-white/40 text-white hover:bg-white/10`}><Phone size={16} aria-hidden="true" /> Call Us</a><a href={businessConfig.phone.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${button} border border-white/40 text-white hover:bg-white/10`}><MessageCircle size={16} aria-hidden="true" /> WhatsApp Us</a><p className="mt-2 text-center font-mono text-xs text-sky-200">{businessConfig.phone.display}</p></div>
           </div>
         </div>
       </section>

@@ -6,27 +6,25 @@ import { QuoteForm } from '@/components/QuoteForm';
 import { servicesData } from '@/data/services';
 import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import { BreadcrumbNav } from '@/components/BreadcrumbNav';
+import { businessConfig } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: 'Contact Dynamic Handyman | Alberton Quotes',
-  description:
-    'Contact Dynamic Handyman for handyman services, repairs, maintenance and renovations in Alberton and nearby suburbs. Call, WhatsApp or request a quote online.',
+  title: `Contact ${businessConfig.brandName} | Alberton Quotes`,
+  description: businessConfig.metadata.contactDescription,
   alternates: {
-    canonical: 'https://dynamichandyman.co.za/contact',
+    canonical: `${businessConfig.websiteUrl}/contact`,
   },
   openGraph: {
-    title: 'Contact Dynamic Handyman | Alberton Quotes',
-    description:
-      'Request a quote for handyman services, repairs, maintenance and renovations in Alberton and nearby suburbs.',
+    title: `Contact ${businessConfig.brandName} | Alberton Quotes`,
+    description: businessConfig.metadata.contactSocialDescription,
     type: 'website',
-    url: 'https://dynamichandyman.co.za/contact',
+    url: `${businessConfig.websiteUrl}/contact`,
     images: ['/dynamic-handyman-contact-og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Dynamic Handyman | Alberton Quotes',
-    description:
-      'Request a quote for handyman services, repairs, maintenance and renovations in Alberton and nearby suburbs.',
+    title: `Contact ${businessConfig.brandName} | Alberton Quotes`,
+    description: businessConfig.metadata.contactSocialDescription,
     images: ['/dynamic-handyman-contact-og.png'],
   },
 };
@@ -109,7 +107,7 @@ export default async function ContactPage({
                 Areas We Serve
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">
-                Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients in Alberton and surrounding areas.
+                {businessConfig.brandName} is based at {businessConfig.address.formatted}, serving residential and commercial clients in Alberton and surrounding areas.
               </p>
               <h3 className="mt-5 text-sm font-bold text-[#123E61]">Main Service Locations</h3>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label="Areas served">
@@ -132,7 +130,7 @@ export default async function ContactPage({
             </div>
             <div className="self-start overflow-hidden border border-[#D9DEE2] border-t-2 border-t-[#123E61] bg-[#F8F9F9]">
               <iframe
-                title="Map showing Dynamic Handyman in Eden Park, Alberton"
+                title={`Map showing ${businessConfig.brandName} in ${businessConfig.address.addressLocality}, ${businessConfig.address.city}`}
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3574.3120721831256!2d28.124960669348297!3d-26.381103654208978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e951dea742589e3%3A0x7545b2471eeae154!2sDynamic%20Handyman%20(Pty)%20Ltd!5e0!3m2!1sen!2sza!4v1791984196083!5m2!1sen!2sza"
                 width="600"
                 height="450"

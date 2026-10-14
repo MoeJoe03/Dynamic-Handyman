@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { contactPhone } from '@/config/contact';
-import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
+import { businessConfig, operatingHoursSchema } from '@/config/business';
 import './globals.css';
 
 const siteSans = localFont({
@@ -19,15 +18,13 @@ const siteMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Handyman Services in Alberton | Dynamic Handyman',
-  description:
-    'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote for electrical, plumbing, painting and more.',
-  authors: [{ name: 'Dynamic Handyman (PTY) LTD' }],
-  metadataBase: new URL('https://dynamichandyman.co.za'),
+  title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+  description: businessConfig.metadata.homeDescription,
+  authors: [{ name: businessConfig.legalName }],
+  metadataBase: new URL(businessConfig.websiteUrl),
   openGraph: {
-    title: 'Handyman Services in Alberton | Dynamic Handyman',
-    description:
-      'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote for electrical, plumbing, painting and more.',
+    title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+    description: businessConfig.metadata.homeDescription,
     images: [{
       url: '/dynamic-handyman-home-og.png',
       width: 1730,
@@ -36,14 +33,13 @@ export const metadata: Metadata = {
     }],
     type: 'website',
     locale: 'en_ZA',
-    url: 'https://dynamichandyman.co.za',
-    siteName: 'Dynamic Handyman (PTY) LTD',
+    url: businessConfig.websiteUrl,
+    siteName: businessConfig.legalName,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Handyman Services in Alberton | Dynamic Handyman',
-    description:
-      'Dynamic Handyman provides reliable handyman services, home repairs and renovations in Alberton and nearby suburbs. Request a quote for electrical, plumbing, painting and more.',
+    title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+    description: businessConfig.metadata.homeDescription,
     images: ['/dynamic-handyman-home-og.png'],
   },
   robots: {
@@ -60,26 +56,24 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'HomeAndConstructionBusiness',
-    name: 'Dynamic Handyman (PTY) LTD',
-    description:
-      'Professional handyman services, home repairs, property maintenance and renovations. Based in Alberton and serving surrounding Gauteng areas.',
+    name: businessConfig.legalName,
+    description: businessConfig.businessDescription,
+    foundingDate: String(businessConfig.establishedYear),
+    founder: { '@type': 'Person', name: businessConfig.founder },
     slogan: 'Rely On Our Ability.',
-    areaServed: [...mainServiceAreas, ...widerServiceAreas],
-    telephone: contactPhone.international,
-    email: 'admin@dynamichandyman.co.za',
+    areaServed: businessConfig.serviceAreas,
+    telephone: businessConfig.phone.international,
+    email: businessConfig.email.address,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '10 Vauxhall Street',
-      addressLocality: 'Eden Park',
-      addressRegion: 'Gauteng',
-      postalCode: '1458',
-      addressCountry: 'ZA',
+      streetAddress: businessConfig.address.streetAddress,
+      addressLocality: businessConfig.address.addressLocality,
+      addressRegion: businessConfig.address.addressRegion,
+      postalCode: businessConfig.address.postalCode,
+      addressCountry: businessConfig.address.addressCountry,
     },
-    sameAs: ['https://www.facebook.com/dynamichandyman/'],
-    currenciesAccepted: 'ZAR',
-    paymentAccepted: 'EFT, Cash, Credit Card',
-    openingHours: ['Mo-Th 08:00-17:00', 'Fr 08:00-16:00', 'Sa 09:00-14:00'],
-    priceRange: '$$',
+    sameAs: [businessConfig.facebookUrl],
+    openingHours: operatingHoursSchema,
   };
 
   return (

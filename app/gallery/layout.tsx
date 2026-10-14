@@ -1,18 +1,19 @@
 import type { Metadata } from 'next';
+import { businessConfig } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: 'Our Work in Alberton | Dynamic Handyman',
+  title: `Our Work in Alberton | ${businessConfig.brandName}`,
   description:
-    'View Dynamic Handyman projects in Alberton, including electrical repairs, plumbing, painting, carpentry, paving and property renovations.',
+    businessConfig.metadata.galleryDescription,
   alternates: {
-    canonical: 'https://dynamichandyman.co.za/gallery',
+    canonical: `${businessConfig.websiteUrl}/gallery`,
   },
   openGraph: {
-    title: 'Our Work in Alberton | Dynamic Handyman',
+    title: `Our Work in Alberton | ${businessConfig.brandName}`,
     description:
-      'See completed Dynamic Handyman work in Alberton, from electrical repairs and plumbing to painting, carpentry, paving and renovations.',
+      businessConfig.metadata.gallerySocialDescription,
     type: 'website',
-    url: 'https://dynamichandyman.co.za/gallery',
+    url: `${businessConfig.websiteUrl}/gallery`,
     images: [{
       url: '/dynamic-handyman-our-work-og.png',
       width: 1200,
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Our Work in Alberton | Dynamic Handyman',
+    title: `Our Work in Alberton | ${businessConfig.brandName}`,
     description:
-      'See completed Dynamic Handyman work in Alberton, from electrical repairs and plumbing to painting, carpentry, paving and renovations.',
+      businessConfig.metadata.gallerySocialDescription,
     images: ['/dynamic-handyman-our-work-og.png'],
   },
 };

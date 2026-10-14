@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import { contactPhone } from '@/config/contact';
+import React, { useEffect, useRef, useState } from 'react';
+import { businessConfig } from '@/config/business';
 import { servicesData } from '@/data/services';
 
 export function QuoteForm({
-  serviceArea = 'Alberton and nearby suburbs',
+  serviceArea = businessConfig.serviceAreaSummary,
   initialServiceId,
 }: {
   serviceArea?: string;
   initialServiceId?: string;
 }) {
-  const initialServiceTitle = servicesData.find((service) => service.id === initialServiceId)?.title ?? servicesData[0].title;
+  const initialServiceTitle = servicesData.find((service) => service.id === initialServiceId)?.title ?? '';
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
@@ -25,8 +25,17 @@ export function QuoteForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [website, setWebsite] = useState('');
+  const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const focusErrorSummary = useRef(false);
   const sending = useRef(false);
   const submission = useRef<{ payload: string; id: string } | null>(null);
+
+  useEffect(() => {
+    if (focusErrorSummary.current && Object.keys(errors).length > 0) {
+      errorSummaryRef.current?.focus();
+      focusErrorSummary.current = false;
+    }
+  }, [errors]);
 
   const validate = () => {
     const errs: { [key: string]: string } = {};
@@ -55,7 +64,9 @@ export function QuoteForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (sending.current || !validate()) return;
+    if (sending.current) return;
+    focusErrorSummary.current = true;
+    if (!validate()) return;
 
     sending.current = true;
     setIsSubmitting(true);
@@ -107,8 +118,8 @@ export function QuoteForm({
   };
 
   const getWhatsAppMessageUrl = () => {
-    const text = `Hello Dynamic Handyman, my name is ${formData.fullName || 'Client'}. I would like to request an estimate for ${formData.serviceCategory}. Details: ${formData.projectDetails || 'Please contact me.'}`;
-    return `${contactPhone.whatsappUrl}?text=${encodeURIComponent(text)}`;
+    const text = `Hello Dynamic Handyman, my name is ${formData.fullName || 'Client'}. I would like to request an estimate for ${formData.serviceCategory || 'a service'}. Details: ${formData.projectDetails || 'Please contact me.'}`;
+    return `${businessConfig.phone.whatsappUrl}?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -130,7 +141,7 @@ export function QuoteForm({
                 Phone
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                <a href={contactPhone.telHref}>{contactPhone.display}</a>
+                <a href={businessConfig.phone.telHref}>{businessConfig.phone.display}</a>
               </p>
             </div>
 
@@ -139,7 +150,7 @@ export function QuoteForm({
                 Direct Email
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
-                <a href="mailto:admin@dynamichandyman.co.za">admin@dynamichandyman.co.za</a>
+                <a href={businessConfig.email.href}>{businessConfig.email.address}</a>
               </p>
             </div>
 
@@ -157,8 +168,8 @@ export function QuoteForm({
                 Address
               </span>
               <address className="mt-1 text-base font-bold not-italic leading-relaxed text-[#30323A]">
-                10 Vauxhall Street<br />
-                Eden Park, Alberton, 1458
+                {businessConfig.address.streetAddress}<br />
+                {businessConfig.address.addressLocality}, {businessConfig.address.city}, {businessConfig.address.postalCode}
               </address>
             </div>
 
@@ -167,10 +178,9 @@ export function QuoteForm({
                 Operating Hours
               </span>
               <p className="text-sm font-bold text-[#30323A] mt-1">
-                Mon – Thu: 8:00 am – 5:00 pm <br />
-                Fri: 8:00 am – 4:00 pm <br />
-                <span>Sat: 9:00 am – 2:00 pm</span> <br />
-                <span>Sun: Closed</span>
+                {businessConfig.operatingHours.map(({ label, display }) => (
+                  <React.Fragment key={label}>{label}: {display}<br /></React.Fragment>
+                ))}
               </p>
             </div>
           </div>
@@ -178,7 +188,7 @@ export function QuoteForm({
           {/* Instant WhatsApp CTA */}
           <div className="order-2 mt-8 lg:order-4 lg:mt-8">
             <a
-              href={contactPhone.whatsappUrl}
+              href={businessConfig.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-3 px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-widest transition-all shadow-sm"
@@ -213,6 +223,27 @@ export function QuoteForm({
                 </p>
 
                 <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+                  {Object.keys(errors).length > 0 && (
+                    <div
+                      ref={errorSummaryRef}
+                      tabIndex={-1}
+                      role="alert"
+                      aria-live="assertive"
+                      aria-atomic="true"
+                      className="border border-rose-300 bg-rose-950/40 p-4 text-sm text-rose-100 focus:outline-2 focus:outline-offset-2 focus:outline-rose-300"
+                    >
+                      <p className="font-bold">Please correct the following fields:</p>
+                      <ul className="mt-2 list-inside list-disc space-y-1">
+                        {Object.entries(errors).map(([field, message]) => (
+                          <li key={field}>
+                            <a className="underline underline-offset-2" href={`#${field}`}>
+                              {message}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   <div className="hidden" aria-hidden="true">
                     <label htmlFor="quoteWebsite">Leave this field empty</label>
                     <input id="quoteWebsite" name="website" autoComplete="off" tabIndex={-1} value={website} onChange={(e) => setWebsite(e.target.value)} />
@@ -229,6 +260,9 @@ export function QuoteForm({
                     <input
                       type="text"
                       id="fullName"
+                      aria-required="true"
+                      aria-invalid={Boolean(errors.fullName)}
+                      aria-describedby={errors.fullName ? 'fullName-error' : undefined}
                       maxLength={120}
                       value={formData.fullName}
                       onChange={(e) => {
@@ -241,7 +275,7 @@ export function QuoteForm({
                       } px-4.5 py-3.5 text-sm focus:ring-2 focus:ring-sky-400 focus:border-white outline-none transition-colors shadow-inner`}
                     />
                     {errors.fullName && (
-                      <p className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.fullName}</p>
+                      <p id="fullName-error" className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.fullName}</p>
                     )}
                   </div>
 
@@ -258,6 +292,9 @@ export function QuoteForm({
                       <input
                         type="tel"
                         id="phoneNumber"
+                        aria-required="true"
+                        aria-invalid={Boolean(errors.phoneNumber)}
+                        aria-describedby={errors.phoneNumber ? 'phoneNumber-error' : undefined}
                         maxLength={18}
                         value={formData.phoneNumber}
                         onChange={(e) => {
@@ -270,7 +307,7 @@ export function QuoteForm({
                         } px-4.5 py-3.5 text-sm focus:ring-2 focus:ring-sky-400 focus:border-white outline-none transition-colors shadow-inner`}
                       />
                       {errors.phoneNumber && (
-                        <p className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.phoneNumber}</p>
+                        <p id="phoneNumber-error" className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.phoneNumber}</p>
                       )}
                     </div>
 
@@ -285,6 +322,9 @@ export function QuoteForm({
                       <input
                         type="email"
                         id="emailAddress"
+                        aria-required="false"
+                        aria-invalid={Boolean(errors.emailAddress)}
+                        aria-describedby={errors.emailAddress ? 'emailAddress-error' : undefined}
                         maxLength={254}
                         value={formData.emailAddress}
                         onChange={(e) => {
@@ -297,7 +337,7 @@ export function QuoteForm({
                         } px-4.5 py-3.5 text-sm focus:ring-2 focus:ring-sky-400 focus:border-white outline-none transition-colors shadow-inner`}
                       />
                       {errors.emailAddress && (
-                        <p className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.emailAddress}</p>
+                        <p id="emailAddress-error" className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.emailAddress}</p>
                       )}
                     </div>
                   </div>
@@ -312,6 +352,9 @@ export function QuoteForm({
                     </label>
                     <select
                       id="serviceCategory"
+                      aria-required="true"
+                      aria-invalid={Boolean(errors.serviceCategory)}
+                      aria-describedby={errors.serviceCategory ? 'serviceCategory-error' : undefined}
                       value={formData.serviceCategory}
                       onChange={(e) => {
                         setFormData({ ...formData, serviceCategory: e.target.value });
@@ -321,13 +364,14 @@ export function QuoteForm({
                         errors.serviceCategory ? 'border-red-400 ring-2 ring-red-400' : 'border-[#D9DEE2]'
                       } px-4.5 py-3.5 text-sm focus:ring-2 focus:ring-sky-400 focus:border-white outline-none transition-colors shadow-inner`}
                     >
+                      <option value="">Select a service</option>
                       {servicesData.map((service) => (
                         <option key={service.id} value={service.title}>{service.title}</option>
                       ))}
                       <option value="Multiple Combined Trades">Multiple Combined Trades</option>
                     </select>
                     {errors.serviceCategory && (
-                      <p className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.serviceCategory}</p>
+                      <p id="serviceCategory-error" className="text-rose-300 text-[11px] mt-1 font-semibold">{errors.serviceCategory}</p>
                     )}
                   </div>
 
@@ -349,6 +393,10 @@ export function QuoteForm({
                       className="w-full bg-white text-[#30323A] border border-[#D9DEE2] px-4.5 py-3.5 text-sm focus:ring-2 focus:ring-sky-400 focus:border-white outline-none transition-colors resize-y min-h-[130px] shadow-inner"
                     />
                   </div>
+
+                  <p className="text-xs leading-relaxed text-slate-200">
+                    We’ll use your contact details only to respond to your quote request and discuss your project.
+                  </p>
 
                   {/* Submit Button & WhatsApp Quick Link */}
                   {submitError && <p role="alert" className="text-sm text-rose-200">{submitError}</p>}

@@ -1,24 +1,6 @@
-export const mainServiceAreas = [
-  'Alberton',
-  'Vauxhall',
-  'Meyersdal',
-  'Brackendowns',
-  'Brackenhurst',
-  'Randhart',
-  'New Redruth',
-  'Germiston',
-  'Boksburg',
-  'Johannesburg South',
-];
+import { businessConfig } from '@/config/business';
 
-export const widerServiceAreas = [
-  'Sandton',
-  'Randburg',
-  'Roodepoort',
-  'Randfontein',
-  'Vereeniging',
-  'Pretoria',
-];
-
-// Keep the complete service footprint available for structured data.
-export const serviceAreas = [...mainServiceAreas, ...widerServiceAreas];
+// Compatibility exports; business.ts remains the source of truth.
+export const mainServiceAreas = businessConfig.mainServiceAreas;
+export const widerServiceAreas = businessConfig.widerServiceAreas;
+export const serviceAreas = businessConfig.serviceAreas;

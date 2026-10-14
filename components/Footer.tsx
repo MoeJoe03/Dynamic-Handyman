@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Logo } from './Logo';
-import { contactPhone } from '@/config/contact';
+import { businessConfig } from '@/config/business';
 import { aggregateReviewSummary } from '@/data/reviews';
 import { AnimatedFooterArtwork } from '@/components/layout/AnimatedFooterArtwork';
 
@@ -19,7 +19,7 @@ function FooterContent({ currentYear, serviceArea }: { currentYear: number; serv
             </p>
 
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              Dynamic Handyman (PTY) LTD provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping and careful workmanship in {serviceArea}.
+              {businessConfig.legalName} provides turnkey property solutions with multi-trade specialists. High standards, transparent scoping and careful workmanship in {serviceArea}.
             </p>
 
             <p className="text-xs font-bold tracking-wider text-white pt-1">
@@ -83,13 +83,13 @@ function FooterContent({ currentYear, serviceArea }: { currentYear: number; serv
             </h5>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Tel:</span>
-              <a href={contactPhone.telHref} className="hover:text-white transition-colors">
-                {contactPhone.display}
+                <a href={businessConfig.phone.telHref} className="hover:text-white transition-colors">
+                {businessConfig.phone.display}
               </a>
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Email:</span>
-              <a href="mailto:admin@dynamichandyman.co.za">admin@dynamichandyman.co.za</a>
+              <a href={businessConfig.email.href}>{businessConfig.email.address}</a>
             </p>
             <p className="text-xs text-slate-300">
               <span className="block text-slate-400 text-[10px] uppercase font-bold">Operating Scope:</span>
@@ -123,7 +123,7 @@ function FooterContent({ currentYear, serviceArea }: { currentYear: number; serv
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 font-mono">
           <div>
-            © {currentYear} Dynamic Handyman (PTY) LTD. All rights reserved.
+                © {currentYear} {businessConfig.legalName}. All rights reserved.
           </div>
           <div className="mt-4 sm:mt-0 flex space-x-6">
             <span>Maintenance • Repairs • Renovations</span>
@@ -134,7 +134,7 @@ function FooterContent({ currentYear, serviceArea }: { currentYear: number; serv
   );
 }
 
-export function Footer({ serviceArea = 'Alberton and nearby suburbs' }: { serviceArea?: string }) {
+export function Footer({ serviceArea = businessConfig.serviceAreaSummary }: { serviceArea?: string }) {
   const currentYear = new Date().getFullYear();
 
   return (
