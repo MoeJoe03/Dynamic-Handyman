@@ -17,6 +17,17 @@ const inquirySchema = z.object({
 
 const deliveryError = 'Your request could not be sent. Please try again or contact us by phone or WhatsApp.';
 
+function formatInquiryReference(requestId: string, now = new Date()) {
+  const date = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Africa/Johannesburg',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(now).replaceAll('-', '');
+  const shortCode = requestId.replaceAll('-', '').slice(0, 6).toUpperCase();
+  return `DH-${date}-${shortCode}`;
+}
+
 export async function POST(request: NextRequest) {
   const origin = request.headers.get('origin');
   if (!origin || origin !== new URL(request.url).origin) {
@@ -49,6 +60,7 @@ export async function POST(request: NextRequest) {
   }
 
   const { fullName, phoneNumber, emailAddress, serviceCategory, projectDetails, requestId } = parsed.data;
+  const inquiryReference = formatInquiryReference(requestId);
   const text = [
     'New quote inquiry — Dynamic Handyman',
     '',
@@ -60,7 +72,7 @@ export async function POST(request: NextRequest) {
     'Project details:',
     projectDetails || 'No project details provided.',
     '',
-    `Inquiry reference: ${requestId}`,
+    `Inquiry reference: ${inquiryReference}`,
     emailAddress ? 'Reply to this email to contact the customer.' : 'The customer did not provide an email address.',
   ].join('\n');
 
