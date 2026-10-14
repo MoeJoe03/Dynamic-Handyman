@@ -1,27 +1,50 @@
-import { serviceAreas } from '@/config/service-areas';
+import Link from 'next/link';
+import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 
 export function ServiceAreaSection() {
   return (
-    <section className="border-t border-[#D9DEE2] bg-[#f5f8fa] py-16 lg:py-24" aria-labelledby="service-area-heading">
+    <section className="bg-white pt-2 pb-14 sm:pt-3 sm:pb-20" aria-labelledby="service-area-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <h2 id="service-area-heading" className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">
-            Handyman Services in Alberton and Surrounding Areas
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg">
-            Dynamic Handyman is based in Alberton and provides home repairs, property maintenance and renovation services in Alberton and surrounding areas.
-          </p>
-          <p className="mt-3 text-base leading-relaxed text-slate-700">
-            <a href="/contact" className="font-semibold text-[#123E61] underline underline-offset-4 hover:text-[#0C2B44] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">Contact us</a> to confirm whether we cover your suburb.
-          </p>
+        <div className="bg-[#F4F7F9] p-6 sm:p-9 lg:p-12">
+          <div className="max-w-4xl">
+            <p className="mb-3 flex items-center gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#19547E]">
+              <span className="h-2 w-2 rounded-full bg-[#00B8E8]" aria-hidden="true" />
+              Based in Alberton · Serving Gauteng
+            </p>
+            <h2 id="service-area-heading" className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">
+              Handyman Services in Alberton and Surrounding Areas
+            </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-base">
+              Dynamic Handyman is based in Alberton and provides handyman services, home repairs, property maintenance and renovations across Alberton, nearby suburbs and surrounding Gauteng areas.
+            </p>
+            <Link href="/contact" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#123E61] underline decoration-sky-500 underline-offset-4 transition-colors hover:text-[#19547E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">
+              Contact us to confirm your suburb <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          <div className="mt-8 space-y-7 border-t border-[#D9DEE2] pt-7">
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wide text-[#123E61]">Main service locations</h3>
+              <ul className="mt-5 flex flex-wrap gap-2" aria-label="Main service areas">
+                {mainServiceAreas.map((area) => (
+                  <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm font-semibold text-[#123E61] transition-colors hover:border-[#19547E] hover:bg-sky-50">
+                    {area}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wide text-[#123E61]">Wider service areas</h3>
+              <ul className="mt-5 flex flex-wrap gap-2" aria-label="Wider service areas">
+                {widerServiceAreas.map((area) => (
+                  <li key={area} className="border border-[#D9DEE2] bg-white px-3 py-2 text-sm font-semibold text-[#123E61] transition-colors hover:border-[#19547E] hover:bg-sky-50">
+                    {area}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-        <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-[#D9DEE2] pt-8 sm:grid-cols-3 lg:grid-cols-5" aria-label="Areas served">
-          {serviceAreas.map((area) => (
-            <li key={area} className="border-l-2 border-sky-500 py-1 pl-3 text-sm font-semibold text-[#30323A] sm:text-base">
-              {area}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

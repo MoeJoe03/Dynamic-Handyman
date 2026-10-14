@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Building2, Check, Home, KeyRound, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { contactPhone } from '@/config/contact';
-import { serviceAreas } from '@/config/service-areas';
+import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import { aggregateReviewSummary } from '@/data/reviews';
 import { ElectricalSvg, PlumbingSvg, PaintingSvg, CarpentrySvg, MaintenanceSvg, PalisadesCarportsSvg } from '@/components/icons/TradeSvgs';
 
@@ -61,7 +61,7 @@ export function AboutContent() {
               <p>Dynamic Handyman (Pty) Ltd is an Alberton-based handyman, property maintenance and renovation company founded by Ryan in 2020.</p>
               <p>We help homeowners, landlords and commercial clients maintain, repair and improve their properties through a wide range of practical building and maintenance services.</p>
               <p>From smaller household repairs to larger renovation and commercial maintenance projects, we bring multiple trades together under one company, making it easier to get the work you need done.</p>
-              <p>Based in Eden Park, Alberton, we serve clients throughout Alberton, Johannesburg South and surrounding areas.</p>
+              <p>Based in Eden Park, Alberton, we serve clients across our main local service areas and take on selected projects elsewhere in Gauteng.</p>
             </div>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/contact" className={`${button} bg-[#123E61] text-white hover:bg-[#0C2B44]`}>Request a Quote <ArrowUpRight size={16} aria-hidden="true" /></Link>
@@ -151,7 +151,7 @@ export function AboutContent() {
 
       <section className="py-16 sm:py-24">
         <div className={`${container} grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-16`}>
-          <div><SectionLabel>Where We Work</SectionLabel><h2 className={heading}>Local Handyman Services in Alberton &amp; Johannesburg South</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients in Alberton and surrounding areas.</p><p className="mt-5 text-sm font-semibold text-[#123E61]">Our main service locations include:</p><ul className="mt-4 flex flex-wrap gap-2">{serviceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><p className="mt-6 text-sm leading-relaxed text-slate-600">If your property is in one of these areas, contact us to discuss your project and confirm service availability.</p></div>
+          <div><SectionLabel>Where We Work</SectionLabel><h2 className={heading}>Local Handyman Services in Alberton &amp; Nearby Areas</h2><p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients across Alberton and nearby suburbs.</p><h3 className="mt-5 text-sm font-semibold text-[#123E61]">Main Service Locations</h3><ul className="mt-4 flex flex-wrap gap-2">{mainServiceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><h3 className="mt-6 text-sm font-semibold text-[#123E61]">Wider Service Areas</h3><p className="mt-2 text-sm leading-relaxed text-slate-600">Based in Alberton, Dynamic Handyman also travels to:</p><ul className="mt-4 flex flex-wrap gap-2">{widerServiceAreas.map((area) => <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>)}</ul><p className="mt-6 text-sm leading-relaxed text-slate-600">If your property is in one of these areas, contact us to discuss your project and confirm service availability.</p></div>
           <div className="self-start border border-[#D9DEE2] border-t-2 border-t-[#123E61] p-7 sm:p-8"><MapPin size={32} strokeWidth={1.5} className="text-[#19547E]" aria-hidden="true" /><h3 className="mt-6 text-xl font-bold text-[#123E61]">Based in Alberton</h3><address className="mt-4 text-sm not-italic leading-7 text-slate-600">Dynamic Handyman (Pty) Ltd<br />10 Vauxhall Street<br />Eden Park, Alberton, 1458</address><Link href="/contact" className={`${button} mt-6 w-full bg-[#123E61] text-center text-white hover:bg-[#0C2B44]`}>Contact Dynamic Handyman <ArrowUpRight className="shrink-0" size={16} aria-hidden="true" /></Link></div>
         </div>
       </section>

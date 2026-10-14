@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { contactPhone } from '@/config/contact';
-import { serviceAreas } from '@/config/service-areas';
+import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import './globals.css';
 
 const siteSans = localFont({
@@ -62,9 +62,9 @@ export default function RootLayout({
     '@type': 'HomeAndConstructionBusiness',
     name: 'Dynamic Handyman (PTY) LTD',
     description:
-      'Professional handyman services, home repairs, property maintenance and renovations based in Alberton and serving nearby suburbs.',
+      'Professional handyman services, home repairs, property maintenance and renovations. Based in Alberton and serving surrounding Gauteng areas.',
     slogan: 'Rely On Our Ability.',
-    areaServed: serviceAreas,
+    areaServed: [...mainServiceAreas, ...widerServiceAreas],
     telephone: contactPhone.international,
     email: 'admin@dynamichandyman.co.za',
     address: {

@@ -4,7 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuoteForm } from '@/components/QuoteForm';
 import { servicesData } from '@/data/services';
-import { serviceAreas } from '@/config/service-areas';
+import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 
 export const metadata: Metadata = {
@@ -111,25 +111,23 @@ export default async function ContactPage({
               <p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">
                 Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients in Alberton and surrounding areas.
               </p>
-              <p className="mt-5 text-sm font-semibold text-[#123E61]">Our main service locations include:</p>
+              <h3 className="mt-5 text-sm font-bold text-[#123E61]">Main Service Locations</h3>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label="Areas served">
-                {serviceAreas.map((area) => (
+                {mainServiceAreas.map((area) => (
                   <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>
                 ))}
               </ul>
-              <p className="mt-8 text-sm font-semibold leading-relaxed text-[#123E61]">
-                Wider service area:
-              </p>
+              <h3 className="mt-8 text-sm font-bold leading-relaxed text-[#123E61]">Wider Service Areas</h3>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Based in Alberton, Dynamic Handyman also travels to:
               </p>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label="Selected project areas in Gauteng">
-                {['Sandton', 'Randburg', 'Roodepoort', 'Randfontein', 'Vereeniging', 'Pretoria'].map((area) => (
+                {widerServiceAreas.map((area) => (
                   <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>
                 ))}
               </ul>
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                Contact us with your project details so we can discuss the scope of work, scheduling and the appropriate quotation process for your location.
+                Contact us with your project details to discuss the work, scheduling and a quote for your location.
               </p>
             </div>
             <div className="self-start overflow-hidden border border-[#D9DEE2] border-t-2 border-t-[#123E61] bg-[#F8F9F9]">

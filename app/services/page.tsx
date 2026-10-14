@@ -4,6 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 import { servicesData } from '@/data/services';
+import { mainServiceAreas } from '@/config/service-areas';
 import {
   ElectricalSvg,
   PaintingSvg,
@@ -31,6 +32,8 @@ const quoteButtonLabels: Record<string, string> = {
   'gutters-fascia': 'Request a Gutter Quote',
   'aluminium-windows-doors': 'Request an Aluminium Quote',
 };
+
+const nearbyServiceAreas = mainServiceAreas.filter((area) => area !== 'Alberton');
 
 export default function ServicesPage() {
   const getServiceSvg = (id: string) => {
@@ -213,7 +216,7 @@ export default function ServicesPage() {
                   Dynamic Handyman provides electrical, plumbing, painting, carpentry, paving, property maintenance and renovation services in Alberton and selected nearby suburbs.
                 </p>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                  We regularly assist customers in areas such as Meyersdal, Brackendowns, Brackenhurst, Randhart, New Redruth, Vauxhall, Germiston, Boksburg and Johannesburg South. Contact us to confirm availability for your suburb.
+                  We regularly assist customers in areas such as {nearbyServiceAreas.join(', ')}. Contact us to confirm availability for your suburb.
                 </p>
               </div>
 

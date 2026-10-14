@@ -386,12 +386,14 @@ export function QuoteForm({
                 REQUISITION CONFIRMED
               </span>
 
-              <h4 className="text-2xl font-extrabold uppercase text-[#30323A] mb-3">
-                Thank You, {formData.fullName}.
-              </h4>
+              <div role="status" aria-live="polite" aria-atomic="true" className="mb-3">
+                <p className="text-2xl font-extrabold uppercase text-[#30323A]">
+                  Your request has been received
+                </p>
+              </div>
 
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Your request for <strong className="text-[#123E61]">{formData.serviceCategory}</strong> has been received. Our team will review your specifications and contact you shortly at{' '}
+                Our team will review your request for <strong className="text-[#123E61]">{formData.serviceCategory}</strong> and contact you shortly at{' '}
                 <strong className="text-[#123E61]">{formData.phoneNumber}</strong>.
               </p>
 
