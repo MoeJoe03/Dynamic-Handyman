@@ -2,8 +2,8 @@ import { createClient } from '@/lib/supabase/server';
 
 export async function getAdmin() {
   const supabase = await createClient();
-  const { data: claims, error: authError } = await supabase.auth.getClaims();
-  const userId = claims?.claims?.sub;
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  const userId = user?.id;
   if (authError || !userId) return null;
 
   const { data: admin, error } = await supabase

@@ -21,7 +21,7 @@ export function PublicMotion() {
       for (const layer of layers) {
         const bounds = layer.container.getBoundingClientRect();
         if (bounds.bottom < 0 || bounds.top > window.innerHeight) continue;
-        const limit = Math.min(bounds.height * 0.035, window.innerWidth < 640 ? 10 : 22);
+        const limit = Math.min(bounds.height * 0.045, window.innerWidth < 640 ? 16 : 22);
         const progress = (window.innerHeight / 2 - bounds.top - bounds.height / 2) / ((window.innerHeight + bounds.height) / 2);
         const target = Math.max(-1, Math.min(1, progress)) * limit;
         layer.offset += (target - layer.offset) * blend;
@@ -89,11 +89,12 @@ export function PublicMotion() {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
             observer?.unobserve(entry.target);
+            const isMobile = window.innerWidth < 640;
             const animation = entry.target.animate([
-              { opacity: 0.65, transform: 'translateY(12px)' },
+              { opacity: isMobile ? 0.4 : 0.65, transform: `translateY(${isMobile ? 20 : 12}px)` },
               { opacity: 1, transform: 'translateY(0)' },
             ], {
-              duration: 520,
+              duration: isMobile ? 650 : 520,
               delay: Math.min(stagger++ * 55, 165),
               fill: 'backwards',
               easing: 'cubic-bezier(.22, 1, .36, 1)',
@@ -101,9 +102,9 @@ export function PublicMotion() {
             animations.add(animation);
             animation.onfinish = () => animations.delete(animation);
           });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.01, rootMargin: '0px 0px -24px 0px' });
 
-        document.querySelectorAll('main h2, main h3, main figure').forEach((element) => {
+        document.querySelectorAll('main h2, main h3, main figure, main article').forEach((element) => {
           // Reviews already have their own screw/tape entrance choreography.
           if (!element.closest('#reviews, [aria-hidden="true"]')) observer?.observe(element);
         });

@@ -40,7 +40,7 @@ export function ReviewProjectPhotos({ photos, review }: { photos: ProjectPhoto[]
           setPhase('entering');
         }
       }
-    }, { threshold: 0.25 });
+    }, { threshold: 0.05, rootMargin: '0px 0px -24px 0px' });
     if (frameRef.current) observer.observe(frameRef.current);
     return () => {
       observer.disconnect();

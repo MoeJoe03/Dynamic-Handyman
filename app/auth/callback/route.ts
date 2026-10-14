@@ -10,9 +10,9 @@ export async function GET(request: NextRequest) {
     const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
     if (exchangeError) throw exchangeError;
 
-    const { data: claims } = await supabase.auth.getClaims();
-    const userId = claims?.claims?.sub;
-    if (!userId) throw new Error('No authenticated user');
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const userId = user?.id;
+    if (userError || !userId) throw new Error('No authenticated user');
     const { data: admin, error: membershipError } = await supabase
       .from('admin_users')
       .select('user_id')

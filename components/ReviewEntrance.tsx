@@ -17,7 +17,7 @@ export function ReviewEntrance({ children, delay = 0 }: { children: ReactNode; d
       if (!entry.isIntersecting) return;
       setState('entering');
       observer.disconnect();
-    }, { threshold: 0.15, rootMargin: '0px 0px -24px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -24px 0px' });
     observer.observe(element);
 
     const stopMotion = () => {
