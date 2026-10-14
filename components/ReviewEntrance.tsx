@@ -9,8 +9,7 @@ export function ReviewEntrance({ children, delay = 0 }: { children: ReactNode; d
 
   useEffect(() => {
     const element = elementRef.current;
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!element || preference.matches || !('IntersectionObserver' in window)) return;
+    if (!element || !('IntersectionObserver' in window)) return;
 
     setState('pending');
     const observer = new IntersectionObserver(([entry]) => {
@@ -20,15 +19,8 @@ export function ReviewEntrance({ children, delay = 0 }: { children: ReactNode; d
     }, { threshold: 0.05, rootMargin: '0px 0px -24px 0px' });
     observer.observe(element);
 
-    const stopMotion = () => {
-      if (!preference.matches) return;
-      observer.disconnect();
-      setState('complete');
-    };
-    preference.addEventListener('change', stopMotion);
     return () => {
       observer.disconnect();
-      preference.removeEventListener('change', stopMotion);
     };
   }, []);
 

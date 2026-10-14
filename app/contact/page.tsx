@@ -1,8 +1,33 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuoteForm } from '@/components/QuoteForm';
 import { servicesData } from '@/data/services';
+
+export const metadata: Metadata = {
+  title: 'Contact Dynamic Handyman | Alberton Quotes',
+  description:
+    'Contact Dynamic Handyman for handyman services, repairs, maintenance and renovations in Alberton and nearby suburbs. Call, WhatsApp or request a quote online.',
+  alternates: {
+    canonical: 'https://dynamichandyman.co.za/contact',
+  },
+  openGraph: {
+    title: 'Contact Dynamic Handyman | Alberton Quotes',
+    description:
+      'Request a quote for handyman services, repairs, maintenance and renovations in Alberton and nearby suburbs.',
+    type: 'website',
+    url: 'https://dynamichandyman.co.za/contact',
+    images: ['/dynamic-handyman-contact-og.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Dynamic Handyman | Alberton Quotes',
+    description:
+      'Request a quote for handyman services, repairs, maintenance and renovations in Alberton and nearby suburbs.',
+    images: ['/dynamic-handyman-contact-og.png'],
+  },
+};
 
 export default async function ContactPage({
   searchParams,
@@ -41,7 +66,7 @@ export default async function ContactPage({
                 {/* Technical Eyebrow */}
                 <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
                   <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                  <span>(04 — DIRECT REQUISITION &amp; ESTIMATES • JOHANNESBURG)</span>
+                  <span>(04 — DIRECT REQUISITION &amp; ESTIMATES • ALBERTON)</span>
                 </div>
 
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[0.98] uppercase text-white">
@@ -50,7 +75,7 @@ export default async function ContactPage({
                 </h1>
 
                 <p className="text-slate-200 text-sm sm:text-base lg:text-lg mt-6 leading-relaxed font-normal max-w-3xl">
-                  Reach out directly by phone, email, WhatsApp, or submit your project requirements below using our standard quote estimate form. We respond promptly with certified site assessments and transparent itemized pricing.
+                  Reach out directly by phone, email, WhatsApp, or submit your project requirements below. Dynamic Handyman provides handyman services, repairs, maintenance and renovations in Alberton and nearby suburbs. We will discuss the work required and the appropriate quotation process for your project.
                 </p>
 
                 {/* Quick Contact Micro-Anchor Badges */}

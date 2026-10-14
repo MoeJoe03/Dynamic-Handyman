@@ -42,12 +42,3 @@
   85% { transform: translateY(1px) scale(.96) rotate(12deg); }
   100% { opacity: 1; transform: none; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .entrance[data-review-entrance], .entrance[data-review-entrance] .screw {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    will-change: auto;
-  }
-}

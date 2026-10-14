@@ -8,7 +8,6 @@ export function PublicMotion() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
     let previousTime = 0;
     let layers: { image: HTMLImageElement; container: HTMLElement; offset: number; translate: string; scale: string }[] = [];
@@ -47,7 +46,6 @@ export function PublicMotion() {
     };
     const setup = () => {
       reset();
-      if (preference.matches) return;
       document.querySelectorAll<HTMLImageElement>('main img').forEach((image) => {
         const container = image.parentElement;
         if (!container || image.closest('#reviews') || container.offsetHeight < 180 || getComputedStyle(container).overflow !== 'hidden') return;
@@ -60,17 +58,14 @@ export function PublicMotion() {
     setup();
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', setup);
-    preference.addEventListener('change', setup);
     return () => {
       reset();
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', setup);
-      preference.removeEventListener('change', setup);
     };
   }, [pathname]);
 
   useEffect(() => {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const animations = new Set<Animation>();
     let observer: IntersectionObserver | undefined;
     let frame = 0;
@@ -81,7 +76,7 @@ export function PublicMotion() {
       cancelAnimationFrame(frame);
       animations.forEach((animation) => animation.cancel());
       animations.clear();
-      if (preference.matches || !('IntersectionObserver' in window)) return;
+      if (!('IntersectionObserver' in window)) return;
 
       frame = requestAnimationFrame(() => {
         observer = new IntersectionObserver((entries) => {
@@ -112,12 +107,10 @@ export function PublicMotion() {
     };
 
     start();
-    preference.addEventListener('change', start);
     return () => {
       cancelAnimationFrame(frame);
       observer?.disconnect();
       animations.forEach((animation) => animation.cancel());
-      preference.removeEventListener('change', start);
       delete document.body.dataset.publicMotion;
     };
   }, [pathname]);

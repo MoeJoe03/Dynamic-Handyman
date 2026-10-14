@@ -19,41 +19,31 @@ export function ReviewProjectPhotos({ photos, review }: { photos: ProjectPhoto[]
   const [entranceComplete, setEntranceComplete] = useState(false);
   const [inView, setInView] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const count = photos.length;
 
   useEffect(() => {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const updateMotion = () => setReducedMotion(preference.matches);
     const updateVisibility = () => setPageVisible(!document.hidden);
-    updateMotion();
     updateVisibility();
-    preference.addEventListener('change', updateMotion);
     document.addEventListener('visibilitychange', updateVisibility);
     const observer = new IntersectionObserver(([entry]) => {
       setInView(entry.isIntersecting);
       if (entry.isIntersecting && !entranceStarted.current) {
         entranceStarted.current = true;
-        if (preference.matches) {
-          setEntranceComplete(true);
-        } else {
-          setPhase('entering');
-        }
+        setPhase('entering');
       }
     }, { threshold: 0.05, rootMargin: '0px 0px -24px 0px' });
     if (frameRef.current) observer.observe(frameRef.current);
     return () => {
       observer.disconnect();
-      preference.removeEventListener('change', updateMotion);
       document.removeEventListener('visibilitychange', updateVisibility);
     };
   }, []);
 
   useEffect(() => {
-    if (count < 2 || !entranceComplete || phase !== 'idle' || !inView || !pageVisible || reducedMotion) return;
+    if (count < 2 || !entranceComplete || phase !== 'idle' || !inView || !pageVisible) return;
     const timer = window.setTimeout(() => setPhase('peeling'), PHOTO_DISPLAY_DURATION);
     return () => window.clearTimeout(timer);
-  }, [count, activeIndex, phase, entranceComplete, inView, pageVisible, reducedMotion]);
+  }, [count, activeIndex, phase, entranceComplete, inView, pageVisible]);
 
   useEffect(() => {
     if (phase === 'idle' || !count) return;
@@ -65,9 +55,9 @@ export function ReviewProjectPhotos({ photos, review }: { photos: ProjectPhoto[]
         setPhase('idle');
         if (phase === 'entering') setEntranceComplete(true);
       }
-    }, reducedMotion ? 0 : phase === 'entering' ? ENTRANCE_DURATION : phase === 'peeling' ? 680 : 650);
+    }, phase === 'entering' ? ENTRANCE_DURATION : phase === 'peeling' ? 680 : 650);
     return () => window.clearTimeout(timer);
-  }, [phase, count, reducedMotion]);
+  }, [phase, count]);
 
   if (!count) return null;
   const current = photos[activeIndex % count];
