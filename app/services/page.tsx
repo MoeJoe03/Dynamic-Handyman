@@ -34,7 +34,7 @@ const quoteButtonLabels: Record<string, string> = {
 };
 
 const nearbyServiceAreas = mainServiceAreas.filter((area) => area !== 'Alberton');
-const extendedServiceAreas = widerServiceAreas.slice(0, 4);
+const extendedServiceAreas = widerServiceAreas;
 
 export default function ServicesPage() {
   const getServiceSvg = (id: string) => {

@@ -10,4 +10,7 @@ export interface GalleryImage {
   updated_at: string;
 }
 
-export type GalleryImageView = GalleryImage & { imageUrl: string };
+export type GalleryImageView = GalleryImage & {
+  imageUrl: string;
+  projectDetails?: { summary: string; location: string };
+};

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { MapPin } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BreadcrumbNav } from '@/components/BreadcrumbNav';
@@ -68,13 +69,13 @@ export function GalleryContent({
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02] uppercase text-white mb-5">
                 Our Handyman Work in Alberton<br />
                 <span className="block text-xl sm:text-3xl lg:text-4xl mt-2 text-slate-300">
-                  Property Maintenance, Repairs &amp; Renovations in Alberton and Nearby Areas
+                  Property Maintenance, Repairs &amp; Renovations Across Gauteng
                 </span>
               </h1>
 
               {/* Sub-heading */}
               <p className="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed font-normal max-w-3xl">
-                Explore completed electrical, plumbing, painting, carpentry, paving and renovation projects by Dynamic Handyman. Our work includes projects in Alberton and nearby suburbs, with selected work completed across the wider Johannesburg area.
+                Explore completed electrical, plumbing, painting, carpentry, paving and renovation projects by Dynamic Handyman. Our completed work includes projects in Alberton, Johannesburg and surrounding Gauteng areas, including Sandton, Bedfordview, Bryanston, Rosebank, Fourways, Centurion and Pretoria.
               </p>
             </div>
               </div>
@@ -135,15 +136,27 @@ export function GalleryContent({
                         referrerPolicy="no-referrer"
                       />
 
-                      {/* Gradient Overlay and Title */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex items-end justify-between p-4 sm:p-5">
-                        <div>
-                          <h3 className="text-white font-extrabold text-sm sm:text-base uppercase tracking-tight leading-snug">
+                      {/* Project details overlay */}
+                      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/35 to-transparent p-3 sm:p-4">
+                        <div className="min-w-0">
+                          <h3 className="text-white font-extrabold text-xs sm:text-sm uppercase tracking-tight leading-snug">
                             {getCategoryLabel(project.category)}
                           </h3>
-                          <p className="text-[11px] sm:text-xs text-slate-300 font-medium mt-1 leading-snug line-clamp-2">
-                            {project.alt_text || 'Dynamic Handyman project'}
-                          </p>
+                          {project.projectDetails ? (
+                            <>
+                              <p className="text-[11px] sm:text-xs text-slate-200 font-medium mt-1 leading-snug line-clamp-2">
+                                {project.projectDetails.summary}
+                              </p>
+                              <p className="inline-flex items-center gap-1 text-[10px] text-sky-300 font-medium mt-1 leading-snug">
+                                <MapPin size={11} aria-hidden="true" />
+                                {project.projectDetails.location}
+                              </p>
+                            </>
+                          ) : (
+                            <p className="text-[11px] sm:text-xs text-slate-200 font-medium mt-1 leading-snug line-clamp-2">
+                              {project.alt_text || 'Dynamic Handyman project'}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -173,7 +186,7 @@ export function GalleryContent({
                   </h3>
 
                   <p className="text-slate-200 text-xs sm:text-sm max-w-2xl font-normal leading-relaxed mb-6">
-                    Whether you need certified compliance, interior carpentry cupboards, protective roof coatings, or bespoke carports, we deliver turnarounds on time with zero subcontractor friction.
+                    Whether you need electrical compliance support, carpentry, roof coatings or a custom carport, we coordinate the work through one practical point of contact.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-3">
