@@ -11,12 +11,7 @@ export function LiveWorkShowcase({ homeImages }: { homeImages: HomeImageOverride
       {/* Marquee Container */}
       <div className="relative w-full overflow-hidden bg-neutral-100 rounded-sm">
         <div
-          className="flex gap-3 sm:gap-4 w-max animate-marquee"
-          style={{
-            animationDuration: '38s',
-            animationTimingFunction: 'linear',
-            animationIterationCount: 'infinite',
-          }}
+          className="flex gap-3 sm:gap-4 w-max animate-marquee hero-marquee"
         >
           {tickerPanels.map((panel, idx) => (
             <div

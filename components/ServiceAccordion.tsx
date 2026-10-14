@@ -26,8 +26,7 @@ function ServiceImageCarousel({ service, homeImages }: { service: ServiceItem; h
     <div className="relative min-w-0 lg:col-span-8" aria-label="Service image carousel">
       <div className="overflow-hidden rounded-lg border border-[#D9DEE2]/60 bg-transparent sm:rounded-2xl">
         <div
-          className="animate-marquee flex w-[400%] motion-reduce:animate-none"
-          style={{ animationDuration: '24s' }}
+          className="animate-marquee service-marquee flex w-[400%] motion-reduce:animate-none"
         >
           {loopSlides.map((img, imgIdx) => (
             <div

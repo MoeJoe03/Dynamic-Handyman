@@ -32,6 +32,24 @@
   animation: marquee 38s linear infinite;
 }
 
+.hero-marquee {
+  animation-duration: 38s;
+}
+
+.service-marquee {
+  animation-duration: 24s;
+}
+
+@media (max-width: 639px) {
+  .hero-marquee {
+    animation-duration: 24s;
+  }
+
+  .service-marquee {
+    animation-duration: 16s;
+  }
+}
+
 /* Hide scrollbar for mobile filter pills */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
