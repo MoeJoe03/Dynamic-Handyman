@@ -22,7 +22,7 @@ export default async function ContactPage({
         {/* CONTACT HERO WITH ARCHITECTURAL BLUEPRINT ASSET */}
         <section className="relative bg-white pt-6 pb-12 sm:pb-16 border-b border-[#D9DEE2]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#0A2A44] text-white p-7 sm:p-12 lg:p-16 border border-[#0C2B44] relative shadow-xl overflow-hidden">
+            <div className="bg-[#082F51] text-white p-7 sm:p-12 lg:p-16 border border-[#0C2B44] relative shadow-xl overflow-hidden">
               {/* Background Vector Graphic */}
               <div className="absolute inset-0 z-0 pointer-events-none">
                 <Image
@@ -34,7 +34,7 @@ export default async function ContactPage({
                   referrerPolicy="no-referrer"
                 />
                 {/* Gradient wash to ensure razor-sharp text contrast on left content */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#071E32]/95 via-[#0A2A44]/80 to-transparent lg:via-[#0A2A44]/45" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#062B49]/95 via-[#062B49]/85 to-[#062B49]/10" />
               </div>
 
               <div className="relative z-10 max-w-4xl">

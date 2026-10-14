@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Building2, Check, Home, KeyRound, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { contactPhone } from '@/config/contact';
 import { serviceAreas } from '@/config/service-areas';
+import { aggregateReviewSummary } from '@/data/reviews';
 import { ElectricalSvg, PlumbingSvg, PaintingSvg, CarpentrySvg, MaintenanceSvg, PalisadesCarportsSvg } from '@/components/icons/TradeSvgs';
 
 const container = 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8';
@@ -165,7 +166,7 @@ export function AboutContent() {
       <section className="py-12 sm:py-16">
         <div className={container}>
           <div className="grid gap-8 border border-[#0C2B44] bg-[#123E61] p-7 text-white sm:p-10 lg:grid-cols-[1fr_280px] lg:items-center lg:gap-16 lg:p-14">
-            <div><SectionLabel light>08 — Let’s Talk About Your Project</SectionLabel><h2 className="text-3xl font-extrabold uppercase leading-tight tracking-tight sm:text-4xl">Your Property.<br />Our Range of Skills.</h2><p className="mt-6 text-sm leading-relaxed text-slate-200">Need a handyman in Alberton? Planning renovations in Johannesburg South? Looking for property maintenance services for a home, rental property or commercial premises?</p><p className="mt-4 text-sm leading-relaxed text-slate-200">Dynamic Handyman is ready to discuss your requirements, whether the job is small, large or involves several trades.</p><p className="mt-6 text-lg font-bold text-sky-200">Rely on our Ability!</p></div>
+            <div><SectionLabel light>08 — Let’s Talk About Your Project</SectionLabel><h2 className="text-3xl font-extrabold uppercase leading-tight tracking-tight sm:text-4xl">Your Property.<br />Our Range of Skills.</h2><p className="mt-6 text-sm leading-relaxed text-slate-200">Need a handyman in Alberton or a nearby suburb? Planning repairs, maintenance or renovations for your home, rental property or business?</p><p className="mt-4 text-sm leading-relaxed text-slate-200">Dynamic Handyman is ready to discuss your requirements, whether the job is small, large or involves several trades.</p><a href={aggregateReviewSummary.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sky-200 underline decoration-sky-200/50 underline-offset-4 transition-colors hover:text-white">Read Our Google Reviews <ArrowUpRight size={15} aria-hidden="true" /></a><p className="mt-3 text-lg font-bold text-sky-200">Rely on our Ability!</p></div>
             <div className="flex flex-col gap-3"><Link href="/contact" className={`${button} bg-white text-[#123E61] hover:bg-sky-50`}>Request a Quote <ArrowUpRight size={16} aria-hidden="true" /></Link><a href={contactPhone.telHref} className={`${button} border border-white/40 text-white hover:bg-white/10`}><Phone size={16} aria-hidden="true" /> Call Us</a><a href={contactPhone.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${button} border border-white/40 text-white hover:bg-white/10`}><MessageCircle size={16} aria-hidden="true" /> WhatsApp Us</a><p className="mt-2 text-center font-mono text-xs text-sky-200">{contactPhone.display}</p></div>
           </div>
         </div>
