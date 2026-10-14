@@ -20,8 +20,10 @@ export function AdminSetPassword({ hasAdminSession }: { hasAdminSession: boolean
     setError('');
     setBusy(true);
     try {
+      const redirectOrigin = process.env.NEXT_PUBLIC_SITE_URL
+        || (process.env.NODE_ENV === 'development' ? window.location.origin : 'https://dynamichandyman.co.za');
       const { error: authError } = await createClient().auth.resetPasswordForEmail(email.trim(), {
-        redirectTo: `${window.location.origin}/auth/callback?mode=recovery`,
+        redirectTo: new URL('/auth/callback?mode=recovery', redirectOrigin).toString(),
       });
       if (authError?.status === 429) {
         throw new Error('Supabase has temporarily paused reset emails. Please wait before requesting another link. If you have already chosen a password, you can sign in with it.');

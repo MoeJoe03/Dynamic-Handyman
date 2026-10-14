@@ -5,6 +5,7 @@ const supabaseHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
   : null;
 
 const nextConfig: NextConfig = {
+  distDir: process.env.NODE_ENV === 'development' ? '.next-dev' : '.next',
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
