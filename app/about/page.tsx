@@ -38,14 +38,14 @@ export default function AboutPage() {
                 </h1>
 
                 <p className="text-slate-200 text-sm sm:text-base lg:text-lg mt-6 leading-relaxed font-normal max-w-3xl">
-                  Dynamic Handyman (PTY) LTD was established with a singular objective: replace the stress of fragmented, unreliable trade contractors with one dependable multi-trade firm that takes full accountability from site diagnostics to final handover.
+                  Dynamic Handyman was established to give homeowners, landlords and businesses one dependable point of contact for repairs, maintenance and renovation work. From the first site assessment to the final handover, we aim to keep the process clear, practical and well coordinated.
                 </p>
 
                 {/* Mottos & Positionings */}
                 <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-y-3 gap-x-8 text-[11px] font-mono tracking-wider text-sky-200 uppercase">
-                  <span>Alberton Headquarters</span>
+                  <span>Based in Alberton</span>
                   <span>{'// Multi-Trade Cross-Disciplinary Squads'}</span>
-                  <span>{'// Zero Fragmentation'}</span>
+                  <span>{'// One Point of Contact'}</span>
                 </div>
               </div>
             </div>

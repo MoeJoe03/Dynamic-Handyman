@@ -80,7 +80,7 @@ export default async function ContactPage({
                 <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-y-3 gap-x-6 text-[11px] font-mono tracking-wider text-sky-200 uppercase">
                   <span className="flex items-center space-x-1.5">
                     <span className="text-emerald-400">✓</span>
-                    <span>Fast Turnaround Diagnostics</span>
+                    <span>Clear Project Assessment</span>
                   </span>
                   <span className="flex items-center space-x-1.5">
                     <span className="text-emerald-400">✓</span>
@@ -88,7 +88,7 @@ export default async function ContactPage({
                   </span>
                   <span className="flex items-center space-x-1.5">
                     <span className="text-emerald-400">✓</span>
-                    <span>No Obligation Requisitions</span>
+                    <span>Free, No-Obligation Estimates</span>
                   </span>
                 </div>
               </div>

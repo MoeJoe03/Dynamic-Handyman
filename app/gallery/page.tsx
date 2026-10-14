@@ -18,7 +18,7 @@ export default async function GalleryPage({
     return {
       ...image,
       projectDetails: project
-        ? { summary: project.subtitle, location: project.location }
+        ? { summary: project.cardSummary, location: project.location }
         : undefined,
     };
   });

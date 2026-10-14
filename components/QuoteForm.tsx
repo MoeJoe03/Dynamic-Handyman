@@ -195,7 +195,7 @@ export function QuoteForm({
           </h2>
 
           <p className="order-4 mt-4 text-sm leading-relaxed text-slate-600 lg:order-2 lg:mt-0 lg:mb-10">
-            Reach out via phone, email, or complete the quote requisition form. We respond promptly with actionable site visits or estimates.
+            Reach out by phone, email or the quote request form. Our team will review your request and contact you shortly. We usually respond during business hours. If your request is urgent, call or WhatsApp us directly.
           </p>
 
         </div>
@@ -206,7 +206,7 @@ export function QuoteForm({
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold uppercase text-white tracking-tight mb-2.5">
-                  Request A Project Estimate
+                  Quote Request Form
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-200 mb-7 font-normal leading-relaxed">
                   Please provide your contact and service requirements. All estimates are free of obligation.
@@ -383,12 +383,12 @@ export function QuoteForm({
               </div>
 
               <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-emerald-700 block mb-1">
-                REQUISITION CONFIRMED
+                QUOTE REQUEST RECEIVED
               </span>
 
               <div role="status" aria-live="polite" aria-atomic="true" className="mb-3">
                 <p className="text-2xl font-extrabold uppercase text-[#30323A]">
-                  Your request has been received
+                  Your quote request has been received
                 </p>
               </div>
 

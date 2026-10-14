@@ -18,6 +18,7 @@ export interface ProjectItem {
   additionalFilterKeys?: Array<'maintenance' | 'glass-works' | 'flooring' | 'gutters-fascia' | 'aluminium-windows-doors'>;
   title: string;
   subtitle: string;
+  cardSummary: string;
   location: string;
   image: string;
   scope: string[];
@@ -36,6 +37,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'electrical',
     title: 'Electrical',
     subtitle: 'Distribution Board & Sub-Circuit Wiring',
+    cardSummary: 'Distribution board rebuild, circuit protection and compliance-related electrical work.',
     location: 'Bedfordview, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCuroIwgygiqhg0GpMdyZbaWlmYwILupLltCfXOBPOyROroqkyotDoDZ57kcxgDWRMD6LJEA-y6L5itLjWcuR21a8u-xm3VFbv2ZkUD6NYl-hqZ-Vqo5VqP5i2IZxZAthN10PhVC0wjhJ-VbSHrMwjxvyoSOZdWFRh6zDJFKyuBaSyQLu-CcmF15W3zntT0DsFajMP9lz4K-l5Tx9ZWo1wH5WGgNeWmPxBk7aWTAqx7iaAbYOrIcpNfmQ',
     scope: [
@@ -52,6 +54,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'painting',
     title: 'Architectural Painting',
     subtitle: 'Interior & Exterior Coatings',
+    cardSummary: 'Exterior painting with crack repairs and protective coatings for weather resistance.',
     location: 'Bryanston, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBSl_WQz4_BUPFnnPx43a9J3C9qQyxe_oSjrch_YwfFQLrWmqKXnAY2Y1iqcCe_1n6mP7spblWkDZ9qKySWszfAhObjFdFc236E_hjyfy3O35LeRd21Zdosg-AhcP-A-XCpHb0iCgk7hk6GhRxlh7Ucm5xdGM2vt_lGZ7nH3EVQAc6WGJ841DM6dh-blVhAdTfXhvYUxSv6ae6NO_8IbFdXGZ-j5XD5CcepMsyOxK6TvpYi1hWfcVZAIw',
     scope: [
@@ -68,6 +71,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'carpentry',
     title: 'Custom Joinery',
     subtitle: 'Built-In Cupboards & Finishing',
+    cardSummary: 'Made-to-measure bedroom cupboards with fitted storage and clean finishing.',
     location: 'Meyersdal, Alberton',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD5OjL5fFG3bg8g9TSK_Tl-8tkssi-4cXBBC9mSrji4Fggqt6mqoCCbt4j0-WHOTL50ikJK2TjB_9lKCnOgDsmTVd7Itph68suVGkjC_328q4ST4o9ftphAGsbj5eD3k1-_X8asbinHYdnRg2Ieip4aNeNM9Km0sgwFXnNZn71sSoHWCTL1xCsfnBNJdpiKDlgjf0MvHeRYWie3KCpbdV3rFGUWJgTB4iXMYIzCrR7xyoLTKZnBvhwKeA',
     scope: [
@@ -84,6 +88,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'plumbing',
     title: 'Precision Plumbing',
     subtitle: 'Luxury Bathroom & Geyser Installations',
+    cardSummary: 'Bathroom plumbing, sanitaryware installation and tested hot-water connections.',
     location: 'Sandton, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAWjcarXKsl3O6UiJWxxL93fcrdvQPy5mB59SXy84-koWMYPu7Ph7W-l0t7JBozPyWcOniH8fVDd9A735tO-o1HQDgaYtHsQudA5mY_u2O4xeQ804YN0Ny0-SNLHAFVzU3N4uo3_AGE1pnatD_k-7wQEKJlGgismUGZSCSweMgwql6CoPxM30ozdG5yNYXv0yF-cdVTkbHmaCbUE_xHCTzT_vvCN3UCS3Umd0MZhi2-GnPnHxH5mbBvhA',
     scope: [
@@ -101,6 +106,7 @@ export const projectsData: ProjectItem[] = [
     additionalFilterKeys: ['gutters-fascia'],
     title: 'Palisades & Carports',
     subtitle: 'Custom Steel Fabrication & Automation',
+    cardSummary: 'Custom steel carport fabrication and installation for vehicle protection.',
     location: 'Centurion',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWBax_T46uynpNADscXDGNia53Vtqt3pDjUalC-YisLuULknn1B90Koezbct_9d1CQTMsgPGcZeV4vymQHc6C5YAk9OTLt12X49yKeFuVC8hRqcNjBs1YFZ1Zf440cOvK0Ktuvsjy4LWfilLn3g0XBglfqc-l-R8bLP57-hQyAlbCaGLEPLIK4rAM_HIIdvnGpTkYX_m-Shw8JtnQ8IUr9Q4KvhmztTLBh33a5HQCKVt05tNFuDDlxVw',
     scope: [
@@ -117,6 +123,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'maintenance',
     title: 'Renovations',
     subtitle: 'Corporate Office Alterations & Fit-Out',
+    cardSummary: 'Office alterations with updated lighting, meeting spaces and plaster finishes.',
     location: 'Rosebank, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDMZZfvYj_ogC5PHef0pfHlXLvLzpPTh-RMe90qSLqs4X9KVxWpGb-A6pnZAblexERrNdb1071916ossFFyR8nCya2G-g-A88PJZL10Ll7H-zEAAtFnpSMg8emwJ-Ut4Qe77-ExeaPX8jOVIYzIZPOgK4Pf9dY72OPMbf36GmZLOxJrwPT8dQbwt_ufRzMrlbsXzbXV2kM65P0p4aLdJfZvr-ppHZcuyxcOk0EXXvao_O09Hu49gEKmog',
     scope: [
@@ -133,6 +140,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'paving',
     title: 'Structural Alterations',
     subtitle: 'Engineered Paving & Boundary Integration',
+    cardSummary: 'Driveway paving and boundary work with improved drainage away from foundations.',
     location: 'Alberton, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDhn1sUA6cb-u7_UcSjwVtj8mYU_9j9n2KM-whcFNotHerF1_AL4BDn6l5hxIcs7BnakIhhjbw-rjNRkdaigAzx8BCN0nldDNdOLdJDM8-HkAMDMkgyYgXK9E2UZ-FbxS3vGj3n9DAcq0vRFFpMC5-JovMRR_Y7C9oFUrPv0BuQf2FPXmvyW1ZDyoNaWWPG4nx0iT75PQIPYG6D_WhOp1dYapgfiYYyFYaOqAiTGkKC3w4iw6ZqKl7diw',
     scope: [
@@ -149,6 +157,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'carpentry',
     title: 'Custom Joinery',
     subtitle: 'Timber Partitioning & Ceiling Lining',
+    cardSummary: 'Timber decking with durable framing for a smooth indoor-outdoor transition.',
     location: 'Silver Lakes, Pretoria',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU_gfQYJFb2m2FmgnHV0RjZK7LSAUjtk1-lhmRfHpaFzNW3A3VKYSeBrVyGBsh517HezrI6-nWw-SbfhQjoNXbtb7nVllPQjKnP3zB_lYjNbxYrvf8wr26THxkthEa2P5FRycWasPsKJ8Yv0mvfIJJuJDA56L-AYKlrCEl4IufQJPPkgpF-Dd9A781D0tFEGE_dDKLfJp_DP0vzwwerqNnNmU2XO4O7H7zWB7THJdVTzJ2OebE6DIEPg',
     scope: [
@@ -165,6 +174,7 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'electrical',
     title: 'Certified Compliance',
     subtitle: 'Commercial DB Board Inverter Backup System',
+    cardSummary: 'Commercial distribution board and inverter backup installation with labelled wiring.',
     location: 'Fourways, Johannesburg',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAlAncPdCi5h4looGaNK6i0RNxit4Z-G83zVvVfDeYyynUQLgv-wWr6Pu5mEuSPpkO5T7CnxMZxFOJVgqmjPjs_a2Z2RAv9LjXgnXdGAXlGzqGoa1Y_M-X-B_YbEfQnmx88Y-aBCFdLfuAR_dOEHNstFr_ncJFuMTqD57noyGGeYv50u5bNYBYuOhqK2Cd5fZ-1qWp4pEy50ozkDZ47azkP3Jw4Fhn3jrW8ElV86G13d2LYULs3Vzzc7g',
     scope: [
