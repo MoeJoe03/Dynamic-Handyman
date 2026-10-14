@@ -96,5 +96,5 @@ export const aggregateReviewSummary = {
   countLabel: 'Rated 5.0/5 on Google',
   title: 'OVERALL RATING',
   actionLabel: 'VIEW ALL REVIEWS →',
-  googleReviewsUrl: 'https://www.google.com/search?q=dynamic+handyman&ie=UTF-8#lrd=0x1e951dea742589e3:0x7545b2471eeae154,1,,,,',
+  googleReviewsUrl: 'https://maps.app.goo.gl/q4syxipQgwcUeJFfA',
 };

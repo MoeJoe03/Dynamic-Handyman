@@ -4,7 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 import { servicesData } from '@/data/services';
-import { mainServiceAreas } from '@/config/service-areas';
+import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import {
   ElectricalSvg,
   PaintingSvg,
@@ -34,6 +34,7 @@ const quoteButtonLabels: Record<string, string> = {
 };
 
 const nearbyServiceAreas = mainServiceAreas.filter((area) => area !== 'Alberton');
+const extendedServiceAreas = widerServiceAreas.slice(0, 4);
 
 export default function ServicesPage() {
   const getServiceSvg = (id: string) => {
@@ -146,7 +147,7 @@ export default function ServicesPage() {
                       {/* Sub-services pills */}
                       <div>
                         <span className="text-[11px] font-mono font-bold tracking-wider text-slate-500 block mb-2">
-                          Services Include;
+                          Services include:
                         </span>
                         <div className="flex flex-wrap gap-2">
                           {trade.subServices.map((sub, sIdx) => (
@@ -199,10 +200,10 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden border-t border-[#D9DEE2] bg-[#F4F7F9] py-16 sm:py-24">
+        <section className="relative overflow-hidden border-t border-[#D9DEE2] bg-white py-16 sm:py-24">
           <div className="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full border border-[#19547E]/10 sm:-right-12 sm:-top-40 sm:h-[28rem] sm:w-[28rem]" />
           <div className="pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full border border-[#19547E]/10 sm:right-8 sm:-top-28 sm:h-80 sm:w-80" />
-          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="relative mx-auto max-w-7xl bg-[#F4F7F9] p-6 sm:p-9 lg:p-12">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-center lg:gap-16">
               <div className="max-w-3xl">
                 <p className="mb-4 flex items-center gap-3 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#19547E]">
@@ -213,10 +214,16 @@ export default function ServicesPage() {
                   Handyman Services in Alberton and Nearby Suburbs
                 </h2>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                  Dynamic Handyman provides electrical, plumbing, painting, carpentry, paving, property maintenance and renovation services in Alberton and selected nearby suburbs.
+                  Dynamic Handyman provides electrical, plumbing, painting, carpentry, paving, property maintenance and renovation services in Alberton and nearby suburbs.
                 </p>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                  We regularly assist customers in areas such as {nearbyServiceAreas.join(', ')}. Contact us to confirm availability for your suburb.
+                  Our main service locations include {nearbyServiceAreas.join(', ')}.
+                </p>
+                <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-[#123E61]">
+                  Wider Service Areas
+                </h3>
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+                  Based in Alberton, Dynamic Handyman also travels to {extendedServiceAreas.join(', ')}.
                 </p>
               </div>
 

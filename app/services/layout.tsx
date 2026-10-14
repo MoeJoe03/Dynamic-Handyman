@@ -20,6 +20,13 @@ export const metadata: Metadata = {
       alt: 'Dynamic Handyman services blueprint featuring electrical, plumbing, carpentry, painting, fencing and paving',
     }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Handyman Services in Alberton | Dynamic Handyman',
+    description:
+      'Explore electrical, plumbing, painting, carpentry, paving and renovation services from Dynamic Handyman in Alberton and nearby suburbs.',
+    images: ['/dynamic-handyman-services-og.png'],
+  },
 };
 
 export default function ServicesLayout({

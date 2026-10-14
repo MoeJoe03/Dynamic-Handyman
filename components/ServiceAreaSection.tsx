@@ -17,9 +17,6 @@ export function ServiceAreaSection() {
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-base">
               Dynamic Handyman is based in Alberton and provides handyman services, home repairs, property maintenance and renovations across Alberton, nearby suburbs and surrounding Gauteng areas.
             </p>
-            <Link href="/contact" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#123E61] underline decoration-sky-500 underline-offset-4 transition-colors hover:text-[#19547E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">
-              Contact us to confirm your suburb <span aria-hidden="true">→</span>
-            </Link>
           </div>
 
           <div className="mt-8 space-y-7 border-t border-[#D9DEE2] pt-7">
@@ -35,6 +32,9 @@ export function ServiceAreaSection() {
             </div>
             <div>
               <h3 className="text-sm font-bold uppercase tracking-wide text-[#123E61]">Wider service areas</h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                Based in Alberton, Dynamic Handyman also travels to these areas for residential and commercial handyman, maintenance and renovation projects.
+              </p>
               <ul className="mt-5 flex flex-wrap gap-2" aria-label="Wider service areas">
                 {widerServiceAreas.map((area) => (
                   <li key={area} className="border border-[#D9DEE2] bg-white px-3 py-2 text-sm font-semibold text-[#123E61] transition-colors hover:border-[#19547E] hover:bg-sky-50">
@@ -42,6 +42,9 @@ export function ServiceAreaSection() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-5 text-sm leading-relaxed text-slate-700">
+                <Link href="/contact" className="font-semibold text-[#123E61] underline decoration-sky-500 underline-offset-4 transition-colors hover:text-[#19547E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">Contact us</Link> with your project details to discuss the work, scheduling and quotation process for your location.
+              </p>
             </div>
           </div>
         </div>
