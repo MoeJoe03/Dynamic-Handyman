@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 import { QuoteForm } from '@/components/QuoteForm';
 import { galleryConfig, getCategoryLabel } from '@/config/gallery.config';
 import type { GalleryCategory } from '@/config/gallery.config';
@@ -61,11 +62,7 @@ export function GalleryContent({
               <div className="absolute inset-0 bg-gradient-to-r from-[#062B49]/95 via-[#062B49]/85 to-[#062B49]/15" />
               <div className="relative z-10 flex min-h-[380px] sm:min-h-[440px] lg:min-h-[500px] items-center px-6 py-10 sm:px-10 lg:px-14">
             <div className="max-w-4xl">
-              {/* Technical Eyebrow */}
-              <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
-                <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                <span>(02 — PROJECT PORTFOLIO • ALBERTON &amp; SURROUNDING AREAS)</span>
-              </div>
+              <BreadcrumbNav currentPage="gallery" />
 
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02] uppercase text-white mb-5">

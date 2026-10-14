@@ -69,7 +69,7 @@ export default function RootLayout({
     email: 'admin@dynamichandyman.co.za',
     currenciesAccepted: 'ZAR',
     paymentAccepted: 'EFT, Cash, Credit Card',
-    openingHours: 'Mo,Tu,We,Th,Fr 07:30-17:00, Sa 08:00-13:00',
+    openingHours: ['Mo-Th 08:00-17:00', 'Fr 08:00-16:00', 'Sa 09:00-14:00'],
     priceRange: '$$',
   };
 

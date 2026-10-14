@@ -4,6 +4,8 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuoteForm } from '@/components/QuoteForm';
 import { servicesData } from '@/data/services';
+import { serviceAreas } from '@/config/service-areas';
+import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 
 export const metadata: Metadata = {
   title: 'Contact Dynamic Handyman | Alberton Quotes',
@@ -63,11 +65,7 @@ export default async function ContactPage({
               </div>
 
               <div className="relative z-10 max-w-4xl">
-                {/* Technical Eyebrow */}
-                <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
-                  <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                  <span>(04 — DIRECT REQUISITION &amp; ESTIMATES • ALBERTON)</span>
-                </div>
+                <BreadcrumbNav currentPage="contact" />
 
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[0.98] uppercase text-white">
                   Let&apos;s Talk About Your Project.<br />
@@ -101,6 +99,42 @@ export default async function ContactPage({
         {/* CONTACT ESTIMATE REQUISITION (SAME AS HOME PAGE) */}
         <section id="contact" className="bg-white">
           <QuoteForm initialServiceId={initialServiceId} />
+        </section>
+
+        <section className="py-16 sm:py-24" aria-labelledby="contact-areas-heading">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_500px] lg:gap-16 lg:px-8">
+            <div>
+              <span className="mb-3 block font-mono text-[11px] font-bold uppercase tracking-widest text-[#19547E]">06 — Where We Work</span>
+              <h2 id="contact-areas-heading" className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">
+                Areas We Serve
+              </h2>
+              <p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">
+                Dynamic Handyman is based at 10 Vauxhall Street, Eden Park, Alberton, 1458, serving residential and commercial clients in Alberton and surrounding areas.
+              </p>
+              <p className="mt-5 text-sm font-semibold text-[#123E61]">Our main service locations include:</p>
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Areas served">
+                {serviceAreas.map((area) => (
+                  <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm leading-relaxed text-slate-600">
+                If your property is in one of these areas, contact us to discuss your project and confirm service availability.
+              </p>
+            </div>
+            <div className="self-start overflow-hidden border border-[#D9DEE2] border-t-2 border-t-[#123E61] bg-[#F8F9F9]">
+              <iframe
+                title="Map showing Dynamic Handyman in Eden Park, Alberton"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3574.3120721831256!2d28.124960669348297!3d-26.381103654208978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e951dea742589e3%3A0x7545b2471eeae154!2sDynamic%20Handyman%20(Pty)%20Ltd!5e0!3m2!1sen!2sza!4v1791984196083!5m2!1sen!2sza"
+                width="600"
+                height="450"
+                className="block h-[300px] w-full lg:h-[420px] xl:h-[460px]"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+          </div>
         </section>
       </main>
 

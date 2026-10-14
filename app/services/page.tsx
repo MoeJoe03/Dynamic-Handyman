@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 import { servicesData } from '@/data/services';
 import {
   ElectricalSvg,
@@ -82,11 +83,7 @@ export default function ServicesPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#062B49]/95 via-[#062B49]/85 to-[#062B49]/10" />
               <div className="relative z-10 flex min-h-[340px] sm:min-h-[420px] lg:min-h-[500px] items-center px-6 py-10 sm:px-10 lg:px-14">
             <div className="max-w-3xl">
-              {/* Technical Eyebrow / Sub Heading */}
-              <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
-                <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                <span>(01 — COMPREHENSIVE TRADE CAPABILITIES • ALBERTON)</span>
-              </div>
+              <BreadcrumbNav currentPage="services" />
 
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02] uppercase text-white">

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { AboutContent } from '@/components/AboutContent';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 
 export default function AboutPage() {
   return (
@@ -29,11 +30,7 @@ export default function AboutPage() {
               </div>
 
               <div className="relative z-10 max-w-4xl">
-                {/* Technical Eyebrow */}
-                <div className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-slate-300 mb-5">
-                  <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-                  <span>(03 — ABOUT US • COMPANY BACKGROUND &amp; STANDARDS)</span>
-                </div>
+                <BreadcrumbNav currentPage="about" />
 
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[0.98] uppercase">
                   About Dynamic Handyman,<br />

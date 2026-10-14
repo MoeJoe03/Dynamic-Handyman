@@ -132,7 +132,7 @@ export function QuoteForm({
           <div className="space-y-6 border-t border-[#D9DEE2] pt-8">
             <div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">
-                Telephone
+                Phone
               </span>
               <p className="text-base font-bold text-[#30323A] mt-1">
                 <a href={contactPhone.telHref}>{contactPhone.display}</a>
@@ -159,11 +159,23 @@ export function QuoteForm({
 
             <div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">
+                Address
+              </span>
+              <address className="mt-1 text-base font-bold not-italic leading-relaxed text-[#30323A]">
+                10 Vauxhall Street<br />
+                Eden Park, Alberton, 1458
+              </address>
+            </div>
+
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">
                 Operating Hours
               </span>
               <p className="text-sm font-bold text-[#30323A] mt-1">
-                Mon – Fri: 07:30 – 17:00 <br />
-                <span className="font-normal text-slate-500">Sat: By Appointment | Sun: Closed</span>
+                Mon – Thu: 8:00 am – 5:00 pm <br />
+                Fri: 8:00 am – 4:00 pm <br />
+                <span>Sat: 9:00 am – 2:00 pm</span> <br />
+                <span>Sun: Closed</span>
               </p>
             </div>
           </div>
