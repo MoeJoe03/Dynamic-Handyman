@@ -8,8 +8,7 @@ interface LogoProps {
 }
 
 export function Logo({ variant = 'light', className = '' }: LogoProps) {
-  // Real high-resolution Dynamic Handyman logo asset with "D" monogram, house roof, wrench and brand text
-  const logoUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuCKkZ_INuTkuoMKtJU54inW3RnBE6dbNExV82R9qL1JHyyv4dfaamB2UkW4p-1xAnF1WMyQvVn07q_yDfbz-cWyydE3QDD8Wn-j_TukWRpJ2_MnWI6ttR7qspK_ayRrwbQZ7snrEB6ouS5u2gQC0zIoC9zIbuhi4fVSge9vx-KVVQpGFNDis0NOm6vmFmCneDdB7DXFxFTpKGo6fNotG4Iadbx310P2wU1BPE2R5-mLpvnWIry6L-lD96iiOLOAiNbALQ8";
+  const logoUrl = '/images/dynamic-handyman-logo.png';
 
   if (variant === 'footer') {
     return (
@@ -34,9 +33,9 @@ export function Logo({ variant = 'light', className = '' }: LogoProps) {
       <Image
         src={logoUrl}
         alt={`${businessConfig.legalName} logo`}
-        width={220}
-        height={65}
-        className="h-12 sm:h-16 md:h-18 w-auto object-contain transition-opacity duration-200 hover:opacity-95"
+        width={200}
+        height={59}
+        className="h-10 sm:h-14 md:h-16 w-auto object-contain transition-opacity duration-200 hover:opacity-95"
         priority
         referrerPolicy="no-referrer"
       />

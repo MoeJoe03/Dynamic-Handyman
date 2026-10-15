@@ -37,6 +37,22 @@ const quoteButtonLabels: Record<string, string> = {
 
 const nearbyServiceAreas = mainServiceAreas.filter((area) => area !== 'Alberton');
 const extendedServiceAreas = widerServiceAreas;
+const howWeWorkSteps = [
+  { title: 'Get in Touch', text: 'Tell us what needs attention at your property by phone, WhatsApp or through the quote form.' },
+  { title: 'Discuss Your Project', text: 'We review the repairs, maintenance or renovation work and clarify the scope.' },
+  { title: 'Request a Quote', text: 'We discuss the appropriate quotation process for the work required.' },
+  { title: 'Plan the Next Steps', text: 'Once you have reviewed the quote, we can agree how to proceed.' },
+];
+const frequentlyAskedQuestions = [
+  { question: 'What handyman services does Dynamic Handyman provide?', answer: <>We provide property repairs, maintenance and renovation services, including <Link href="/services#trade-plumbing" className="font-semibold text-[#19547E] underline underline-offset-2">plumbing</Link>, electrical work, painting, carpentry, tiling, flooring, paving, glazing and general property maintenance. The work we can undertake depends on the project scope and any specialist requirements.</> },
+  { question: 'What areas does Dynamic Handyman serve?', answer: <>We are based in Eden Park, Alberton, and serve Alberton and selected nearby suburbs. We also consider wider Gauteng projects, including Sandton, Randburg, Roodepoort, Randfontein, Vereeniging and Pretoria, depending on scope, scheduling and travel requirements. <Link href="/contact" className="font-semibold text-[#19547E] underline underline-offset-2">Contact us</Link> to confirm availability.</> },
+  { question: 'Do you take on small handyman jobs?', answer: <>Yes, subject to availability and the type of work required. Send us the job description, location and photographs where possible so we can advise on the appropriate quotation process.</> },
+  { question: 'How much does a handyman cost in Alberton?', answer: <>The cost depends on the work, estimated labour time, materials, access and whether an assessment is needed. <Link href="/contact" className="font-semibold text-[#19547E] underline underline-offset-2">Request a quote</Link> with your project details for an accurate quotation process.</> },
+  { question: 'How do I request a quotation?', answer: <>Complete our <Link href="/contact" className="font-semibold text-[#19547E] underline underline-offset-2">online quote form</Link>, call, WhatsApp or email your project details. Include your location, description of the work, photographs where possible and your preferred timeframe.</> },
+  { question: 'Do you provide plumbing services?', answer: <>Yes, we provide selected plumbing repairs and maintenance, such as leaking taps, toilets, sinks, fittings, sealing and general pipe-related repairs. Contact us with the details so we can confirm whether we can assist.</> },
+  { question: 'Do you offer urgent or same-day services?', answer: <>Urgent enquiries can be sent by phone or WhatsApp so we can check availability. Same-day attendance is not guaranteed and depends on the work, location and current schedule.</> },
+  { question: 'Do you work with homeowners and businesses?', answer: <>Yes. We work with homeowners, landlords, property owners and selected residential and commercial clients. The quotation process may differ according to the property and work involved.</> },
+];
 
 export default async function ServicesPage() {
   const homeImages: HomeImageOverrides = await getPublicHomeImages();
@@ -76,7 +92,7 @@ export default async function ServicesPage() {
 
       <main className="flex-grow">
         {/* HERO SECTION FOR SERVICES */}
-        <section className="relative bg-white pt-6 pb-8 sm:pb-12 border-b border-[#D9DEE2]">
+        <section className="relative bg-white pt-6 pb-8 sm:pb-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative min-h-[340px] sm:min-h-[420px] lg:min-h-[500px] overflow-hidden border border-[#0C2B44] bg-[#082F51] shadow-xl">
               <Image
@@ -203,7 +219,55 @@ export default async function ServicesPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden border-t border-[#D9DEE2] bg-white py-16 sm:py-24">
+        <section className="bg-[#F8F9F9] py-16 sm:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16 lg:px-8">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <p className="mb-4 flex items-center gap-3 font-mono text-[11px] font-bold uppercase tracking-widest text-[#19547E]">
+                <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-sky-400" />
+                Questions and answers
+              </p>
+              <h2 className="text-2xl font-extrabold uppercase leading-tight tracking-tight text-[#123E61] sm:text-3xl lg:text-4xl">
+                Frequently Asked Questions About Our Handyman Services
+              </h2>
+              <p className="mt-6 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">
+                Find answers to common questions about our services, locations, quotations and scheduling.
+              </p>
+            </div>
+            <div className="divide-y divide-[#D9DEE2] border-y border-[#D9DEE2] bg-white">
+              {frequentlyAskedQuestions.map((faq) => (
+                <article key={faq.question} className="px-5 py-6 sm:px-8">
+                  <h3 className="text-lg font-bold text-[#123E61]">{faq.question}</h3>
+                  <p className="mt-3 max-w-4xl text-sm leading-relaxed text-slate-600 sm:text-base">{faq.answer}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="mb-4 flex items-center gap-3 font-mono text-[11px] font-bold uppercase tracking-widest text-[#19547E]">
+              <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-sky-400" />
+              How We Work
+            </p>
+            <h2 className="text-2xl font-extrabold uppercase leading-tight tracking-tight text-[#123E61] sm:text-3xl lg:text-4xl">
+              A Straightforward Way to Get Started
+            </h2>
+            <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {howWeWorkSteps.map((step) => (
+                <li key={step.title} className="border-t-2 border-[#123E61] pt-5">
+                  <h3 className="text-lg font-bold text-[#123E61]">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+            <Link href="/contact" className="mt-9 inline-flex min-h-12 items-center justify-center gap-3 bg-[#123E61] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#0C2B44]">
+              Request Your Quote <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden bg-white py-16 sm:py-24">
           <div className="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full border border-[#19547E]/10 sm:-right-12 sm:-top-40 sm:h-[28rem] sm:w-[28rem]" />
           <div className="pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full border border-[#19547E]/10 sm:right-8 sm:-top-28 sm:h-80 sm:w-80" />
           <div className="relative mx-auto max-w-7xl bg-[#F4F7F9] p-6 sm:p-9 lg:p-12">
