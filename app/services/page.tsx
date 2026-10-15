@@ -192,7 +192,7 @@ export default async function ServicesPage() {
                           referrerPolicy="no-referrer"
                         />
                         <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono px-3 py-1.5 tracking-wider uppercase border border-white/10">
-                          {trade.complianceSpec}
+                          {getHomeImage(homeImages, `services-page-${trade.id}`).altText}
                         </div>
                       </div>
                     </div>
