@@ -5,6 +5,8 @@ import { Footer } from '@/components/Footer';
 import { BreadcrumbNav } from '@/components/BreadcrumbNav';
 import { servicesData } from '@/data/services';
 import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
+import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
+import { getPublicHomeImages } from '@/lib/home-images/queries';
 import {
   ElectricalSvg,
   PaintingSvg,
@@ -36,7 +38,8 @@ const quoteButtonLabels: Record<string, string> = {
 const nearbyServiceAreas = mainServiceAreas.filter((area) => area !== 'Alberton');
 const extendedServiceAreas = widerServiceAreas;
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const homeImages: HomeImageOverrides = await getPublicHomeImages();
   const getServiceSvg = (id: string) => {
     switch (id) {
       case 'electrical':
@@ -181,8 +184,8 @@ export default function ServicesPage() {
                     <div className={`lg:col-span-6 ${isEven ? 'lg:order-1' : ''}`}>
                       <div className="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] w-full rounded-sm overflow-hidden bg-neutral-900 border border-[#D9DEE2] shadow-sm group">
                         <Image
-                          src={trade.images[0].url}
-                          alt={trade.images[0].alt}
+                          src={getHomeImage(homeImages, `services-page-${trade.id}`).imageUrl}
+                          alt={getHomeImage(homeImages, `services-page-${trade.id}`).altText}
                           fill
                           sizes="(max-width: 1024px) 100vw, 50vw"
                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

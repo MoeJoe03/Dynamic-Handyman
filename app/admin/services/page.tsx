@@ -26,7 +26,7 @@ export default async function AdminServicesPage() {
       userId={admin.userId}
       initialOverrides={overrides}
       initialError={error ? 'Could not load saved service images. Refresh before making changes.' : null}
-      sectionFilter="Service carousels"
+      sectionFilter="Services page images"
     />
   );
 }

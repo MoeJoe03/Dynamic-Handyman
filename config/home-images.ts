@@ -11,7 +11,7 @@ export const showcasePanels = servicesData.map((service) => ({
 
 export type HomeImageSlot = {
   key: string;
-  section: 'Hero carousel' | 'Service carousels' | 'Featured projects' | 'Review project photos' | 'Other home sections';
+  section: 'Hero carousel' | 'Service carousels' | 'Services page images' | 'Featured projects' | 'Review project photos' | 'Other home sections';
   label: string;
   defaultImageUrl: string;
   defaultAlt: string;
@@ -23,6 +23,7 @@ export const reviewPhotoSlotKeys = ['reviews-photo', 'reviews-photo-2', 'reviews
 export const homeImageSlots: HomeImageSlot[] = [
   ...showcasePanels.map((panel) => ({ key: panel.key, section: 'Hero carousel' as const, label: panel.title, defaultImageUrl: panel.defaultImageUrl, defaultAlt: panel.defaultAlt })),
   ...homeServicesData.flatMap((service) => service.images.slice(0, 4).map((photo, index) => ({ key: `service-${service.id}-${index + 1}`, section: 'Service carousels' as const, label: `${service.title} — image ${index + 1}`, defaultImageUrl: photo.url, defaultAlt: photo.alt }))),
+  ...servicesData.map((service) => ({ key: `services-page-${service.id}`, section: 'Services page images' as const, label: `${service.title} — services page image`, defaultImageUrl: service.images[0].url, defaultAlt: service.images[0].alt })),
   ...projectsData.slice(0, 6).map((project, index) => ({ key: `featured-project-${index + 1}`, section: 'Featured projects' as const, label: `Project ${index + 1}: ${project.title}`, defaultImageUrl: project.image, defaultAlt: project.subtitle })),
   { key: 'about-workmanship', section: 'Other home sections', label: 'About section workmanship photo', defaultImageUrl: projectsData[7].image, defaultAlt: 'Skilled handyman artisan driving screw with precision cordless drill into timber decking' },
   { key: 'reviews-photo', section: 'Review project photos', label: 'Project photo 1', defaultImageUrl: projectsData[3].image, defaultAlt: 'Finished bathroom renovation' },

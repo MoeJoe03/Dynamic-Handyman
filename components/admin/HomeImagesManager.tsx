@@ -211,7 +211,7 @@ export function HomeImagesManager({ userId, initialOverrides, initialError, sect
   const [savingAll, setSavingAll] = useState(false);
   const [saveAllMessage, setSaveAllMessage] = useState('');
   const saveHandlers = useRef(new Map<string, SaveImage>());
-  const sections = ['Hero carousel', 'Service carousels', 'Featured projects', 'Review project photos', 'Other home sections'] as const;
+  const sections = ['Hero carousel', 'Service carousels', 'Services page images', 'Featured projects', 'Review project photos', 'Other home sections'] as const;
   const dirtyCount = Object.values(dirtyKeys).filter(Boolean).length;
 
   const onDirtyChange = useCallback((key: string, dirty: boolean) => {
@@ -278,13 +278,13 @@ export function HomeImagesManager({ userId, initialOverrides, initialError, sect
     <header className="mb-10 flex flex-col gap-5 border-b border-[#D9DEE2] pb-6 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[.2em] text-[#19547E]">{galleryConfig.businessName}</p>
-        <h1 className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">{sectionFilter === 'Service carousels' ? 'SERVICES MANAGER' : 'HOME IMAGES'}</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">{sectionFilter === 'Services page images' ? 'SERVICES PAGE MANAGER' : sectionFilter === 'Service carousels' ? 'SERVICE CAROUSELS' : 'HOME IMAGES'}</h1>
         <p className="mt-2 max-w-2xl text-sm text-slate-600">Replace service photos with a new upload or reuse an image already uploaded in the shared library. Update each image&apos;s alt text and save your changes when ready.</p>
       </div>
       <div className="flex flex-wrap gap-2">
         <Link href="/" target="_blank" className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">View home page</Link>
         <Link href="/admin/gallery" onClick={(event) => { if (dirtyCount && !window.confirm('You have unsaved changes. Leave without saving?')) event.preventDefault(); }} className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">Gallery Manager</Link>
-        {sectionFilter !== 'Service carousels' && <Link href="/admin/services" onClick={(event) => { if (dirtyCount && !window.confirm('You have unsaved changes. Leave without saving?')) event.preventDefault(); }} className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">Services Manager</Link>}
+        {sectionFilter !== 'Services page images' && <Link href="/admin/services" onClick={(event) => { if (dirtyCount && !window.confirm('You have unsaved changes. Leave without saving?')) event.preventDefault(); }} className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">Services Page Manager</Link>}
         <button type="button" onClick={signOut} disabled={signingOut} className="min-h-11 border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] disabled:opacity-50">Sign Out</button>
       </div>
     </header>
