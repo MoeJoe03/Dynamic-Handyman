@@ -203,7 +203,7 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
   </article>;
 }
 
-export function HomeImagesManager({ userId, initialOverrides, initialError }: { userId: string; initialOverrides: HomeImageOverrides; initialError: string | null }) {
+export function HomeImagesManager({ userId, initialOverrides, initialError, sectionFilter }: { userId: string; initialOverrides: HomeImageOverrides; initialError: string | null; sectionFilter?: HomeImageSlot['section'] }) {
   const router = useRouter();
   const [overrides, setOverrides] = useState(initialOverrides);
   const [signingOut, setSigningOut] = useState(false);
@@ -278,12 +278,13 @@ export function HomeImagesManager({ userId, initialOverrides, initialError }: { 
     <header className="mb-10 flex flex-col gap-5 border-b border-[#D9DEE2] pb-6 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[.2em] text-[#19547E]">{galleryConfig.businessName}</p>
-        <h1 className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">HOME IMAGES</h1>
-        <p className="mt-2 max-w-2xl text-sm text-slate-600">Replace any home page photo with a new upload or reuse an image already uploaded in the Gallery or Home Images manager. Optional review photos appear after you save an image.</p>
+        <h1 className="text-3xl font-extrabold tracking-tight text-[#123E61] sm:text-4xl">{sectionFilter === 'Service carousels' ? 'SERVICES MANAGER' : 'HOME IMAGES'}</h1>
+        <p className="mt-2 max-w-2xl text-sm text-slate-600">Replace service photos with a new upload or reuse an image already uploaded in the shared library. Update each image&apos;s alt text and save your changes when ready.</p>
       </div>
       <div className="flex flex-wrap gap-2">
         <Link href="/" target="_blank" className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">View home page</Link>
         <Link href="/admin/gallery" onClick={(event) => { if (dirtyCount && !window.confirm('You have unsaved changes. Leave without saving?')) event.preventDefault(); }} className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">Gallery Manager</Link>
+        {sectionFilter !== 'Service carousels' && <Link href="/admin/services" onClick={(event) => { if (dirtyCount && !window.confirm('You have unsaved changes. Leave without saving?')) event.preventDefault(); }} className="flex min-h-11 items-center border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61]">Services Manager</Link>}
         <button type="button" onClick={signOut} disabled={signingOut} className="min-h-11 border border-[#C9D2D9] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] disabled:opacity-50">Sign Out</button>
       </div>
     </header>
@@ -300,7 +301,7 @@ export function HomeImagesManager({ userId, initialOverrides, initialError }: { 
       </button>
     </div>
     {initialError && <p role="alert" className="mb-6 border border-red-300 bg-red-50 p-4 text-sm text-red-800">{initialError}</p>}
-    {sections.map((section) => <section key={section} className="mb-12" aria-label={section}>
+    {sections.filter((section) => !sectionFilter || section === sectionFilter).map((section) => <section key={section} className="mb-12" aria-label={section}>
       <h2 className="mb-5 text-2xl font-bold text-[#123E61]">{section}</h2>
       {section === 'Review project photos' && <p className="mb-5 max-w-3xl text-sm text-slate-600">Use photos from the same reviewed project to show the different services completed. The photos rotate automatically while the customer reviews stay in place. Additional photos are optional; each unique image appears once.</p>}
       {section === 'Service carousels' ? <div className="space-y-10">

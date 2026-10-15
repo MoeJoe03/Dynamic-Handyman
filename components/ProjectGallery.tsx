@@ -37,13 +37,16 @@ export function ProjectGallery({ homeImages }: { homeImages: HomeImageOverrides 
         {/* 6 Project Cards Grid (Clean visual cards with no pop-up dialogs) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-14 lg:mb-16">
           {featuredProjects.map((project, index) => (
+            (() => {
+              const image = getHomeImage(homeImages, `featured-project-${index + 1}`);
+              return (
             <div
               key={project.id}
               className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 shadow-sm border border-[#D9DEE2]/60"
             >
               <Image
-                src={getHomeImage(homeImages, `featured-project-${index + 1}`).imageUrl}
-                alt={getHomeImage(homeImages, `featured-project-${index + 1}`).altText}
+                src={image.imageUrl}
+                alt={image.altText}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100"
@@ -59,12 +62,14 @@ export function ProjectGallery({ homeImages }: { homeImages: HomeImageOverrides 
                   <h3 className="text-white font-extrabold text-base sm:text-lg lg:text-xl uppercase tracking-tight">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-slate-300 font-medium mt-1">
-                    {project.subtitle}
+                  <p className="mt-2 max-w-[32rem] text-[11px] leading-relaxed text-slate-200/90">
+                    {image.altText}
                   </p>
                 </div>
               </div>
             </div>
+              );
+            })()
           ))}
         </div>
 
