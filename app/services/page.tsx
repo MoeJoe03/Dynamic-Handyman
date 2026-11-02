@@ -193,6 +193,15 @@ export default async function ServicesPage() {
                         >
                           View Completed Works
                         </Link>
+                        {trade.id === 'electrical' && (
+                          <Link
+                            href="/services/electrical"
+                            className="px-6 py-3 border border-[#19547E] text-[#19547E] hover:bg-[#F4F7F9] text-xs font-bold tracking-widest uppercase transition-colors"
+                          >
+                            Electrical Service Details
+                          </Link>
+                        )}
+                        {trade.id === 'painting' && <Link href="/services/painting" className="px-6 py-3 border border-[#19547E] text-[#19547E] hover:bg-[#F4F7F9] text-xs font-bold tracking-widest uppercase transition-colors">Painting Service Details</Link>}
                       </div>
                     </div>
 

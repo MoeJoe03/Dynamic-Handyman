@@ -6,12 +6,13 @@ const pageLabels = {
   about: 'About',
   contact: 'Contact',
   electrical: 'Electrical Services',
+  painting: 'Painting Services',
 } as const;
 
 type BreadcrumbPage = keyof typeof pageLabels;
 
 export function BreadcrumbNav({ currentPage }: { currentPage: BreadcrumbPage }) {
-  const isServiceDetail = currentPage === 'electrical';
+  const isServiceDetail = currentPage === 'electrical' || currentPage === 'painting';
   return (
     <nav aria-label="Breadcrumb" className="mb-5">
       <ol className="flex flex-wrap items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-slate-300 sm:text-[11px]">

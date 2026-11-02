@@ -20,9 +20,9 @@ export const servicesData: ServiceItem[] = [
     id: "electrical",
     ref: "01",
     title: "Electrical Installations, Repairs and Certificates of Compliance (COC)",
-    subtitle: "Certified Distribution & Safe Power Management",
-    badge: "Certified",
-    complianceSpec: "SANS 10142-1 Accredited Compliance",
+    subtitle: "Electrical Installations, Repairs and Fault Finding",
+    badge: "Electrical",
+    complianceSpec: "Electrical Repairs and Installations",
     turnaroundEstimate: "Scheduled Emergency and Project Work",
     description: "Electrical repairs, upgrades and fault finding for homes, offices and commercial properties, including DB board work, lighting and power points.",
     subServices: [
@@ -35,10 +35,10 @@ export const servicesData: ServiceItem[] = [
       "Surge protection"
     ],
     keyDeliverables: [
-      "High-voltage test certification & resistance verification",
+      "Electrical fault finding and installation checks",
       "Clean DIN-rail circuit breaker layout and terminal torque checking",
       "Dedicated surge protection device (SPD) installation",
-      "Official Wireman's License stamped Electrical Certificate of Compliance"
+      "Compliance-related work assessed against applicable requirements"
     ],
     images: [
       {

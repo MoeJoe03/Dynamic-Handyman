@@ -73,6 +73,7 @@ export function Header() {
                       <div className="absolute left-0 top-full z-50 min-w-72 border border-[#D9DEE2] bg-white p-2 shadow-lg" role="menu">
                         <Link href="/services" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">All Services</Link>
                         <Link href="/services/electrical" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Electrical Installations &amp; COC</Link>
+                        <Link href="/services/painting" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Painting &amp; Roof Coatings</Link>
                       </div>
                     )}
                   </div>
@@ -143,6 +144,7 @@ export function Header() {
             <div key={link.label} className="border-b border-neutral-100 pb-2">
               <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61]">SERVICES</Link>
               <Link href="/services/electrical" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Electrical Installations &amp; COC</Link>
+              <Link href="/services/painting" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Painting &amp; Roof Coatings</Link>
             </div>
           ) : (
             <Link key={link.label} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61] py-2 border-b border-neutral-100 transition-colors">{link.label}</Link>
