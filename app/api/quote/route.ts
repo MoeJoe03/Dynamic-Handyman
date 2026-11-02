@@ -70,20 +70,32 @@ function formatInquiryReference(requestId: string, now = new Date()) {
 
 export async function POST(request: NextRequest) {
   const origin = request.headers.get('origin');
-  if (!origin || origin !== new URL(request.url).origin) {
+  if (origin && origin !== new URL(request.url).origin) {
     return NextResponse.json({ error: 'Invalid request origin.' }, { status: 403 });
   }
-  if (!request.headers.get('content-type')?.includes('application/json')) {
-    return NextResponse.json({ error: 'Invalid request format.' }, { status: 415 });
-  }
+  const contentType = request.headers.get('content-type') || '';
+  const isJsonRequest = contentType.includes('application/json');
+  const isFormRequest = contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data');
+  if (!isJsonRequest && !isFormRequest) return NextResponse.json({ error: 'Invalid request format.' }, { status: 415 });
 
   let body: unknown;
   try {
-    const raw = await request.text();
-    if (Buffer.byteLength(raw, 'utf8') > 16000) {
-      return NextResponse.json({ error: 'Your request is too long.' }, { status: 413 });
+    if (isJsonRequest) {
+      const raw = await request.text();
+      if (Buffer.byteLength(raw, 'utf8') > 16000) return NextResponse.json({ error: 'Your request is too long.' }, { status: 413 });
+      body = JSON.parse(raw);
+    } else {
+      const formData = await request.formData();
+      body = {
+        fullName: String(formData.get('fullName') || ''),
+        phoneNumber: String(formData.get('phoneNumber') || ''),
+        emailAddress: String(formData.get('emailAddress') || ''),
+        serviceCategory: String(formData.get('serviceCategory') || ''),
+        projectDetails: String(formData.get('projectDetails') || ''),
+        website: String(formData.get('website') || ''),
+        requestId: crypto.randomUUID(),
+      };
     }
-    body = JSON.parse(raw);
   } catch {
     return NextResponse.json({ error: 'Invalid request format.' }, { status: 400 });
   }
@@ -155,6 +167,7 @@ export async function POST(request: NextRequest) {
     if (!result || typeof result !== 'object' || !('id' in result) || typeof result.id !== 'string' || !result.id) {
       return NextResponse.json({ error: deliveryError }, { status: 502 });
     }
+    if (!isJsonRequest) return NextResponse.redirect(new URL('/contact?quote=received', request.url), 303);
     return NextResponse.json({ success: true });
   } catch {
     console.error('Quote email provider could not be reached.');

@@ -19,7 +19,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: "electrical",
     ref: "01",
-    title: "Electrical Repairs and Certificates of Compliance",
+    title: "Electrical Installations, Repairs and Certificates of Compliance (COC)",
     subtitle: "Certified Distribution & Safe Power Management",
     badge: "Certified",
     complianceSpec: "SANS 10142-1 Accredited Compliance",

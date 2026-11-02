@@ -107,7 +107,7 @@ export default async function ContactPage({
                 Areas We Serve
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-slate-600 sm:text-base">
-                {businessConfig.brandName} is based at {businessConfig.address.formatted}, serving residential and commercial clients in Alberton and surrounding areas.
+                {businessConfig.brandName} is based in Eden Park, Alberton, and serves residential and commercial clients in Alberton and surrounding areas.
               </p>
               <h3 className="mt-5 text-sm font-bold text-[#123E61]">Main Service Locations</h3>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label="Areas served">

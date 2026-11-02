@@ -9,6 +9,7 @@ import { businessConfig } from '@/config/business';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -54,6 +55,29 @@ export function Header() {
             aria-label="Main Navigation"
           >
             {navLinks.map((link) => {
+              if (link.label === 'SERVICES') {
+                return (
+                  <div key={link.label} className="relative" onMouseLeave={() => setServicesMenuOpen(false)}>
+                    <button
+                      type="button"
+                      onClick={() => setServicesMenuOpen((open) => !open)}
+                      onMouseEnter={() => setServicesMenuOpen(true)}
+                      aria-expanded={servicesMenuOpen}
+                      aria-haspopup="true"
+                      className={`flex items-center gap-1 text-[11px] lg:text-xs font-bold uppercase tracking-[0.18em] transition-colors py-2 relative ${pathname.startsWith('/services') ? 'text-[#123E61] font-extrabold' : 'text-[#30323A] hover:text-[#123E61]'}`}
+                    >
+                      SERVICES <span aria-hidden="true" className="text-[10px]">⌄</span>
+                      {pathname.startsWith('/services') && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#123E61]" />}
+                    </button>
+                    {servicesMenuOpen && (
+                      <div className="absolute left-0 top-full z-50 min-w-72 border border-[#D9DEE2] bg-white p-2 shadow-lg" role="menu">
+                        <Link href="/services" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">All Services</Link>
+                        <Link href="/services/electrical" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Electrical Installations &amp; COC</Link>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
               const isActive =
                 link.href === '/'
                   ? pathname === '/'
@@ -115,15 +139,13 @@ export function Header() {
           className="md:hidden border-t border-[#D9DEE2] bg-white px-6 py-6 space-y-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200"
           id="mobileNavMenu"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61] py-2 border-b border-neutral-100 transition-colors"
-            >
-              {link.label}
-            </Link>
+          {navLinks.map((link) => link.label === 'SERVICES' ? (
+            <div key={link.label} className="border-b border-neutral-100 pb-2">
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61]">SERVICES</Link>
+              <Link href="/services/electrical" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Electrical Installations &amp; COC</Link>
+            </div>
+          ) : (
+            <Link key={link.label} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61] py-2 border-b border-neutral-100 transition-colors">{link.label}</Link>
           ))}
           <Link
             href="/contact"

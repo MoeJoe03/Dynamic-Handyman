@@ -3,7 +3,7 @@ export const galleryConfig = {
   logoUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKkZ_INuTkuoMKtJU54inW3RnBE6dbNExV82R9qL1JHyyv4dfaamB2UkW4p-1xAnF1WMyQvVn07q_yDfbz-cWyydE3QDD8Wn-j_TukWRpJ2_MnWI6ttR7qspK_ayRrwbQZ7snrEB6ouS5u2gQC0zIoC9zIbuhi4fVSge9vx-KVVQpGFNDis0NOm6vmFmCneDdB7DXFxFTpKGo6fNotG4Iadbx310P2wU1BPE2R5-mLpvnWIry6L-lD96iiOLOAiNbALQ8',
   storageBucket: 'gallery',
   categories: [
-    { value: 'electrical', label: 'Electrical Repairs and Certificates of Compliance', filterLabel: 'Electrical' },
+    { value: 'electrical', label: 'Electrical Installations, Repairs and Certificates of Compliance (COC)', filterLabel: 'Electrical' },
     { value: 'painting', label: 'Painting, Roof Coatings and Damp-Proofing', filterLabel: 'Painting' },
     { value: 'carpentry', label: 'Carpentry, Cupboards, Doors and Ceilings', filterLabel: 'Carpentry' },
     { value: 'plumbing', label: 'Plumbing', filterLabel: 'Plumbing' },

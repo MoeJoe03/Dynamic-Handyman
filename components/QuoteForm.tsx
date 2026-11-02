@@ -222,7 +222,7 @@ export function QuoteForm({
                   Please provide your contact and service requirements. All estimates are free of obligation.
                 </p>
 
-                <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+                <form action="/api/quote" method="post" className="space-y-6" onSubmit={handleSubmit}>
                   {Object.keys(errors).length > 0 && (
                     <div
                       ref={errorSummaryRef}
@@ -260,6 +260,9 @@ export function QuoteForm({
                     <input
                       type="text"
                       id="fullName"
+                      name="fullName"
+                      autoComplete="name"
+                      required
                       aria-required="true"
                       aria-invalid={Boolean(errors.fullName)}
                       aria-describedby={errors.fullName ? 'fullName-error' : undefined}
@@ -292,6 +295,9 @@ export function QuoteForm({
                       <input
                         type="tel"
                         id="phoneNumber"
+                        name="phoneNumber"
+                        autoComplete="tel"
+                        required
                         aria-required="true"
                         aria-invalid={Boolean(errors.phoneNumber)}
                         aria-describedby={errors.phoneNumber ? 'phoneNumber-error' : undefined}
@@ -322,6 +328,8 @@ export function QuoteForm({
                       <input
                         type="email"
                         id="emailAddress"
+                        name="emailAddress"
+                        autoComplete="email"
                         aria-required="false"
                         aria-invalid={Boolean(errors.emailAddress)}
                         aria-describedby={errors.emailAddress ? 'emailAddress-error' : undefined}
@@ -352,6 +360,8 @@ export function QuoteForm({
                     </label>
                     <select
                       id="serviceCategory"
+                      name="serviceCategory"
+                      required
                       aria-required="true"
                       aria-invalid={Boolean(errors.serviceCategory)}
                       aria-describedby={errors.serviceCategory ? 'serviceCategory-error' : undefined}
@@ -385,6 +395,8 @@ export function QuoteForm({
                     </label>
                     <textarea
                       id="projectDetails"
+                      name="projectDetails"
+                      autoComplete="off"
                       maxLength={5000}
                       rows={5}
                       value={formData.projectDetails}
