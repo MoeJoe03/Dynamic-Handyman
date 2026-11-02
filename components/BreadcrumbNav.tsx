@@ -7,12 +7,21 @@ const pageLabels = {
   contact: 'Contact',
   electrical: 'Electrical Services',
   painting: 'Painting Services',
+  carpentry: 'Carpentry Services',
+  plumbing: 'Plumbing Services',
+  palisades: 'Palisades & Carports',
+  paving: 'Paving',
+  maintenance: 'Property Maintenance',
+  'glass-works': 'Glass & Glazing',
+  flooring: 'Flooring',
+  'gutters-fascia': 'Gutters & Fascias',
+  'aluminium-windows-doors': 'Aluminium Windows & Doors',
 } as const;
 
 type BreadcrumbPage = keyof typeof pageLabels;
 
 export function BreadcrumbNav({ currentPage }: { currentPage: BreadcrumbPage }) {
-  const isServiceDetail = currentPage === 'electrical' || currentPage === 'painting';
+  const isServiceDetail = !['services', 'gallery', 'about', 'contact'].includes(currentPage);
   return (
     <nav aria-label="Breadcrumb" className="mb-5">
       <ol className="flex flex-wrap items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-slate-300 sm:text-[11px]">

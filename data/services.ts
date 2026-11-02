@@ -63,25 +63,25 @@ export const servicesData: ServiceItem[] = [
     id: "painting",
     ref: "02",
     title: "Painting, Roof Coatings and Damp-Proofing",
-    subtitle: "High-Durability Architectural Coating Systems",
+    subtitle: "Interior, Exterior and Roof Surface Preparation",
     badge: "Painting",
-    complianceSpec: "Professional Surface Preparation and Weather Protection",
+    complianceSpec: "Surface Preparation and Coating Work",
     turnaroundEstimate: "2 - 5 Days Based on Square Meterage",
     description: "Interior and exterior painting, roof coatings, crack repairs and damp-proofing for homes, offices and commercial properties.",
     subServices: [
       "Interior walls & ceilings",
-      "Exterior masonry & weather-seal",
-      "Roof spray coatings & repairs",
-      "Damp-proofing & crack filling",
+      "Exterior masonry painting",
+      "Roof coatings and related repairs",
+      "Damp assessment and suitable treatment",
       "Doors, frames & trims",
       "High-pressure wash prep",
       "Protective industrial enamels"
     ],
     keyDeliverables: [
-      "Substrate preparation with high-pressure deep cleaning and anti-fungal wash",
-      "Elastomeric crack bridging and plaster bonding seal coat",
-      "Dual topcoats with UV-reflective pure acrylic pigments",
-      "Clean edge masking and complete post-job site cleanup"
+      "Surface condition and moisture concerns reviewed before coating",
+      "Cleaning and preparation suited to the existing surface",
+      "Coating materials and number of coats specified in the quotation",
+      "Neat edge masking and site cleanup after the work"
     ],
     images: [
       {

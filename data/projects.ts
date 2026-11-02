@@ -63,7 +63,7 @@ export const projectsData: ProjectItem[] = [
       'UV-resistant pure acrylic exterior topcoats (Charcoal & Crisp White)',
       'Waterproof sealing on parapets and window sills'
     ],
-    description: 'Comprehensive transformation of a modern luxury residence exterior. Required thorough damp diagnosis, structural hairline crack filling, and triple-coat protective architectural paint engineered for severe Johannesburg hailstorm resilience.'
+    description: 'Exterior painting with crack repairs and protective coatings selected for the property’s surface and weather exposure.'
   },
   {
     id: 'project-3',

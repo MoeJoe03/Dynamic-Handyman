@@ -202,6 +202,9 @@ export default async function ServicesPage() {
                           </Link>
                         )}
                         {trade.id === 'painting' && <Link href="/services/painting" className="px-6 py-3 border border-[#19547E] text-[#19547E] hover:bg-[#F4F7F9] text-xs font-bold tracking-widest uppercase transition-colors">Painting Service Details</Link>}
+                        {trade.id === 'carpentry' && <Link href="/services/carpentry" className="px-6 py-3 border border-[#19547E] text-[#19547E] hover:bg-[#F4F7F9] text-xs font-bold tracking-widest uppercase transition-colors">Carpentry Service Details</Link>}
+                        {trade.id === 'plumbing' && <Link href="/services/plumbing" className="px-6 py-3 border border-[#19547E] text-[#19547E] hover:bg-[#F4F7F9] text-xs font-bold tracking-widest uppercase transition-colors">Plumbing Service Details</Link>}
+                        {!['electrical', 'painting', 'carpentry', 'plumbing'].includes(trade.id) && <Link href={`/services/${trade.id}`} className="px-6 py-3 border border-[#19547E] text-[#19547E] hover:bg-[#F4F7F9] text-xs font-bold tracking-widest uppercase transition-colors">View Service Details</Link>}
                       </div>
                     </div>
 

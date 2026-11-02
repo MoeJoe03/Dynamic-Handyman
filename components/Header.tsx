@@ -70,10 +70,13 @@ export function Header() {
                       {pathname.startsWith('/services') && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#123E61]" />}
                     </button>
                     {servicesMenuOpen && (
-                      <div className="absolute left-0 top-full z-50 min-w-72 border border-[#D9DEE2] bg-white p-2 shadow-lg" role="menu">
+                      <div className="absolute left-0 top-full z-50 max-h-[calc(100vh-6rem)] min-w-72 overflow-y-auto border border-[#D9DEE2] bg-white p-2 shadow-lg" role="menu">
                         <Link href="/services" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">All Services</Link>
                         <Link href="/services/electrical" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Electrical Installations &amp; COC</Link>
                         <Link href="/services/painting" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Painting &amp; Roof Coatings</Link>
+                        <Link href="/services/carpentry" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Carpentry &amp; Cupboards</Link>
+                        <Link href="/services/plumbing" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Plumbing &amp; Geysers</Link>
+                        {Object.entries({ palisades: 'Palisades & Carports', paving: 'Paving', maintenance: 'Property Maintenance', 'glass-works': 'Glass & Glazing', flooring: 'Flooring', 'gutters-fascia': 'Gutters & Fascias', 'aluminium-windows-doors': 'Aluminium Windows & Doors' }).map(([slug, label]) => <Link key={slug} href={`/services/${slug}`} onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">{label}</Link>)}
                       </div>
                     )}
                   </div>
@@ -145,6 +148,9 @@ export function Header() {
               <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61]">SERVICES</Link>
               <Link href="/services/electrical" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Electrical Installations &amp; COC</Link>
               <Link href="/services/painting" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Painting &amp; Roof Coatings</Link>
+              <Link href="/services/carpentry" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Carpentry &amp; Cupboards</Link>
+              <Link href="/services/plumbing" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Plumbing &amp; Geysers</Link>
+              {Object.entries({ palisades: 'Palisades & Carports', paving: 'Paving', maintenance: 'Property Maintenance', 'glass-works': 'Glass & Glazing', flooring: 'Flooring', 'gutters-fascia': 'Gutters & Fascias', 'aluminium-windows-doors': 'Aluminium Windows & Doors' }).map(([slug, label]) => <Link key={slug} href={`/services/${slug}`} onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">{label}</Link>)}
             </div>
           ) : (
             <Link key={link.label} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61] py-2 border-b border-neutral-100 transition-colors">{link.label}</Link>
