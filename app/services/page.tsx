@@ -7,6 +7,7 @@ import { servicesData } from '@/data/services';
 import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import { getHomeImage, type HomeImageOverrides } from '@/config/home-images';
 import { getPublicHomeImages } from '@/lib/home-images/queries';
+import { businessConfig } from '@/config/business';
 import {
   ElectricalSvg,
   PaintingSvg,
@@ -44,14 +45,43 @@ const howWeWorkSteps = [
   { title: 'Plan the Next Steps', text: 'Once you have reviewed the quote, we can agree how to proceed.' },
 ];
 const frequentlyAskedQuestions = [
-  { question: 'What handyman services does Dynamic Handyman provide?', answer: <>We provide property repairs, maintenance and renovation services, including <Link href="/services#trade-plumbing" className="font-semibold text-[#19547E] underline underline-offset-2">plumbing</Link>, electrical work, painting, carpentry, tiling, flooring, paving, glazing and general property maintenance. The work we can undertake depends on the project scope and any specialist requirements.</> },
-  { question: 'What areas does Dynamic Handyman serve?', answer: <>We are based in Eden Park, Alberton, and serve Alberton and selected nearby suburbs. We also consider wider Gauteng projects, including Sandton, Randburg, Roodepoort, Randfontein, Vereeniging and Pretoria, depending on scope, scheduling and travel requirements. <Link href="/contact" className="font-semibold text-[#19547E] underline underline-offset-2">Contact us</Link> to confirm availability.</> },
-  { question: 'Do you take on small handyman jobs?', answer: <>Yes, subject to availability and the type of work required. Send us the job description, location and photographs where possible so we can advise on the appropriate quotation process.</> },
-  { question: 'How much does a handyman cost in Alberton?', answer: <>The cost depends on the work, estimated labour time, materials, access and whether an assessment is needed. <Link href="/contact" className="font-semibold text-[#19547E] underline underline-offset-2">Request a quote</Link> with your project details for an accurate quotation process.</> },
-  { question: 'How do I request a quotation?', answer: <>Complete our <Link href="/contact" className="font-semibold text-[#19547E] underline underline-offset-2">online quote form</Link>, call, WhatsApp or email your project details. Include your location, description of the work, photographs where possible and your preferred timeframe.</> },
-  { question: 'Do you provide plumbing services?', answer: <>Yes, we provide selected plumbing repairs and maintenance, such as leaking taps, toilets, sinks, fittings, sealing and general pipe-related repairs. Contact us with the details so we can confirm whether we can assist.</> },
-  { question: 'Do you offer urgent or same-day services?', answer: <>Urgent enquiries can be sent by phone or WhatsApp so we can check availability. Same-day attendance is not guaranteed and depends on the work, location and current schedule.</> },
-  { question: 'Do you work with homeowners and businesses?', answer: <>Yes. We work with homeowners, landlords, property owners and selected residential and commercial clients. The quotation process may differ according to the property and work involved.</> },
+  { question: 'What handyman services does Dynamic Handyman provide?', answer: 'We provide property repairs, maintenance and renovation services, including plumbing, electrical work, painting, carpentry, flooring, paving, glazing and general property maintenance. The work we can undertake depends on the project scope and any specialist requirements.' },
+  { question: 'What areas does Dynamic Handyman serve?', answer: `We are based in Eden Park, Alberton, and serve Alberton and nearby suburbs including ${nearbyServiceAreas.join(', ')}. Wider Gauteng projects in ${extendedServiceAreas.join(', ')} depend on scope, scheduling and travel requirements. Contact us to confirm availability.` },
+  { question: 'Do you take on small handyman jobs?', answer: 'Yes, subject to availability and the type of work required. Send us the job description, location and photographs where possible so we can advise on the appropriate quotation process.' },
+  { question: 'How much does a handyman cost in Alberton?', answer: 'The cost depends on the work, estimated labour time, materials, access and whether an assessment is needed. Request a quote with your project details for an accurate quotation process.' },
+  { question: 'How do I request a quotation?', answer: 'Complete our online quote form, call, WhatsApp or email your project details. Include your location, description of the work, photographs where possible and your preferred timeframe.' },
+  { question: 'Do you provide plumbing services?', answer: 'Yes, we provide selected plumbing repairs and maintenance, such as leaking taps, toilets, sinks, fittings, sealing and general pipe-related repairs. Contact us with the details so we can confirm whether we can assist.' },
+  { question: 'Do you offer urgent or same-day services?', answer: 'Urgent enquiries can be sent by phone or WhatsApp so we can check availability. Same-day attendance is not guaranteed and depends on the work, location and current schedule.' },
+  { question: 'Do you work with homeowners and businesses?', answer: 'Yes. We work with homeowners, landlords, property owners and selected residential and commercial clients. The quotation process may differ according to the property and work involved.' },
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Dynamic Handyman services',
+    itemListElement: servicesData.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.description,
+        url: `${businessConfig.websiteUrl}/services/${service.id}`,
+        provider: { '@type': 'HomeAndConstructionBusiness', name: businessConfig.legalName, url: businessConfig.websiteUrl },
+        areaServed: businessConfig.mainServiceAreas,
+      },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: frequentlyAskedQuestions.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  },
 ];
 
 export default async function ServicesPage() {
@@ -87,6 +117,7 @@ export default async function ServicesPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
       {/* HEADER */}
       <Header />
 
@@ -122,11 +153,19 @@ export default async function ServicesPage() {
           </div>
         </section>
 
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 pb-2 sm:px-6 lg:px-8">
+          <span className="mr-2 text-sm font-semibold text-[#123E61]">Ready to discuss your project?</span>
+          <Link href="/contact" className="bg-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white hover:bg-[#0C2B44]">Request a quote</Link>
+          <a href={businessConfig.phone.telHref} className="border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#123E61] hover:bg-[#F4F7F9]">Call {businessConfig.phone.display}</a>
+          <a href={businessConfig.phone.whatsappUrl} className="border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#123E61] hover:bg-[#F4F7F9]">WhatsApp us</a>
+        </div>
+
         {/* FULL ARCHITECTURAL TRADE BREAKDOWNS */}
         <section className="py-12 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
             {servicesData.map((trade, idx) => {
               const isEven = idx % 2 === 1;
+              const serviceImage = getHomeImage(homeImages, `services-page-${trade.id}`);
 
               return (
                 <div
@@ -212,15 +251,15 @@ export default async function ServicesPage() {
                     <div className={`lg:col-span-6 ${isEven ? 'lg:order-1' : ''}`}>
                       <div className="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] w-full rounded-sm overflow-hidden bg-neutral-900 border border-[#D9DEE2] shadow-sm group">
                         <Image
-                          src={getHomeImage(homeImages, `services-page-${trade.id}`).imageUrl}
-                          alt={getHomeImage(homeImages, `services-page-${trade.id}`).altText}
+                          src={serviceImage.imageUrl}
+                          alt={serviceImage.altText}
                           fill
                           sizes="(max-width: 1024px) 100vw, 50vw"
                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                           referrerPolicy="no-referrer"
                         />
                         <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono px-3 py-1.5 tracking-wider uppercase border border-white/10">
-                          {getHomeImage(homeImages, `services-page-${trade.id}`).altText}
+                          {serviceImage.altText}
                         </div>
                       </div>
                     </div>
@@ -279,7 +318,7 @@ export default async function ServicesPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-white py-16 sm:py-24">
+        <section id="service-areas" className="relative scroll-mt-24 overflow-hidden bg-white py-16 sm:py-24">
           <div className="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full border border-[#19547E]/10 sm:-right-12 sm:-top-40 sm:h-[28rem] sm:w-[28rem]" />
           <div className="pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full border border-[#19547E]/10 sm:right-8 sm:-top-28 sm:h-80 sm:w-80" />
           <div className="relative mx-auto max-w-7xl bg-[#F4F7F9] p-6 sm:p-9 lg:p-12">
@@ -303,6 +342,9 @@ export default async function ServicesPage() {
                 </h3>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
                   Based in Alberton, Dynamic Handyman also travels to {extendedServiceAreas.join(', ')}.
+                </p>
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+                  Wider area visits depend on project scope and scheduling. <Link href="/contact" className="font-semibold text-[#19547E] underline underline-offset-2">Contact us to confirm availability for your location</Link>.
                 </p>
               </div>
 

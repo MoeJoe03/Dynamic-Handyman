@@ -32,11 +32,12 @@ export const metadata: Metadata = {
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: Promise<{ service?: string | string[] }>;
+  searchParams: Promise<{ service?: string | string[]; quote?: string | string[] }>;
 }) {
   const params = await searchParams;
   const requestedService = Array.isArray(params.service) ? params.service[0] : params.service;
   const initialServiceId = servicesData.some((service) => service.id === requestedService) ? requestedService : undefined;
+  const quoteStatus = Array.isArray(params.quote) ? params.quote[0] : params.quote;
 
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
@@ -44,6 +45,9 @@ export default async function ContactPage({
       <Header />
 
       <main className="flex-grow">
+        {quoteStatus === 'received' && <p role="status" className="mx-auto max-w-7xl px-4 pt-4 text-sm font-semibold text-[#123E61] sm:px-6 lg:px-8">Your quote request has been received. We usually respond during business hours.</p>}
+        {quoteStatus === 'error' && <p role="alert" className="mx-auto max-w-7xl px-4 pt-4 text-sm font-semibold text-red-700 sm:px-6 lg:px-8">Your quote request could not be sent. Please try again, call or WhatsApp us.</p>}
+        {quoteStatus === 'limited' && <p role="alert" className="mx-auto max-w-7xl px-4 pt-4 text-sm font-semibold text-red-700 sm:px-6 lg:px-8">Too many requests were sent from this connection. Please try again later or call us.</p>}
         {/* CONTACT HERO WITH ARCHITECTURAL BLUEPRINT ASSET */}
         <section className="relative bg-white pt-6 pb-12 sm:pb-16 border-b border-[#D9DEE2]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

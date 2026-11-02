@@ -139,7 +139,7 @@ export function Footer({ serviceArea = businessConfig.serviceAreaSummary }: { se
 
   return (
     <>
-      <footer className="bg-[#123E61] text-white border-t border-[#0C2B44] pt-16 pb-12">
+      <footer className="bg-[#07345a] text-white border-t border-[#0C2B44] pt-16 pb-12">
         <FooterContent currentYear={currentYear} serviceArea={serviceArea} />
       </footer>
       <AnimatedFooterArtwork />

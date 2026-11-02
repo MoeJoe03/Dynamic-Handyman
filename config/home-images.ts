@@ -47,7 +47,10 @@ export function getHomeImage(overrides: HomeImageOverrides, key: string) {
   const slot = homeImageSlotMap[key];
   if (!slot) throw new Error(`Unknown home image slot: ${key}`);
   const override = overrides[key];
-  return { imageUrl: override?.imageUrl ?? slot.defaultImageUrl, altText: override?.alt_text ?? slot.defaultAlt };
+  return {
+    imageUrl: override?.imageUrl?.trim() || slot.defaultImageUrl,
+    altText: override?.alt_text?.trim() || slot.defaultAlt,
+  };
 }
 
 export function getReviewProjectPhotos(overrides: HomeImageOverrides): { imageUrl: string; altText: string }[] {

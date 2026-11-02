@@ -84,6 +84,7 @@ export const businessConfig = {
     'Provides handyman services, home repairs, property maintenance and renovations.',
     'Offers free, no-obligation estimates.',
     'Coordinates multiple trades through one practical point of contact.',
+    'Issues electrical Certificates of Compliance after inspection and testing by a registered person where the installation meets applicable requirements.',
   ],
   facebookUrl: 'https://www.facebook.com/dynamichandyman/',
   websiteUrl: 'https://dynamichandyman.co.za',

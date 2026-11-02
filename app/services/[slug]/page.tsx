@@ -12,6 +12,7 @@ import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 import { servicesData } from '@/data/services';
 import { getPublicGalleryImages } from '@/lib/gallery/queries';
 import { ElectricalSvg, PaintingSvg, CarpentrySvg, PlumbingSvg, PalisadesCarportsSvg, PavingSvg, MaintenanceSvg, GlassWorksSvg, FlooringSvg, GuttersFasciaSvg, AluminiumWindowsDoorsSvg } from '@/components/icons/TradeSvgs';
+import { ServiceQuoteForm } from '@/components/services/ServiceQuoteForm';
 
 const slugs: Record<string, string> = {
   electrical: 'electrical',
@@ -30,6 +31,77 @@ const slugs: Record<string, string> = {
 export const revalidate = 60;
 const galleryShowcaseServices = new Set(['painting', 'electrical', 'carpentry', 'plumbing', 'palisades', 'maintenance', 'flooring']);
 
+const metadataOverrides: Record<string, { title: string; description: string }> = {
+  palisades: { title: 'Palisade Fencing, Gates & Carports in Alberton', description: 'Palisade fencing, sliding gate repairs and carport installation for Alberton homes and businesses. Request a site-based quote from Dynamic Handyman.' },
+  paving: { title: 'Driveway & Walkway Paving in Alberton', description: 'Driveway and walkway paving, sunken paving repairs and drainage-related preparation in Alberton. Request a quote from Dynamic Handyman.' },
+  maintenance: { title: 'Property Maintenance & Renovations | Alberton', description: 'Property maintenance, repairs and renovations for Alberton homes and businesses. Request a quote from Dynamic Handyman.' },
+  'glass-works': { title: 'Glass & Glazing Repairs | Alberton', description: 'Broken window glass, glazing repairs and pane replacement in Alberton. Send photos and measurements to Dynamic Handyman for a quote.' },
+  flooring: { title: 'Tiling, Flooring & Carpets in Alberton', description: 'Floor and wall tiling, carpet and laminate installation, and damaged flooring repairs in Alberton. Request a quote from Dynamic Handyman.' },
+  'gutters-fascia': { title: 'Gutter, Downpipe & Fascia Repairs | Alberton', description: 'Gutter leaks, blocked downpipes and fascia repairs in Alberton. Request a quote from Dynamic Handyman.' },
+  'aluminium-windows-doors': { title: 'Aluminium Windows & Doors | Alberton', description: 'Aluminium window and door installation and repairs in Alberton, including alignment, rollers, locks, seals and glazing. Request a quote.' },
+};
+
+const additionalFaqs: Record<string, [string, string][]> = {
+  palisades: [
+    ['What should I measure for a new gate or carport?', 'Approximate width, height and access details help with an initial discussion. Final dimensions and fixing conditions need a site check.'],
+    ['Can a gate be repaired instead of replaced?', 'That depends on frame condition, rollers, track and corrosion. Photos help us decide whether an assessment is needed.'],
+  ],
+  maintenance: [
+    ['Can one quote cover several repairs?', 'Yes. List each task and send photos so the combined scope can be discussed before quoting.'],
+    ['Do renovations need a site visit?', 'Larger work or hidden defects often require an assessment before materials, trades and scheduling can be agreed.'],
+  ],
+  carpentry: [
+    ['Should I repair or replace a damaged cupboard?', 'That depends on the condition of the panels, fittings and surrounding structure. Photos and measurements help us discuss whether a repair is practical.'],
+    ['Which cupboard materials can be used?', 'Material choice depends on the location, existing cabinetry, finish and budget. We confirm materials in the quotation rather than promising one specification for every job.'],
+    ['Can you replace door hardware without replacing the door?', 'Sometimes. We check the door, frame and existing fitting before recommending a handle, hinge or lock repair or replacement.'],
+    ['What causes ceiling damage to return?', 'A leak or movement above the ceiling may need attention first. We assess the visible damage and discuss whether another trade or inspection is needed.'],
+  ],
+  paving: [
+    ['Can sunken paving be repaired without relaying the whole area?', 'Often a local repair is possible, but the cause of settlement and the condition of the surrounding base need to be checked first.'],
+    ['How do you assess the base and drainage?', 'We review existing levels, water runoff and the condition of the paving base before proposing preparation or relaying.'],
+    ['Does driveway paving need different preparation from a walkway?', 'Vehicle use can change the preparation and material requirements. Tell us what vehicles use the area so we can assess the site and quote appropriately.'],
+  ],
+  'glass-works': [
+    ['What glass type will you use?', 'The suitable glass depends on the opening, location, frame and applicable requirements. We confirm the specification after assessment.'],
+    ['Can you board up broken glass?', 'Keep people away from broken glass and tell us if the opening needs urgent securing. We will confirm whether temporary boarding is available for your location and schedule before promising attendance.'],
+    ['Do you inspect the frame as well as the pane?', 'Yes. A damaged or misaligned frame can affect the replacement, so we check the fitting method and frame condition.'],
+    ['Do you work on shopfront glazing?', 'Send photographs, dimensions and access details for a shopfront enquiry. We will confirm whether the scope is suitable for our service.'],
+    ['How soon can replacement glass be fitted?', 'Scheduling depends on site measurement, the required glass specification, material availability and access. We discuss timing after reviewing your enquiry.'],
+  ],
+  flooring: [
+    ['Can you replace only damaged tiles or flooring?', 'A local repair may be possible if matching material is available and the underlying surface is sound.'],
+    ['What preparation is needed before new flooring?', 'We assess the existing finish, levels and moisture concerns before discussing preparation and material choice.'],
+    ['Do you remove old flooring?', 'Removal can be included when agreed in the scope. Send photographs so we can discuss disposal and preparation.'],
+    ['Can you install laminate flooring or carpet?', 'We discuss laminate and carpet installation after checking the room measurements, existing floor and preferred material.'],
+    ['Can you repair grout, trims or floor transitions?', 'We can assess damaged grout, edges and transitions. The repair depends on the condition of the surrounding finish and substrate.'],
+    ['How long does flooring work take?', 'Timing depends on the room size, removal work, subfloor preparation, material availability and drying time where relevant. We discuss a schedule after assessing the scope.'],
+  ],
+  'gutters-fascia': [
+    ['Can a leaking gutter joint be repaired?', 'Sometimes. We check the joint, alignment, fixings and surrounding gutter condition before proposing a repair.'],
+    ['Do you clear blocked downpipes?', 'Describe where water backs up or overflows and send photos. We can then discuss access and whether clearing or repair is suitable.'],
+    ['When should fascia boards be replaced?', 'Replacement depends on the extent of damage and the condition of the supporting roofline. A site assessment may be needed.'],
+    ['Why does my gutter overflow during rain?', 'Possible causes include a blockage, poor alignment, insufficient fall or a downpipe problem. We need to inspect the roofline before recommending a repair.'],
+    ['Can you change where the downpipe discharges?', 'We can discuss the outlet position and runoff route after checking the existing gutters, drainage and site access. The scope depends on the property.'],
+    ['Will you need roof access for a gutter repair?', 'Often, but the access method depends on height, roofline layout and ground conditions. Send photos so we can discuss a safe assessment.'],
+  ],
+  'aluminium-windows-doors': [
+    ['Can worn rollers be replaced?', 'We can assess the door or window, identify the fitting and discuss whether a compatible replacement is available.'],
+    ['Can you fix a door that does not close or lock properly?', 'Alignment, hinges, rollers, locks and frame condition may all contribute. We check the cause before recommending work.'],
+    ['Do you replace seals and glazing?', 'We can discuss weather seals and glazing after checking the frame, opening and suitable materials.'],
+    ['Should I repair or replace an aluminium frame?', 'That depends on frame condition, alignment, available parts and the cost of the proposed repair. A site assessment helps clarify the options.'],
+    ['Can you replace handles or locks on existing frames?', 'We can check the existing fitting and discuss a compatible handle or lock if replacement parts are available.'],
+    ['What should I send for a new aluminium window or door quote?', 'Send the opening dimensions, photos of the inside and outside, your location and any preferred opening style. Final measurements are confirmed on site.'],
+    ['How long will an aluminium repair or installation take?', 'Timing depends on measurements, parts or frame availability, access and the work required. We discuss scheduling after reviewing the scope.'],
+  ],
+};
+
+const serviceGuidance: Record<string, { heading: string; text: string }> = {
+  painting: { heading: 'Preparation before painting', text: 'We review peeling paint, cracks, surface condition and visible moisture before choosing preparation or coating work. Recurring damp can have a separate cause such as a leak or drainage problem. Based in Alberton, we discuss access, weather exposure and drying time for each property before quoting; a coating alone is not presented as a cure for water entry.' },
+  carpentry: { heading: 'Repair or replacement', text: 'We consider the condition of the existing cupboard, door, hardware or ceiling before recommending a repair or replacement. Materials and measurements are confirmed for the individual project.' },
+  paving: { heading: 'Ground and drainage checks', text: 'Sunken areas may need a local repair or broader relaying, depending on the base. Driveways also need preparation suited to vehicle use. We check levels, runoff and ground condition before defining the scope.' },
+  flooring: { heading: 'Choosing a floor finish', text: 'A suitable floor finish depends on the room, expected use and the condition of the existing surface. Uneven or damp subfloors may need preparation before tiles, laminate or carpet are installed. We discuss materials and repair options after reviewing the site.' },
+};
+
 const remainingServiceCopy: Record<string, { problem: string; assessment: string; process: string; question: string; answer: string }> = {
   palisades: { problem: 'We help with damaged palisade fencing, gates that do not run smoothly, worn rollers, corroded steelwork and carport installations or repairs.', assessment: 'New fencing, gates and carports usually need site measurements, ground and fixing checks, and a discussion of the required materials.', process: 'Send photos, approximate dimensions, your location and the type of fencing, gate or carport work required.', question: 'Can you repair an existing gate or palisade fence?', answer: 'Yes. Share photographs of the damage and we can discuss repairs, replacement parts and whether a site visit is needed.' },
   paving: { problem: 'We help with uneven or sunken paving, damaged walkways, driveway improvements and areas where drainage needs attention.', assessment: 'New paving or substantial repairs may need measurements and an assessment of the ground, existing base and water runoff.', process: 'Send the approximate area, photos, your location and whether the paving will carry vehicles or foot traffic.', question: 'Can you repair sunken paving?', answer: 'Yes. We can assess the affected area and discuss the base preparation and relaying required.' },
@@ -44,7 +116,7 @@ const detailCopy = {
   electrical: { title: 'Electrical Services in Alberton | Repairs & COCs', description: 'Electrical repairs, installations, fault finding and compliance-related work for Alberton homes and businesses. Request a quote.', name: 'Electrical Services', h1: 'Electrical Services in Alberton', intro: 'Dynamic Handyman provides practical electrical installations, repairs, fault finding and compliance-related work for homes, rental properties and businesses in Alberton and nearby suburbs.', quote: 'Get a Free Electrical Quote', cta: 'Request an Electrical Quote', work: 'Electrical', type: ['Electrical installations', 'Electrical repairs', 'Fault finding', 'Compliance-related electrical work'], audience: 'Our electrical service helps property owners resolve faults, improve safety and complete planned installation work through one practical point of contact.', problems: 'We help with tripping circuits, faulty plugs or lights, outdated distribution boards, damaged wiring, power-point additions and electrical work that needs inspection or certification.', assessment: 'A site assessment may be required when the fault is intermittent, the existing wiring is unknown, access is restricted or the project involves a larger installation or compliance inspection.', process: 'Send your location, project details and photographs where possible. We review the information, clarify the scope and discuss the appropriate quotation process before work starts.', faqs: [
     ['What electrical work does Dynamic Handyman provide?', 'We provide selected electrical installations, repairs, fault finding, distribution board work, lighting, power points, surge protection and generator or inverter changeovers.'],
     ['When is an electrical assessment required?', 'An assessment may be needed for recurring trips, rewiring, distribution board changes, compliance inspections, unknown faults or work where the existing installation needs to be checked first.'],
-    ['Do you provide Certificates of Compliance?', 'Compliance-related electrical work may include a Certificate of Compliance after the applicable inspection and requirements have been met. We will explain what is needed for your property.'],
+    ['Does Dynamic Handyman issue electrical Certificates of Compliance?', 'Yes. Dynamic Handyman issues electrical COCs after a registered person has inspected and tested the installation and confirmed it meets the applicable requirements. Any faults that prevent certification must be addressed before a COC can be issued.'],
     ['Who is this service for?', 'We assist homeowners, landlords, property owners and selected residential and commercial clients with planned electrical work and repairs.'],
     ['How do I request an electrical quote?', 'Send your location, a description of the issue or planned installation, photographs of the affected area where safe, and your preferred timeframe.'],
   ] },
@@ -66,7 +138,7 @@ const detailCopy = {
     ['What plumbing repairs do you handle?', 'We discuss taps, mixers, toilets, sinks, leaks, pipes, waste lines and other selected repair and maintenance work.'],
     ['Can you help with a geyser problem?', 'Yes. Describe the symptoms and send photos where safe. We can discuss assessment and the appropriate repair or replacement scope.'],
     ['Do you fit sanitaryware?', 'We can discuss taps, mixers, shower sets, toilets and related fittings for bathrooms and kitchens.'],
-    ['Is same-day plumbing attendance guaranteed?', 'No. Availability depends on the work, location and current schedule. Call or WhatsApp for urgent enquiries.'],
+    ['How soon can plumbing work be scheduled?', 'Availability depends on the work, location and current schedule. Call or WhatsApp for urgent enquiries so we can discuss the next step.'],
     ['What information helps with a plumbing quote?', 'Send your location, a description of the problem, photos where safe, access details and your preferred timeframe.'],
   ] },
 } as const;
@@ -82,8 +154,8 @@ function getDetailCopy(slug: string, service: (typeof servicesData)[number]) {
   if (slug in detailCopy) return detailCopy[slug as keyof typeof detailCopy];
   const extra = remainingServiceCopy[slug];
   return {
-    title: `${service.title} in Alberton | Dynamic Handyman`,
-    description: `${service.description} Available in Alberton and nearby areas. Request a quote from Dynamic Handyman.`,
+    title: metadataOverrides[slug]?.title ?? `${service.title} in Alberton | Dynamic Handyman`,
+    description: metadataOverrides[slug]?.description ?? `${service.description} Request a quote in Alberton.`,
     name: service.title,
     h1: `${service.title} in Alberton`,
     intro: `${service.description} Dynamic Handyman assists homes, rental properties and businesses in Alberton and nearby suburbs.`,
@@ -101,6 +173,7 @@ function getDetailCopy(slug: string, service: (typeof servicesData)[number]) {
       ['Who can request this service?', 'We welcome enquiries from homeowners, landlords and businesses in our service areas.'],
       ['When can the work be scheduled?', 'Scheduling depends on the scope, materials, location and current availability. We discuss timing during the quotation process.'],
       ['What should I send for a quote?', extra.process],
+      ...(additionalFaqs[slug] ?? []),
     ],
   };
 }
@@ -130,8 +203,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ServiceDetailPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ quote?: string | string[] }> }) {
   const { slug } = await params;
+  const query = await searchParams;
+  const quoteStatus = Array.isArray(query.quote) ? query.quote[0] : query.quote;
   const service = getService(slug);
   if (!service) notFound();
 
@@ -171,10 +246,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     serviceType: copy.type,
   };
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: copy.faqs.map(([question, answer]) => ({
+      '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: businessConfig.websiteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${businessConfig.websiteUrl}/services` },
+      { '@type': 'ListItem', position: 3, name: service.title, item: `${businessConfig.websiteUrl}/services/${slug}` },
+    ],
+  };
+
   return <div className="min-h-screen flex flex-col bg-white overflow-x-clip">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema).replace(/</g, '\\u003c') }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, '\\u003c') }} />
     <Header />
     <main className="flex-grow">
+      {quoteStatus === 'received' && <p role="status" className="mx-auto max-w-7xl px-4 pt-4 text-sm font-semibold text-[#123E61] sm:px-6 lg:px-8">Your quote request has been received. We usually respond during business hours.</p>}
+      {quoteStatus === 'error' && <p role="alert" className="mx-auto max-w-7xl px-4 pt-4 text-sm font-semibold text-red-700 sm:px-6 lg:px-8">Your quote request could not be sent. Please try again, call or WhatsApp us.</p>}
+      {quoteStatus === 'limited' && <p role="alert" className="mx-auto max-w-7xl px-4 pt-4 text-sm font-semibold text-red-700 sm:px-6 lg:px-8">Too many requests were sent from this connection. Please try again later or call us.</p>}
       <section className="bg-white py-6 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative min-h-[380px] overflow-hidden rounded-2xl border border-[#0C2B44] bg-[#123E61] text-white shadow-xl sm:min-h-[440px] lg:min-h-[500px]">
@@ -212,6 +309,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">{serviceName} for Homes and Businesses</h2><p className="mt-5 leading-relaxed">{copy.audience}</p></div>
           <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">What Our {copy.work} Work Includes</h2><ul className="mt-5 grid gap-3 sm:grid-cols-2">{service.subServices.map((item) => <li key={item} className="border-l-2 border-sky-400 pl-4 leading-relaxed">{item}</li>)}</ul></div>
           <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">Common {copy.work} Problems We Help With</h2><p className="mt-5 leading-relaxed">{copy.problems}</p></div>
+          {serviceGuidance[slug] && <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">{serviceGuidance[slug].heading}</h2><p className="mt-5 leading-relaxed">{serviceGuidance[slug].text}</p></div>}
           <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">When an Assessment May Be Required</h2><p className="mt-5 leading-relaxed">{copy.assessment}</p></div>
           <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">How Our {copy.work} Quote Process Works</h2><p className="mt-5 leading-relaxed">{copy.process}</p></div>
           <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">{serviceName} in Alberton and Nearby Areas</h2><p className="mt-5 leading-relaxed">Dynamic Handyman is based in Eden Park, Alberton. We serve {mainServiceAreas.join(', ')} and consider selected wider-area projects in {widerServiceAreas.join(', ')}, depending on scope, scheduling and travel requirements.</p></div>
@@ -221,23 +319,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#19547E]">{copy.work} quote request</p>
             <h2 className="mt-3 text-2xl font-extrabold uppercase leading-tight text-[#123E61]">{quoteLabel}</h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">Tell us what you need and we will review the request.</p>
-            <form action="/api/quote" method="post" className="mt-6 space-y-4">
-              <input type="hidden" name="serviceCategory" value={service.title} />
-              <input type="hidden" name="website" value="" />
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#123E61]">Full name<input name="fullName" required autoComplete="name" className="mt-1.5 w-full border border-[#D9DEE2] bg-white px-3 py-2.5 text-sm" /></label>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#123E61]">Phone number<input name="phoneNumber" required autoComplete="tel" className="mt-1.5 w-full border border-[#D9DEE2] bg-white px-3 py-2.5 text-sm" /></label>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#123E61]">Email address <span className="font-normal normal-case tracking-normal text-slate-500">(optional)</span><input type="email" name="emailAddress" autoComplete="email" className="mt-1.5 w-full border border-[#D9DEE2] bg-white px-3 py-2.5 text-sm" /></label>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#123E61]">Project details<textarea name="projectDetails" rows={4} className="mt-1.5 w-full resize-y border border-[#D9DEE2] bg-white px-3 py-2.5 text-sm" /></label>
-              <button type="submit" className="inline-flex w-full items-center justify-center bg-[#123E61] px-5 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-[#0C2B44]">{quoteLabel} →</button>
-            </form>
-            <p className="mt-4 text-center text-xs text-slate-500">Or call {businessConfig.phone.display}</p>
+            <ServiceQuoteForm serviceId={service.id} serviceTitle={service.title} quoteLabel={quoteLabel} />
           </div>
         </aside>
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl space-y-14 text-slate-600 sm:text-base">
-          {galleryShowcaseServices.has(service.id) ? (galleryImages.length > 0 && <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">Our {copy.work} Work</h2><div className="mt-8 grid grid-cols-2 gap-5">{galleryImages.map((projectImage) => <figure key={projectImage.id} className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-100"><Image src={projectImage.imageUrl} alt={projectImage.alt_text || `${service.title} project by Dynamic Handyman`} fill sizes="(max-width: 640px) 50vw, 420px" className="object-cover" /></figure>)}</div><Link href={`/gallery?category=${service.id}`} className="mt-5 inline-block text-sm font-semibold text-[#19547E] underline underline-offset-2">See more {copy.work.toLowerCase()} work</Link></div>) : <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">Our {copy.work} Work</h2><div className="mt-8 grid grid-cols-2 gap-5">{service.images.slice(0, 2).map((projectImage) => <figure key={projectImage.url} className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-100"><Image src={projectImage.url} alt={projectImage.alt} fill sizes="(max-width: 640px) 50vw, 420px" className="object-cover" /></figure>)}</div></div>}
+          <div>
+            <h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">Our {copy.work} Work</h2>
+            {galleryImages.length > 0 ? <div className="mt-8 grid grid-cols-2 gap-5">{galleryImages.map((projectImage) => <figure key={projectImage.id} className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-100"><Image src={projectImage.imageUrl} alt={projectImage.alt_text || `${service.title} project by Dynamic Handyman`} fill sizes="(max-width: 640px) 50vw, 420px" className="object-cover" /></figure>)}</div> : <p className="mt-5 leading-relaxed">No project photos are available here for this service yet. You can browse other completed projects or <Link href={quoteHref} className="font-semibold text-[#19547E] underline underline-offset-2">send us your project details</Link> so we can discuss the work you need.</p>}
+            <Link href={galleryImages.length > 0 ? `/gallery?category=${service.id}` : '/gallery'} className="mt-5 inline-block text-sm font-semibold text-[#19547E] underline underline-offset-2">Explore completed {copy.work.toLowerCase()} projects</Link>
+          </div>
           <div className="bg-[#F4F7F9] p-7 sm:p-10"><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">Request a Quote for {copy.work} Work</h2><p className="mt-5 leading-relaxed">Contact us with your location, the work required and any useful photographs. We will discuss the scope, scheduling and quotation process for your property.</p><Link href={quoteHref} className="mt-7 inline-flex bg-[#123E61] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-[#0C2B44]">{copy.cta} →</Link></div>
           <div><h2 className="text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">Frequently Asked Questions About {serviceName}</h2><div className="mt-8 divide-y divide-[#D9DEE2] border-y border-[#D9DEE2]">{copy.faqs.map(([question, answer]) => <article key={question} className="py-6"><h3 className="text-lg font-bold text-[#123E61]">{question}</h3><p className="mt-3 leading-relaxed">{answer}</p></article>)}</div><p className="mt-10 font-mono text-[11px] font-bold uppercase tracking-widest text-[#19547E]">(Other Services)</p><h2 className="mt-4 text-2xl font-extrabold uppercase text-[#123E61] sm:text-3xl">What We Do</h2><div className="mt-8 grid gap-px border border-[#D9DEE2] bg-[#D9DEE2] sm:grid-cols-2 lg:grid-cols-3">{servicesData.filter((item) => item.id !== service.id).map((item) => <Link key={item.id} href={slugs[item.id] ? `/services/${slugs[item.id]}` : `/services#trade-${item.id}`} className="group bg-white p-6 transition-colors hover:bg-[#F4F7F9] sm:p-8"><div className="mb-5 flex items-center justify-between">{serviceIcon(item.id)}<ArrowUpRight className="text-slate-400 transition-colors group-hover:text-[#123E61]" size={18} aria-hidden="true" /></div><h3 className="text-base font-extrabold uppercase tracking-tight text-[#123E61]">{item.title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-600">{item.description}</p></Link>)}</div></div>
         </div>

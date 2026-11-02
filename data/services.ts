@@ -66,7 +66,7 @@ export const servicesData: ServiceItem[] = [
     subtitle: "Interior, Exterior and Roof Surface Preparation",
     badge: "Painting",
     complianceSpec: "Surface Preparation and Coating Work",
-    turnaroundEstimate: "2 - 5 Days Based on Square Meterage",
+    turnaroundEstimate: "Scheduled After Surface Assessment",
     description: "Interior and exterior painting, roof coatings, crack repairs and damp-proofing for homes, offices and commercial properties.",
     subServices: [
       "Interior walls & ceilings",
@@ -108,8 +108,8 @@ export const servicesData: ServiceItem[] = [
     title: "Carpentry, Cupboards, Doors and Ceilings",
     subtitle: "Careful Joinery Installation",
     badge: "Precision Joinery",
-    complianceSpec: "Fine Millwork Tolerances (< 1mm)",
-    turnaroundEstimate: "3 - 7 Working Days Fabrication & Fit",
+    complianceSpec: "Careful Joinery Installation",
+    turnaroundEstimate: "Scheduled After Site Measurement",
     description: "Practical carpentry and joinery services for repairs, installations and improvements throughout the property.",
     subServices: [
       "Built-in bedroom cupboards",
@@ -121,10 +121,10 @@ export const servicesData: ServiceItem[] = [
       "Timber partitions & shelving"
     ],
     keyDeliverables: [
-      "Laser-leveled frame alignment and custom wall scribing",
-      "Heavy-duty soft-close European hardware installation",
-      "Moisture-resistant MDF/solid timber edging and trim finishing",
-      "Smooth acoustic and thermal suspended ceiling integration"
+      "Cupboard and shelving installation suited to site measurements",
+      "Hinge, handle and door fitting as agreed in the scope",
+      "Timber edging and trim finishing where required",
+      "Ceiling repairs and installation after assessment"
     ],
     images: [
       {
@@ -149,38 +149,38 @@ export const servicesData: ServiceItem[] = [
     id: "plumbing",
     ref: "04",
     title: "Plumbing Repairs, Geysers and Sanitaryware",
-    subtitle: "Hydraulic Systems, Sanitaryware & Geyser Maintenance",
+    subtitle: "Plumbing Repairs, Geysers and Sanitaryware",
     badge: "Plumbing",
-    complianceSpec: "SANS 10252 Plumbing Standards",
-    turnaroundEstimate: "Same-Day Leaks / 24h Geyser Replacement",
+    complianceSpec: "Plumbing Repairs and Maintenance",
+    turnaroundEstimate: "Scheduled According to Availability",
     description: "Plumbing repairs and maintenance for bathrooms, kitchens, geysers, pipes and drainage systems.",
     subServices: [
       "Burst pipe & leak repairs",
       "Geyser replacement & thermostats",
-      "Pressure control valve adjustments",
+      "Pressure control valve checks and repairs",
       "Taps, mixers & shower sets",
       "Toilet cisterns & waste lines",
       "Drain unblocking & traps",
       "Kitchenette rough-ins"
     ],
     keyDeliverables: [
-      "Pressure-tested joints with certified copper and multi-layer PEX piping",
-      "Geyser drip tray, vacuum breakers, and overflow compliance setup",
-      "Acoustic pipe dampening and secure structural bracket anchors",
-      "Clean sanitary sealants with anti-microbial waterproofing"
+      "Pipe materials and joint checks suited to the agreed repair",
+      "Geyser fittings assessed against the installation requirements",
+      "Pipe supports and fittings suited to the repair",
+      "Sanitary sealing and cleanup after the work"
     ],
     images: [
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuAWjcarXKsl3O6UiJWxxL93fcrdvQPy5mB59SXy84-koWMYPu7Ph7W-l0t7JBozPyWcOniH8fVDd9A735tO-o1HQDgaYtHsQudA5mY_u2O4xeQ804YN0Ny0-SNLHAFVzU3N4uo3_AGE1pnatD_k-7wQEKJlGgismUGZSCSweMgwql6CoPxM30ozdG5yNYXv0yF-cdVTkbHmaCbUE_xHCTzT_vvCN3UCS3Umd0MZhi2-GnPnHxH5mbBvhA",
-        alt: "Luxury Bathroom Plumbing & Sanitaryware"
+        alt: "Bathroom plumbing and sanitaryware fittings"
       },
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCO-_GC4xQ98VL-A7nMILDQ9-Aaldyr0nSWQMcru3YjjqDDwxojBmdEUOm4R0iSEU5KBHzZj27rUpSNyviG6mfjuDPFzCMJnrAlDhMFLrstKjxiJGAg8gX6iO7_aZF0PYqiucuuQ7V05RldgFrJGq4aPa3emip7JzqyYlq924kfvr-3LmVJQrTCk8Z_otxVs754GcSx1OOcfb_ik2nI_hkgPxSaP0XAu645-JC1tcC_SukN8h-fPRKm0w",
-        alt: "Corporate Facility Pipe Infrastructure"
+        alt: "Pipework and plumbing fittings"
       },
       {
         url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDMZZfvYj_ogC5PHef0pfHlXLvLzpPTh-RMe90qSLqs4X9KVxWpGb-A6pnZAblexERrNdb1071916ossFFyR8nCya2G-g-A88PJZL10Ll7H-zEAAtFnpSMg8emwJ-Ut4Qe77-ExeaPX8jOVIYzIZPOgK4Pf9dY72OPMbf36GmZLOxJrwPT8dQbwt_ufRzMrlbsXzbXV2kM65P0p4aLdJfZvr-ppHZcuyxcOk0EXXvao_O09Hu49gEKmog",
-        alt: "Precision Structural Plumbing and Fixture Fitting"
+        alt: "Plumbing fixtures and pipe connections"
       },
       {
         url: "/images/services/plumbing-fourth.webp",
@@ -194,23 +194,23 @@ export const servicesData: ServiceItem[] = [
     title: "Palisade Fencing, Gates and Carports",
     subtitle: "Steel Fabrication and Secure Installation",
     badge: "Steel Fabrication",
-    complianceSpec: "Structural Steel Welding & Heavy Foundation Spec",
-    turnaroundEstimate: "3 - 7 Working Days Site Installation",
+    complianceSpec: "Steel Fabrication and Installation",
+    turnaroundEstimate: "Scheduled After Site Assessment",
     description: "Steel fabrication and installation for boundary security, vehicle protection and property improvements.",
     subServices: [
       "Steel palisade boundary fencing",
       "Pedestrian & driveway sliding gates",
-      "Cantilever & 4-post carports",
-      "On-site welding & structural repairs",
-      "Anti-rust primer & protective enamel",
-      "Corrugated & IBR roof sheeting",
+      "Carport installation and repair",
+      "On-site welding and steel repairs",
+      "Protective steel finishing",
+      "Carport roof sheeting",
       "Gate track & roller replacement"
     ],
     keyDeliverables: [
-      "Heavy-gauge hot-rolled structural steel tubing and gusset plates",
-      "Reinforced deep concrete foundation footings",
-      "Zinc chromate anti-rust primer with dual industrial enamel topcoats",
-      "Engineered storm-water gutter downspout runoff integration"
+      "Steel dimensions and finish agreed for the project",
+      "Suitable foundations assessed for the site",
+      "Protective coating specified in the quotation",
+      "Drainage details considered where relevant"
     ],
     images: [
       {
@@ -237,21 +237,21 @@ export const servicesData: ServiceItem[] = [
     title: "Paving",
     subtitle: "Driveway Paving and Ground Preparation",
     badge: "Paving",
-    complianceSpec: "Compacted Sub-Base & Load-Bearing Standards",
-    turnaroundEstimate: "4 - 8 Days Site Preparation & Laying",
-    description: "Paving, masonry repairs and minor property alterations for homes, businesses and outdoor areas.",
+    complianceSpec: "Ground Preparation and Paving",
+    turnaroundEstimate: "Scheduled After Site Assessment",
+    description: "Driveway and walkway paving, sunken paving repairs and drainage-related ground preparation for homes and businesses in Alberton.",
     subServices: [
       "Driveway & walkway paving",
       "Paving repairs & sunken patch re-leveling",
       "Kerbing, channels & drainage slopes",
       "Plastering, screeding & masonry repairs",
-      "High-pressure sealing & weed barrier"
+      "Paving joint filling and finishing"
     ],
     keyDeliverables: [
-      "Heavy soil compaction with mechanical wacker plate foundation",
-      "Layered river sand bed with exact laser-leveled drainage fall",
-      "Precision diamond-blade cut border edging and cement haunching",
-      "Joint grouting with silica sand and protective weather seal"
+      "Ground preparation suited to the site",
+      "Paving levels and drainage discussed before installation",
+      "Border edging and finishing as agreed",
+      "Joint filling and site cleanup"
     ],
     images: [
       {
@@ -340,7 +340,7 @@ export const servicesData: ServiceItem[] = [
     badge: "Flooring",
     complianceSpec: "Level Substrate & Clean Finish",
     turnaroundEstimate: "Based on Room Size and Preparation",
-    description: "Flooring installation and repair for homes, offices and commercial spaces.",
+    description: "Floor and wall tiling, carpet and laminate installation, and repairs to damaged floor finishes for Alberton homes and businesses.",
     subServices: [
       "Floor and wall tiling",
       "Carpet installation and replacement",
@@ -398,7 +398,7 @@ export const servicesData: ServiceItem[] = [
     badge: "Aluminium Windows & Doors",
     complianceSpec: "Weather-Sealed Frames & Smooth Operation",
     turnaroundEstimate: "Scheduled After Site Measurement",
-    description: "Aluminium window and door installation, repairs, adjustments and hardware maintenance.",
+    description: "Aluminium window and door installation and repairs, including alignment, rollers, locks, seals and glazing, for Alberton properties.",
     subServices: [
       "Aluminium window installation",
       "Aluminium door installation",

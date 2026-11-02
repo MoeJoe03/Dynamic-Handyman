@@ -105,17 +105,17 @@ export const projectsData: ProjectItem[] = [
     filterKey: 'palisades',
     additionalFilterKeys: ['gutters-fascia'],
     title: 'Palisades & Carports',
-    subtitle: 'Custom Steel Fabrication & Automation',
+    subtitle: 'Steel Carport Fabrication and Installation',
     cardSummary: 'Custom steel carport fabrication and installation for vehicle protection.',
     location: 'Centurion',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWBax_T46uynpNADscXDGNia53Vtqt3pDjUalC-YisLuULknn1B90Koezbct_9d1CQTMsgPGcZeV4vymQHc6C5YAk9OTLt12X49yKeFuVC8hRqcNjBs1YFZ1Zf440cOvK0Ktuvsjy4LWfilLn3g0XBglfqc-l-R8bLP57-hQyAlbCaGLEPLIK4rAM_HIIdvnGpTkYX_m-Shw8JtnQ8IUr9Q4KvhmztTLBh33a5HQCKVt05tNFuDDlxVw',
     scope: [
-      'Heavy-gauge galvanized steel cantilever 2-vehicle carport',
-      'Corrugated IBR roof sheeting with integrated seamless guttering',
-      'Concrete footing excavation and precision upright post casting',
-      'Anti-corrosive primer and architectural dark charcoal enamel'
+      'Steel carport framework',
+      'Roof sheeting and guttering',
+      'Footing and post installation',
+      'Protective steel finish'
     ],
-    description: 'Engineered vehicle protection carport designed to match contemporary architectural aesthetics. Built with structural steel hollow tubing and reinforced cantilever gussets to withstand severe hail.'
+    description: 'Steel carport installation with roof sheeting and guttering. Final materials and site preparation depend on the project scope.'
   },
   {
     id: 'project-6',
@@ -136,20 +136,20 @@ export const projectsData: ProjectItem[] = [
   },
   {
     id: 'project-7',
-    category: 'Renovations',
+    category: 'Paving',
     filterKey: 'paving',
-    title: 'Structural Alterations',
-    subtitle: 'Engineered Paving & Boundary Integration',
-    cardSummary: 'Driveway paving and boundary work with improved drainage away from foundations.',
-    location: 'Alberton, Johannesburg',
+    title: 'Driveway Paving',
+    subtitle: 'Paving and Ground Preparation',
+    cardSummary: 'Driveway paving with ground and drainage preparation.',
+    location: 'Alberton',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDhn1sUA6cb-u7_UcSjwVtj8mYU_9j9n2KM-whcFNotHerF1_AL4BDn6l5hxIcs7BnakIhhjbw-rjNRkdaigAzx8BCN0nldDNdOLdJDM8-HkAMDMkgyYgXK9E2UZ-FbxS3vGj3n9DAcq0vRFFpMC5-JovMRR_Y7C9oFUrPv0BuQf2FPXmvyW1ZDyoNaWWPG4nx0iT75PQIPYG6D_WhOp1dYapgfiYYyFYaOqAiTGkKC3w4iw6ZqKl7diw',
     scope: [
-      'Excavation and 150mm compacted sub-base preparation',
-      'Interlocking heavy-duty concrete bevel pavers laying',
-      'Boundary retaining kerb casting with drainage gradient',
-      'Weed-barrier polymeric sand joint consolidation'
+      'Ground preparation for paving',
+      'Interlocking paving installation',
+      'Edge and drainage consideration',
+      'Joint filling and finishing'
     ],
-    description: 'Turnkey driveway paving overhaul and boundary retaining structure. Fixed persistent pooling water by re-engineering ground fall angles away from foundations.'
+    description: 'Driveway paving work with preparation of the existing surface and consideration of rainwater runoff.'
   },
   {
     id: 'project-8',

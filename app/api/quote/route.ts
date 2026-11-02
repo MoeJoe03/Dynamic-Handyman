@@ -69,23 +69,32 @@ function formatInquiryReference(requestId: string, now = new Date()) {
 }
 
 export async function POST(request: NextRequest) {
+  const isNativeForm = !request.headers.get('content-type')?.includes('application/json');
+  let formReturnPath = '/contact';
+  const errorResponse = (error: string, status: number, headers?: HeadersInit) => isNativeForm
+    ? NextResponse.redirect(new URL(`${formReturnPath}?quote=${status === 429 ? 'limited' : 'error'}`, request.url), 303)
+    : NextResponse.json({ error }, { status, headers });
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) {
-    return NextResponse.json({ error: 'Invalid request origin.' }, { status: 403 });
+    return errorResponse('Invalid request origin.', 403);
   }
   const contentType = request.headers.get('content-type') || '';
   const isJsonRequest = contentType.includes('application/json');
   const isFormRequest = contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data');
-  if (!isJsonRequest && !isFormRequest) return NextResponse.json({ error: 'Invalid request format.' }, { status: 415 });
+  if (!isJsonRequest && !isFormRequest) return errorResponse('Invalid request format.', 415);
 
   let body: unknown;
   try {
     if (isJsonRequest) {
       const raw = await request.text();
-      if (Buffer.byteLength(raw, 'utf8') > 16000) return NextResponse.json({ error: 'Your request is too long.' }, { status: 413 });
+      if (Buffer.byteLength(raw, 'utf8') > 16000) return errorResponse('Your request is too long.', 413);
       body = JSON.parse(raw);
     } else {
       const formData = await request.formData();
+      const requestedReturnPath = String(formData.get('returnTo') || '');
+      if (servicesData.some((service) => requestedReturnPath === `/services/${service.id}`)) {
+        formReturnPath = requestedReturnPath;
+      }
       body = {
         fullName: String(formData.get('fullName') || ''),
         phoneNumber: String(formData.get('phoneNumber') || ''),
@@ -97,32 +106,26 @@ export async function POST(request: NextRequest) {
       };
     }
   } catch {
-    return NextResponse.json({ error: 'Invalid request format.' }, { status: 400 });
+    return errorResponse('Invalid request format.', 400);
   }
 
   const parsed = inquirySchema.safeParse(body);
   if (!parsed.success || parsed.data.website) {
-    return NextResponse.json({ error: 'Please check your contact details and service selection.' }, { status: 400 });
+    return errorResponse('Please check your contact details and service selection.', 400);
   }
 
   const rateLimit = consumeQuoteRateLimit(getClientIp(request));
   if (!rateLimit.allowed) {
-    return NextResponse.json(
-      { error: 'Too many quote requests were sent from this connection. Please try again later.' },
-      {
-        status: 429,
-        headers: {
-          'Retry-After': String(rateLimit.retryAfter),
-          'Cache-Control': 'no-store',
-        },
-      },
-    );
+    return errorResponse('Too many quote requests were sent from this connection. Please try again later.', 429, {
+      'Retry-After': String(rateLimit.retryAfter),
+      'Cache-Control': 'no-store',
+    });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey || !apiKey.startsWith('re_')) {
     console.error('Quote delivery is not configured: RESEND_API_KEY is missing.');
-    return NextResponse.json({ error: deliveryError }, { status: 503 });
+    return errorResponse(deliveryError, 503);
   }
 
   const { fullName, phoneNumber, emailAddress, serviceCategory, projectDetails, requestId } = parsed.data;
@@ -161,16 +164,16 @@ export async function POST(request: NextRequest) {
     });
     if (!response.ok) {
       console.error('Quote email provider rejected delivery', { status: response.status });
-      return NextResponse.json({ error: deliveryError }, { status: 502 });
+      return errorResponse(deliveryError, 502);
     }
     const result: unknown = await response.json();
     if (!result || typeof result !== 'object' || !('id' in result) || typeof result.id !== 'string' || !result.id) {
-      return NextResponse.json({ error: deliveryError }, { status: 502 });
+      return errorResponse(deliveryError, 502);
     }
-    if (!isJsonRequest) return NextResponse.redirect(new URL('/contact?quote=received', request.url), 303);
+    if (!isJsonRequest) return NextResponse.redirect(new URL(`${formReturnPath}?quote=received`, request.url), 303);
     return NextResponse.json({ success: true });
   } catch {
     console.error('Quote email provider could not be reached.');
-    return NextResponse.json({ error: deliveryError }, { status: 502 });
+    return errorResponse(deliveryError, 502);
   }
 }
