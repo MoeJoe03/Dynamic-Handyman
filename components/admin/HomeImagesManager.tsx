@@ -46,7 +46,7 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
     const selected = event.target.files?.[0] ?? null;
     if (!selected) return;
     if (selected.size > galleryConfig.upload.maxFileSizeMB * 1024 * 1024 || !galleryConfig.upload.acceptedTypes.includes(selected.type as typeof galleryConfig.upload.acceptedTypes[number])) {
-      setMessage('Choose a JPG, PNG, or WebP image no larger than 8 MB.');
+      setMessage('Choose a JPG, PNG, WebP, or AVIF image no larger than 8 MB.');
       event.target.value = '';
       return;
     }
@@ -172,7 +172,7 @@ function HomeImageCard({ slot, displayLabel, override, onChange, onDirtyChange, 
       {dirty && <p className="mt-1 text-xs font-semibold text-amber-800">Unsaved changes</p>}
       <form onSubmit={save} className="mt-4 space-y-4">
         <label className="block text-sm font-semibold text-[#123E61]">{slot.optional && !override ? 'Project photo' : 'Replacement photo'}
-          <input type="file" accept="image/jpeg,image/png,image/webp" onChange={selectFile} disabled={busy || savingAll} className="peer sr-only" />
+          <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={selectFile} disabled={busy || savingAll} className="peer sr-only" />
           <span className={`mt-2 inline-flex min-h-11 items-center border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#123E61] ${busy || savingAll ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:bg-[#E8EFF4]'}`}>Upload file</span>
           <span className="mt-2 block truncate text-xs font-normal text-slate-600" title={file?.name ?? ''}>{file?.name ?? 'No file selected'}</span>
         </label>

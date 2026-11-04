@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
       const bytes = new Uint8Array(await entry.arrayBuffer());
       const type = detectImageType(bytes);
       if (!type || type.mime !== entry.type || !galleryConfig.upload.acceptedTypes.includes(type.mime as typeof galleryConfig.upload.acceptedTypes[number])) {
-        return NextResponse.json({ error: 'Only valid JPG, PNG, and WebP images are allowed.' }, { status: 400 });
+        return NextResponse.json({ error: 'Only valid JPG, PNG, WebP, and AVIF images are allowed.' }, { status: 400 });
       }
       const altText = altTextSchema.safeParse(String(altTexts[index] ?? ''));
       if (!altText.success) return NextResponse.json({ error: 'Alt text must be 300 characters or less.' }, { status: 400 });

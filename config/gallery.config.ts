@@ -18,7 +18,7 @@ export const galleryConfig = {
   upload: {
     maxFileSizeMB: 8,
     maxFilesPerBatch: 10,
-    acceptedTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    acceptedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'],
   },
 } as const;
 

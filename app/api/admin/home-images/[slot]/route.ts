@@ -55,7 +55,7 @@ export async function POST(request: NextRequest, context: Context) {
     const bytes = new Uint8Array(await file.arrayBuffer());
     const type = detectImageType(bytes);
     if (!type || type.mime !== file.type || !galleryConfig.upload.acceptedTypes.includes(type.mime as typeof galleryConfig.upload.acceptedTypes[number])) {
-      return NextResponse.json({ error: 'Only valid JPG, PNG, and WebP images are allowed.' }, { status: 400 });
+      return NextResponse.json({ error: 'Only valid JPG, PNG, WebP, and AVIF images are allowed.' }, { status: 400 });
     }
 
     const { data: previous, error: readError } = await admin.supabase.from('home_images').select('image_path,gallery_image_id').eq('slot_key', slot).maybeSingle();

@@ -23,5 +23,15 @@ export function detectImageType(bytes: Uint8Array) {
   if (bytes.length >= 12 && String.fromCharCode(...bytes.slice(0, 4)) === 'RIFF' && String.fromCharCode(...bytes.slice(8, 12)) === 'WEBP') {
     return { mime: 'image/webp', extension: 'webp' };
   }
+  if (bytes.length >= 16 && String.fromCharCode(...bytes.slice(4, 8)) === 'ftyp') {
+    const size = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getUint32(0);
+    if (size >= 16 && size <= bytes.length && size % 4 === 0) {
+      for (let offset = 8; offset + 4 <= size; offset += 4) {
+        if (offset === 12) continue;
+        const brand = String.fromCharCode(...bytes.slice(offset, offset + 4));
+        if (brand === 'avif' || brand === 'avis') return { mime: 'image/avif', extension: 'avif' };
+      }
+    }
+  }
   return null;
 }

@@ -99,7 +99,7 @@ export function GalleryManager({ userId, initialImages, initialError }: { userId
     for (const [index, item] of queued.entries()) {
       if (item.status === 'done') continue;
       if (item.file.size > galleryConfig.upload.maxFileSizeMB * 1024 * 1024 || !galleryConfig.upload.acceptedTypes.includes(item.file.type as typeof galleryConfig.upload.acceptedTypes[number])) {
-        updateQueued(index, { status: 'error', error: 'Use a JPG, PNG, or WebP image no larger than 8 MB.' });
+        updateQueued(index, { status: 'error', error: 'Use a JPG, PNG, WebP, or AVIF image no larger than 8 MB.' });
         continue;
       }
       updateQueued(index, { status: 'uploading', progress: 0 });
@@ -250,7 +250,7 @@ export function GalleryManager({ userId, initialImages, initialError }: { userId
         {uploadMode === 'file' ? <>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block text-sm font-semibold">Photos (up to 10, 8 MB each)
-            <input type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={selectFiles} disabled={busy} className="peer sr-only" />
+            <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple onChange={selectFiles} disabled={busy} className="peer sr-only" />
             <span className={`mt-2 inline-flex min-h-11 items-center border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#123E61] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#123E61] ${busy ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:bg-[#E8EFF4]'}`}>Upload file</span>
             <span className="mt-2 block text-xs font-normal text-slate-600">{queued.length ? `${queued.length} ${queued.length === 1 ? 'file' : 'files'} selected` : 'No files selected'}</span>
           </label>
