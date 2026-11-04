@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 
-export function ServiceAreaSection() {
+export function ServiceAreaSection({ showAreaLink = true }: { showAreaLink?: boolean } = {}) {
   return (
     <section className="bg-white pt-2 pb-14 sm:pt-3 sm:pb-20" aria-labelledby="service-area-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -45,6 +45,7 @@ export function ServiceAreaSection() {
               <p className="mt-5 text-sm leading-relaxed text-slate-700">
                 <Link href="/contact" className="font-semibold text-[#123E61] underline decoration-sky-500 underline-offset-4 transition-colors hover:text-[#19547E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123E61]">Contact us</Link> with your project details to discuss the work, scheduling and quotation process for your location.
               </p>
+              {showAreaLink && <Link href="/areas-we-serve" className="mt-4 inline-block font-bold text-[#123E61] underline underline-offset-4">View all areas we serve</Link>}
             </div>
           </div>
         </div>

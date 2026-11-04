@@ -3,6 +3,7 @@ import Link from 'next/link';
 const pageLabels = {
   services: 'Services',
   gallery: 'Our Work',
+  'areas-we-serve': 'Areas We Serve',
   about: 'About',
   contact: 'Contact',
   electrical: 'Electrical Services',
@@ -21,7 +22,7 @@ const pageLabels = {
 type BreadcrumbPage = keyof typeof pageLabels;
 
 export function BreadcrumbNav({ currentPage }: { currentPage: BreadcrumbPage }) {
-  const isServiceDetail = !['services', 'gallery', 'about', 'contact'].includes(currentPage);
+  const isServiceDetail = !['services', 'gallery', 'about', 'contact', 'areas-we-serve'].includes(currentPage);
   return (
     <nav aria-label="Breadcrumb" className="mb-5">
       <ol className="flex flex-wrap items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-slate-300 sm:text-[11px]">
