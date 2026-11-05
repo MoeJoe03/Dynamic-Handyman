@@ -1,3 +1,5 @@
+import { NearbyServiceAreas } from '@/components/NearbyServiceAreas';
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
@@ -157,7 +159,7 @@ export default async function ServicesPage() {
           <span className="mr-2 text-sm font-semibold text-[#123E61]">Ready to discuss your project?</span>
           <Link href="/contact" className="bg-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white hover:bg-[#0C2B44]">Request a quote</Link>
           <a href={businessConfig.phone.telHref} className="border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#123E61] hover:bg-[#F4F7F9]">Call {businessConfig.phone.display}</a>
-          <a href={businessConfig.phone.whatsappUrl} className="border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#123E61] hover:bg-[#F4F7F9]">WhatsApp us</a>
+          <a href={businessConfig.phone.whatsappUrl} className="border border-[#123E61] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#123E61] hover:bg-[#F4F7F9]"><WhatsAppIcon />WhatsApp us</a>
         </div>
 
         {/* FULL ARCHITECTURAL TRADE BREAKDOWNS */}
@@ -335,9 +337,10 @@ export default async function ServicesPage() {
                   Dynamic Handyman provides electrical, plumbing, painting, carpentry, paving, property maintenance and renovation services in Alberton and nearby suburbs.
                 </p>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                  Our main service locations include {nearbyServiceAreas.join(', ')}.
+                  Our main service locations include <Link href="/areas-we-serve/alberton" className="font-semibold underline underline-offset-4">Alberton</Link> and nearby suburbs such as {nearbyServiceAreas.join(', ')}.
                 </p>
-                <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-[#123E61]">
+                <NearbyServiceAreas />
+<h3 className="mt-6 font-bold text-[#123E61]">
                   Wider Service Areas
                 </h3>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">

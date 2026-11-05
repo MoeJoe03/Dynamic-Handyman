@@ -3,18 +3,32 @@
  * claims here so pages, messages and structured data stay consistent.
  * Unknown insurance and warranty information is intentionally not advertised.
  */
-const mainServiceAreas = [
-  'Alberton',
-  'Vauxhall',
-  'Meyersdal',
+const albertonSuburbs = [
+  'Alberante',
+  'Albertsdal',
+  'Alberton North (Alberton-Noord)',
+  'Alrode',
   'Brackendowns',
   'Brackenhurst',
-  'Randhart',
+  'Eden Park',
+  'Elandshaven',
+  'Florentia',
+  'Generaal Albertspark',
+  'Mayberry Park',
+  'Meyersdal',
   'New Redruth',
-  'Germiston',
-  'Boksburg',
-  'Johannesburg South',
+  'Newmarket / Newmarket Park',
+  'Palm Ridge',
+  'Raceview',
+  'Randhart',
+  'South Crest',
+  'Verwoerdpark',
 ] as const;
+
+const mainServiceAreas = ['Alberton', ...albertonSuburbs] as const;
+
+const nearbyServiceAreas = ['Germiston', 'Dinwiddie', 'Elsburg', 'Bedfordview', 'Boksburg', 'Kensington', 'Primrose'] as const;
+const johannesburgSouthAreas = ['Mulbarton', 'Glenvista', 'Oakdene', 'Mondeor'] as const;
 
 const widerServiceAreas = [
   'Sandton',
@@ -61,9 +75,11 @@ export const businessConfig = {
     { label: 'Sun', display: 'Closed', schema: null },
   ],
   mainServiceAreas,
+  nearbyServiceAreas,
+  johannesburgSouthAreas,
   widerServiceAreas,
   get serviceAreas() {
-    return [...this.mainServiceAreas, ...this.widerServiceAreas];
+    return [...this.mainServiceAreas, ...this.nearbyServiceAreas, 'Johannesburg South', ...this.johannesburgSouthAreas, ...this.widerServiceAreas];
   },
   serviceAreaSummary: 'Alberton and nearby suburbs',
   credentials: {

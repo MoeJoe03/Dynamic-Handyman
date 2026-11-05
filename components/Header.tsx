@@ -9,13 +9,20 @@ import { businessConfig } from '@/config/business';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [areasMenuOpen, setAreasMenuOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    let previousY = Math.max(0, window.scrollY);
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentY = Math.max(0, window.scrollY);
+      setIsScrolled(currentY > 20);
+      if (currentY <= 20 || currentY < previousY) setNavHidden(false);
+      else if (currentY > 90 && currentY > previousY) setNavHidden(true);
+      previousY = currentY;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -25,13 +32,14 @@ export function Header() {
     { href: '/', label: 'HOME' },
     { href: '/services', label: 'SERVICES' },
     { href: '/gallery', label: 'OUR WORK' },
+    { href: '/areas-we-serve', label: 'AREAS WE SERVE' },
     { href: '/about', label: 'ABOUT' },
     { href: '/contact', label: 'CONTACT' },
   ];
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-200 border-b ${
+      className={`sticky top-0 z-50 transition-all duration-200 border-b focus-within:translate-y-0 motion-reduce:transition-none ${navHidden && !mobileMenuOpen && !servicesMenuOpen && !areasMenuOpen ? '-translate-y-full' : 'translate-y-0'} ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-sm border-[#D9DEE2]'
           : 'bg-white border-[#D9DEE2]'
@@ -55,6 +63,20 @@ export function Header() {
             aria-label="Main Navigation"
           >
             {navLinks.map((link) => {
+              if (link.label === 'AREAS WE SERVE') {
+                return (
+                  <div key={link.label} className="relative" onMouseLeave={() => setAreasMenuOpen(false)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setAreasMenuOpen(false); }} onKeyDown={event => { if (event.key === 'Escape') setAreasMenuOpen(false); }}>
+                    <button type="button" onClick={() => setAreasMenuOpen(open => !open)} onMouseEnter={() => { setAreasMenuOpen(true); setServicesMenuOpen(false); }} aria-expanded={areasMenuOpen} aria-controls="desktop-areas-menu" className={`flex items-center gap-1 py-2 text-[11px] font-bold uppercase tracking-[0.18em] lg:text-xs ${pathname.startsWith('/areas-we-serve') ? 'text-[#123E61] underline underline-offset-8' : 'text-[#30323A] hover:text-[#123E61]'}`}>
+                      AREAS WE SERVE <span aria-hidden="true">⌄</span>
+                    </button>
+                    {areasMenuOpen && <div id="desktop-areas-menu" className="absolute left-0 top-full z-50 min-w-56 border border-[#D9DEE2] bg-white p-2 shadow-lg">
+                      <Link href="/areas-we-serve" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">View All Service Areas</Link>
+                      <Link href="/areas-we-serve/alberton" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">Alberton</Link>
+                      <Link href="/areas-we-serve/albertsdal" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">Albertsdal</Link>
+                    </div>}
+                  </div>
+                );
+              }
               if (link.label === 'SERVICES') {
                 return (
                   <div key={link.label} className="relative" onMouseLeave={() => setServicesMenuOpen(false)}>
@@ -71,7 +93,7 @@ export function Header() {
                     </button>
                     {servicesMenuOpen && (
                       <div className="absolute left-0 top-full z-50 max-h-[calc(100vh-6rem)] min-w-72 overflow-y-auto border border-[#D9DEE2] bg-white p-2 shadow-lg" role="menu">
-                        <Link href="/services" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">All Services</Link>
+                        <Link href="/services" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">View All Services</Link>
                         <Link href="/services/electrical" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Electrical Installations &amp; COC</Link>
                         <Link href="/services/painting" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Painting &amp; Roof Coatings</Link>
                         <Link href="/services/carpentry" onClick={() => setServicesMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]" role="menuitem">Carpentry &amp; Cupboards</Link>
@@ -145,12 +167,21 @@ export function Header() {
         >
           {navLinks.map((link) => link.label === 'SERVICES' ? (
             <div key={link.label} className="border-b border-neutral-100 pb-2">
-              <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61]">SERVICES</Link>
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61]">View All Services</Link>
               <Link href="/services/electrical" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Electrical Installations &amp; COC</Link>
               <Link href="/services/painting" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Painting &amp; Roof Coatings</Link>
               <Link href="/services/carpentry" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Carpentry &amp; Cupboards</Link>
               <Link href="/services/plumbing" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">Plumbing &amp; Geysers</Link>
               {Object.entries({ palisades: 'Palisades & Carports', paving: 'Paving', maintenance: 'Property Maintenance', 'glass-works': 'Glass & Glazing', flooring: 'Flooring', 'gutters-fascia': 'Gutters & Fascias', 'aluminium-windows-doors': 'Aluminium Windows & Doors' }).map(([slug, label]) => <Link key={slug} href={`/services/${slug}`} onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E] hover:text-[#123E61]">{label}</Link>)}
+            </div>
+          ) : link.label === 'AREAS WE SERVE' ? (
+            <div key={link.label} className="border-b border-neutral-100 pb-2">
+              <button type="button" onClick={() => setAreasMenuOpen(open => !open)} aria-expanded={areasMenuOpen} aria-controls="mobile-areas-menu" className="flex w-full items-center justify-between py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#123E61]">Areas We Serve <span aria-hidden="true">⌄</span></button>
+              {areasMenuOpen && <div id="mobile-areas-menu">
+                <Link href="/areas-we-serve" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">View All Service Areas</Link>
+                <Link href="/areas-we-serve/alberton" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">Alberton</Link>
+                <Link href="/areas-we-serve/albertsdal" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">Albertsdal</Link>
+              </div>}
             </div>
           ) : (
             <Link key={link.label} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-xs font-bold uppercase tracking-[0.18em] text-[#30323A] hover:text-[#123E61] py-2 border-b border-neutral-100 transition-colors">{link.label}</Link>

@@ -6,6 +6,14 @@ const supabaseHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [{
+      source: '/:path*',
+      has: [{ type: 'host', value: 'www.dynamichandyman.co.za' }],
+      destination: 'https://dynamichandyman.co.za/:path*',
+      permanent: true,
+    }];
+  },
   async headers() {
     return [
       {

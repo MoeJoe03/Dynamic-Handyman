@@ -1,5 +1,6 @@
 'use client';
 
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 import React, { useEffect, useRef, useState } from 'react';
 import { businessConfig } from '@/config/business';
 import { servicesData } from '@/data/services';
@@ -193,9 +194,7 @@ export function QuoteForm({
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-3 px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-widest transition-all shadow-sm"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
-              </svg>
+              <WhatsAppIcon />
               <span>Chat on WhatsApp</span>
             </a>
           </div>
@@ -427,7 +426,7 @@ export function QuoteForm({
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center space-x-2 text-xs font-bold text-sky-200 hover:text-white uppercase tracking-wider transition-colors py-2"
                     >
-                      <span>Or Inquire Via WhatsApp</span>
+                      <WhatsAppIcon /><span>Or Inquire Via WhatsApp</span>
                       <span>→</span>
                     </a>
                   </div>
@@ -487,7 +486,7 @@ export function QuoteForm({
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm inline-flex items-center space-x-2"
                 >
-                  <span>Forward Details to WhatsApp</span>
+                  <WhatsAppIcon /><span>Forward Details to WhatsApp</span>
                   <span>→</span>
                 </a>
                 <button

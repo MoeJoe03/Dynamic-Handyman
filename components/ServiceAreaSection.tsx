@@ -1,3 +1,4 @@
+import { NearbyServiceAreas } from '@/components/NearbyServiceAreas';
 import Link from 'next/link';
 import { mainServiceAreas, widerServiceAreas } from '@/config/service-areas';
 
@@ -25,13 +26,14 @@ export function ServiceAreaSection({ showAreaLink = true }: { showAreaLink?: boo
               <ul className="mt-5 flex flex-wrap gap-2" aria-label="Main service areas">
                 {mainServiceAreas.map((area) => (
                   <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm font-semibold text-[#123E61] transition-colors hover:border-[#19547E] hover:bg-sky-50">
-                    {area}
+                    {area === 'Alberton' ? <Link href="/areas-we-serve/alberton" className="font-semibold underline underline-offset-4">Alberton</Link> : area}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-bold uppercase tracking-wide text-[#123E61]">Wider service areas</h3>
+              <NearbyServiceAreas />
+<h3 className="mt-6 font-bold text-[#123E61]">Wider service areas</h3>
               <p className="mt-3 text-sm leading-relaxed text-slate-700">
                 Based in Alberton, Dynamic Handyman also travels to these areas for residential and commercial handyman, maintenance and renovation projects.
               </p>

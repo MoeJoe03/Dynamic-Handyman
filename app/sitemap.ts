@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/services/aluminium-windows-doors`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/gallery`, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${siteUrl}/areas-we-serve`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${siteUrl}/areas-we-serve/alberton`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${siteUrl}/areas-we-serve/albertsdal`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/about`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/contact`, changeFrequency: 'monthly', priority: 0.9 },
   ];

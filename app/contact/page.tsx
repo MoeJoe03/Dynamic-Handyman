@@ -1,3 +1,5 @@
+import { NearbyServiceAreas } from '@/components/NearbyServiceAreas';
+import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
@@ -116,10 +118,11 @@ export default async function ContactPage({
               <h3 className="mt-5 text-sm font-bold text-[#123E61]">Main Service Locations</h3>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label="Areas served">
                 {mainServiceAreas.map((area) => (
-                  <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area}</li>
+                  <li key={area} className="border border-[#D9DEE2] bg-[#F8F9F9] px-3 py-2 text-sm text-[#123E61]">{area === 'Alberton' ? <Link href="/areas-we-serve/alberton" className="font-semibold underline underline-offset-4">Alberton</Link> : area}</li>
                 ))}
               </ul>
-              <h3 className="mt-8 text-sm font-bold leading-relaxed text-[#123E61]">Wider Service Areas</h3>
+              <NearbyServiceAreas />
+<h3 className="mt-6 font-bold text-[#123E61]">Wider Service Areas</h3>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Based in Alberton, Dynamic Handyman also travels to:
               </p>
