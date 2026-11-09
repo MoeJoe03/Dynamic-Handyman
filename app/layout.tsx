@@ -18,7 +18,7 @@ const siteMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+  title: 'Dynamic Handyman | Home Repairs & Maintenance in Alberton',
   description: businessConfig.metadata.homeDescription,
   authors: [{ name: businessConfig.legalName }],
   metadataBase: new URL(businessConfig.websiteUrl),
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+    title: 'Dynamic Handyman | Home Repairs & Maintenance in Alberton',
     description: businessConfig.metadata.homeDescription,
     images: [{
       url: '/dynamic-handyman-home-og.png',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+    title: 'Dynamic Handyman | Home Repairs & Maintenance in Alberton',
     description: businessConfig.metadata.homeDescription,
     images: ['/dynamic-handyman-home-og.png'],
   },

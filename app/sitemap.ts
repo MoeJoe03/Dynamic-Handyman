@@ -21,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/areas-we-serve`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/areas-we-serve/alberton`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/areas-we-serve/albertsdal`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${siteUrl}/areas-we-serve/eden-park`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${siteUrl}/areas-we-serve/mayberry-park`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/about`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/contact`, changeFrequency: 'monthly', priority: 0.9 },
   ];

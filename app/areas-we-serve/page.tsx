@@ -69,7 +69,7 @@ export default async function AreasWeServePage() {
             <div>
               <h2 id="main-areas-heading" className="text-3xl font-extrabold tracking-tight text-[#123E61]">Our Main Service Areas</h2>
               <ul className="mt-5 flex flex-wrap gap-2">
-                {mainServiceAreas.map(area => <li key={area} className="border border-[#D9DEE2] bg-white px-3 py-2 text-sm font-semibold text-[#123E61]">{area === 'Alberton' ? <Link href="/areas-we-serve/alberton" className="underline underline-offset-4 hover:text-[#19547E]">{area}</Link> : area === 'Albertsdal' ? <Link href="/areas-we-serve/albertsdal" className="underline underline-offset-4 hover:text-[#19547E]">{area}</Link> : area}</li>)}
+                {mainServiceAreas.map(area => <li key={area} className="border border-[#D9DEE2] bg-white px-3 py-2 text-sm font-semibold text-[#123E61]">{area === 'Alberton' ? <Link href="/areas-we-serve/alberton" className="underline underline-offset-4 hover:text-[#19547E]">{area}</Link> : area === 'Albertsdal' ? <Link href="/areas-we-serve/albertsdal" className="underline underline-offset-4 hover:text-[#19547E]">{area}</Link> : area === 'Eden Park' ? <Link href="/areas-we-serve/eden-park" className="underline underline-offset-4 hover:text-[#19547E]">{area}</Link> : area === 'Mayberry Park' ? <Link href="/areas-we-serve/mayberry-park" className="underline underline-offset-4 hover:text-[#19547E]">{area}</Link> : area}</li>)}
               </ul>
             </div>
             <div>

@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import { businessConfig } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+  title: 'Home Repairs, Maintenance & Renovations in Alberton',
   description:
     businessConfig.metadata.servicesDescription,
   alternates: {
     canonical: `${businessConfig.websiteUrl}/services`,
   },
   openGraph: {
-    title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+    title: 'Home Repairs, Maintenance & Renovations in Alberton',
     description:
       businessConfig.metadata.servicesDescription,
     type: 'website',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Handyman Services in Alberton | ${businessConfig.brandName}`,
+    title: 'Home Repairs, Maintenance & Renovations in Alberton',
     description:
       businessConfig.metadata.servicesDescription,
     images: ['/dynamic-handyman-services-og.png'],

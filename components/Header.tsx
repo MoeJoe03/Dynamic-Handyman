@@ -73,6 +73,8 @@ export function Header() {
                       <Link href="/areas-we-serve" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">View All Service Areas</Link>
                       <Link href="/areas-we-serve/alberton" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">Alberton</Link>
                       <Link href="/areas-we-serve/albertsdal" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">Albertsdal</Link>
+                      <Link href="/areas-we-serve/eden-park" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">Eden Park</Link>
+                      <Link href="/areas-we-serve/mayberry-park" onClick={() => setAreasMenuOpen(false)} className="block px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#123E61] hover:bg-[#F4F7F9]">Mayberry Park</Link>
                     </div>}
                   </div>
                 );
@@ -181,6 +183,8 @@ export function Header() {
                 <Link href="/areas-we-serve" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">View All Service Areas</Link>
                 <Link href="/areas-we-serve/alberton" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">Alberton</Link>
                 <Link href="/areas-we-serve/albertsdal" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">Albertsdal</Link>
+                <Link href="/areas-we-serve/eden-park" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">Eden Park</Link>
+                <Link href="/areas-we-serve/mayberry-park" onClick={() => setMobileMenuOpen(false)} className="block py-2 pl-4 text-[11px] font-bold uppercase tracking-wider text-[#19547E]">Mayberry Park</Link>
               </div>}
             </div>
           ) : (
